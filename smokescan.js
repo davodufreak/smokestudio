@@ -562,7 +562,7 @@ function generateSimulatedResult() {
     totalScore: total,
     statusLabel,
     headline: `Tu idea tiene ${statusLabel.toLowerCase()} y ${total >= 50 ? 'fundamentos sólidos' : 'áreas clave por fortalecer'}`,
-    summary: `Tu idea de "${a.step1.selection || 'producto digital'}" presenta un problema ${problemLabel} con un ${compLabel}. Con un ${revenueLabel}, el potencial de viabilidad es ${statusLabel.toLowerCase()}. El análisis revela oportunidades concretas para elevar tu score completando las áreas de mejora identificadas.`,
+    summary: `Tu idea de "${a.step1.selection || 'producto digital'}" resuelve un problema ${problemLabel}. Al enfrentarse a un ${compLabel} y apoyarse en un ${revenueLabel}, el potencial de viabilidad se proyecta como ${statusLabel.toLowerCase()}. El análisis muestra áreas de oportunidad para iterar y perfeccionar tu estrategia.`,
     strengths: strengths.slice(0, 3),
     risks: risks.slice(0, 3),
     categories: [
@@ -732,7 +732,7 @@ function populateResults(result) {
       if (rightContent) rightContent.style.display = 'none';
     } else {
       actUnder50.classList.add('hidden');
-      catOver50.classList.remove('hidden');
+      catOver50.classList.add('hidden');
       rightBlur.classList.add('hidden');
       rightCont.classList.remove('hidden');
       if (rightContent) rightContent.style.display = 'flex';
@@ -811,30 +811,94 @@ function populateResults(result) {
   const dlBtn = $('ss-download-btn');
   if (dlBtn) {
     dlBtn.onclick = () => {
-      const element = $('ss-left-card');
+      const originalText = dlBtn.innerHTML;
+      dlBtn.innerHTML = 'Generando PDF...';
+
+      if (typeof html2pdf === 'undefined') {
+        alert("La librería PDF no pudo cargar.");
+        dlBtn.innerHTML = originalText;
+        return;
+      }
+
+      // Build specific PDF container
+      const pdfWrap = document.createElement('div');
+      pdfWrap.id = 'ss-pdf-export-temp';
+      // Style explicitly for A4 rendering
+      pdfWrap.style.cssText = `
+        position: absolute; left: -9999px; top: 0; width: 800px; 
+        background: #fff; padding: 40px; font-family: 'Urbanist', sans-serif; color: #0B0B0C;
+      `;
+
+      const score = Math.round(result.totalScore || 0);
+      const a = STATE.answers;
+      
+      const getAns = (stepObj) => {
+        let text = [];
+        if (stepObj?.selection) text.push(stepObj.selection);
+        if (stepObj?.selections) text.push(stepObj.selections.join(', '));
+        if (stepObj?.desc) text.push(stepObj.desc);
+        return text.join(' - ') || 'N/A';
+      };
+
+      pdfWrap.innerHTML = `
+        <div style="border-bottom: 2px solid #EBEBEB; padding-bottom: 20px; margin-bottom: 30px; display:flex; justify-content:space-between; align-items:flex-end;">
+          <div>
+            <h1 style="margin:0; font-size: 28px; color:#3E4DC4;">SmokeScan Reporte</h1>
+            <p style="margin:5px 0 0; color:#6B7280;">Validación temprana de idea de negocio</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:48px; font-weight:900; line-height:1;">${score}<span style="font-size:16px; color:#6B7280; font-weight:400;">/100</span></div>
+            <div style="font-weight:bold; color:#EA580C;">${result.statusLabel}</div>
+          </div>
+        </div>
+
+        <div style="background:#F8FAFC; padding: 24px; border-radius:16px; border:1px solid #E2E8F0; margin-bottom: 30px;">
+          <h2 style="margin:0 0 16px; font-size:20px;">Diagnóstico de IA</h2>
+          <h3 style="margin:0 0 8px; font-size:16px;">${result.headline}</h3>
+          <p style="margin:0; font-family:'Istok Web',sans-serif; font-size:14px; line-height:1.6; color:#4B5563;">${result.summary}</p>
+        </div>
+
+        <h2 style="margin:40px 0 20px; font-size:20px; border-bottom:1px solid #EBEBEB; padding-bottom:10px;">Respuestas del Formulario</h2>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom:40px; font-size:13px; font-family:'Istok Web',sans-serif;">
+          <div><strong>1. Mi rol principal:</strong><br/>${getAns(a.step1)}</div>
+          <div><strong>2. El problema a resolver se basa en:</strong><br/>${getAns(a.step2)}</div>
+          <div><strong>3. Tu principal mercado objetivo:</strong><br/>${getAns(a.step3)}</div>
+          <div><strong>4. Estado actual del mercado:</strong><br/>${getAns(a.step4)}</div>
+          <div style="grid-column: span 2;"><strong>5. Modelo de revenue:</strong><br/>${getAns(a.step5)}</div>
+        </div>
+
+        <h2 style="margin:40px 0 20px; font-size:20px; border-bottom:1px solid #EBEBEB; padding-bottom:10px;">Áreas de Oportunidad por Pilar</h2>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          ${(result.categories || []).map(cat => `
+            <div style="border: 1px solid #EBEBEB; border-radius:12px; padding:16px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <strong style="font-size:15px;">${cat.name}</strong>
+                <span style="font-weight:bold; color:${cat.score >= 18 ? '#16A34A' : '#EA580C'}">${Math.round(cat.score)}/25 pts</span>
+              </div>
+              <p style="margin:0; font-family:'Istok Web',sans-serif; font-size:13px; color:#4B5563; line-height:1.5;">${cat.desc}</p>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      document.body.appendChild(pdfWrap);
+
       const opt = {
         margin:       10,
         filename:     'SmokeScan_Reporte.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        html2canvas:  { scale: 2, useCORS: true, windowWidth: 800 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
-      
-      const originalText = dlBtn.innerHTML;
-      dlBtn.innerHTML = 'Generando PDF...';
-      
-      // html2pdf expects a Promise workflow
-      if (typeof html2pdf !== 'undefined') {
-        html2pdf().set(opt).from(element).save().then(() => {
-          dlBtn.innerHTML = originalText;
-        }).catch(err => {
-          console.error("Error PDF:", err);
-          dlBtn.innerHTML = originalText;
-        });
-      } else {
-        alert("La librería PDF no pudo cargar.");
+
+      html2pdf().set(opt).from(pdfWrap).save().then(() => {
         dlBtn.innerHTML = originalText;
-      }
+        document.body.removeChild(pdfWrap);
+      }).catch(err => {
+        console.error("Error PDF:", err);
+        dlBtn.innerHTML = originalText;
+        document.body.removeChild(pdfWrap);
+      });
     };
   }
 }
@@ -1013,13 +1077,37 @@ async function applyChangesAndReanalyze() {
   // Recalc heuristic
   const scores = calcHeuristicScores();
   applyScores(scores);
-
   // Reset applied toggles
   STATE.appliedSteps = {};
 
-  // Run loading sequence again
-  STATE.isEditMode = false;
-  startLoadingSequence();
+  // Show inline updating spinner for side-sheet edits
+  const sheetBody = $('ss-sheet-body');
+  if (sheetBody) {
+    sheetBody.style.position = 'relative';
+    sheetBody.innerHTML += `
+      <div id="ss-edit-loader" style="position:absolute; inset:0; background:rgba(255,255,255,0.9); z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:16px;">
+        <svg width="40" height="40" viewBox="0 0 50 50" style="animation:spin 1s linear infinite;">
+          <circle cx="25" cy="25" r="20" fill="none" stroke="#E2E8F0" stroke-width="4"></circle>
+          <path d="M25 5A20 20 0 0 1 45 25" fill="none" stroke="#3E4DC4" stroke-width="4" stroke-linecap="round"></path>
+        </svg>
+        <p style="margin-top:16px; font-family:'Urbanist'; font-weight:700; color:#3E4DC4;">Actualizando score...</p>
+      </div>`;
+    
+    if (!document.getElementById('spin-keyframes')) {
+      document.head.insertAdjacentHTML('beforeend', '<style id="spin-keyframes">@keyframes spin { 100% { transform: rotate(360deg); } }</style>');
+    }
+  }
+
+  // Brief delay to simulate processing edit
+  setTimeout(() => {
+    STATE.isEditMode = false;
+    const newResult = getScoreStatus();
+    showResults(newResult);
+    
+    // Cleanup loader
+    const loader = $('ss-edit-loader');
+    if (loader) loader.remove();
+  }, 1200);
 }
 
 /* ─── START BUTTON ─── */
