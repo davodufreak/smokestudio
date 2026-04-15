@@ -97,8 +97,9 @@
 /* ─── MAIN WIZARD SECTION ─── */
 .ss-wizard-section {
   background: #0B0B0C;
-  padding: 0 0 40px;
+  padding: 80px 0 40px;
   min-height: 80vh;
+  scroll-margin-top: 80px;
 }
 
 .ss-wizard-container {
@@ -128,11 +129,7 @@
   box-shadow: 0 24px 80px rgba(0,0,0,0.45);
   position: relative;
   overflow: hidden;
-  transition: max-width 0.8s cubic-bezier(0.22,1,0.36,1),
-              min-height 0.8s cubic-bezier(0.22,1,0.36,1),
-              border-radius 0.8s cubic-bezier(0.22,1,0.36,1),
-              transform 0.8s cubic-bezier(0.22,1,0.36,1),
-              margin 0.8s cubic-bezier(0.22,1,0.36,1);
+  transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 
 /* ─── STEPPER ─── */
@@ -547,7 +544,7 @@
   padding: 32px 28px;
   border: 1px solid rgba(255,255,255,0.07);
   position: sticky;
-  top: 108px;
+  top: 100px;
   transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1),
               transform 0.5s cubic-bezier(0.22,1,0.36,1);
 }
@@ -1580,6 +1577,248 @@
   box-shadow: 0 8px 28px rgba(62,77,196,0.4);
 }
 
+/* ─── CÓMO FUNCIONA ─── */
+.ss-how-section {
+  background: #fff;
+  padding: 80px 0;
+  position: relative;
+}
+
+.ss-how-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.ss-how-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3E4DC4;
+  background: rgba(62,77,196,0.08);
+  border: 1px solid rgba(62,77,196,0.15);
+  border-radius: 999px;
+  padding: 6px 16px;
+  margin-bottom: 24px;
+}
+
+.ss-how-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  color: #0B0B0C;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.ss-how-desc {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 16px;
+  color: #545454;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.ss-how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.ss-how-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ss-how-step-num {
+  flex-shrink: 0;
+  color: #0B0B0C;
+}
+
+.ss-how-step-text h3 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0B0B0C;
+  margin-bottom: 6px;
+}
+
+.ss-how-step-text p {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 14px;
+  color: #545454;
+  line-height: 1.5;
+}
+
+.ss-how-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* ─── LOGIN / IDENTIFÍCATE ─── */
+.ss-login-section {
+  background: #0B0B0C;
+  padding: 80px 0;
+  position: relative;
+}
+
+.ss-login-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  align-items: center;
+}
+
+.ss-login-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+
+.ss-login-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #0B0B0C;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.ss-login-desc {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 15px;
+  color: #545454;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.ss-login-desc strong {
+  color: #0B0B0C;
+}
+
+.ss-login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ss-btn-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #232324;
+  background: #fff;
+  border: 1.5px solid #EBEBEB;
+  border-radius: 999px;
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.ss-btn-oauth:hover {
+  border-color: #DADADA;
+  background: #FAFAFA;
+}
+
+.ss-login-score-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ss-lsp-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.ss-lsp-subtitle {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+}
+
+.ss-gauge-preview {
+  position: relative;
+  width: 180px;
+  margin: 0 auto 20px;
+}
+
+.ss-gauge-preview svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ss-gauge__score-preview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  text-align: center;
+}
+
+.ss-gauge-num {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  line-height: 1;
+}
+
+.ss-gauge-lbl {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+
+.ss-hero__cta-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  background: transparent;
+  border-radius: 999px;
+  padding: 16px 32px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+
+.ss-hero__cta-outline:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.4);
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
   .ss-wizard-grid {
@@ -1654,6 +1893,45 @@
   .ss-results-right {
     display: none;
   }
+
+  /* HERO */
+  .ss-hero {
+    height: 100vh;
+    height: 100svh; /* Fallback moderno para móviles iOS/Android */
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 40px;
+  }
+  
+  .ss-hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* CÓMO FUNCIONA */
+  .ss-how-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  /* LOGIN */
+  .ss-login-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 24px;
+  }
+  .ss-login-card {
+    padding: 32px 24px;
+  }
+
+  .ss-form-grid-2col {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1685,6 +1963,10 @@
 .hidden { display: none !important; }
 
 /* ─── RESULTS V2 — Step_7B Layout ─── */
+#ss-results-phase {
+  scroll-margin-top: 100px;
+}
+
 .ss-results-v2-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2034,10 +2316,300 @@
 }
 .ss-rv2-schedule:hover { border-color: rgba(255,255,255,0.42); color: #fff; }
 
+/* Locked right card (50-79 scores) */
+.ss-locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px;
+}
+
+.ss-locked-overlay.hidden {
+  display: none !important;
+}
+
+.ss-locked-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.ss-locked-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0B0B0C;
+  margin-bottom: 8px;
+}
+
+.ss-locked-sub {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+
 /* Reset wrap */
 .ss-rv2-reset-wrap {
   text-align: center;
   padding: 12px 0 4px;
+}
+
+/* ─── DYNAMIC RESULTS (Low/Mid/High) ─── */
+
+/* Low Score (<50): Blur & Chat Mock */
+.ss-blur-layer {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.4);
+  z-index: 10;
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+.ss-chat-mock {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  max-width: 420px;
+  width: 100%;
+  padding: 32px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.ss-chat-ai {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.ss-chat-avatar {
+  background: linear-gradient(135deg, #3E4DC4, #FA504D);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.ss-chat-bubble {
+  background: #F4F4F6;
+  border-radius: 0 16px 16px 16px;
+  padding: 16px 20px;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.ss-chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ss-chat-input-row input {
+  flex: 1;
+  background: #F9F9FB;
+  border: 1px solid #E5E5E5;
+  border-radius: 99px;
+  padding: 0 20px;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.ss-chat-input-row button {
+  background: #3E4DC4;
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
+  padding: 0 20px;
+  height: 48px;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* High Score (>=80): Celebration & Contact */
+.ss-celebration-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.ss-contact-form {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ss-contact-form input, .ss-contact-form textarea {
+  background: #fff;
+  border: none;
+  font-family: 'Istok Web', sans-serif;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.ss-contact-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.ss-contact-form button {
+  background: #FA504D;
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ss-contact-form button:hover {
+  background: #E0403E;
+  transform: translateY(-2px);
+}
+
+/* Side Sheet (Mid Score) */
+.ss-side-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ss-side-sheet-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ss-side-sheet {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+  transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.ss-side-sheet.open {
+  right: 0;
+}
+
+.ss-sheet-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid #EBEBEB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ss-sheet-header h3 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0B0B0C;
+}
+
+.ss-sheet-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+}
+
+.ss-sheet-body {
+  padding: 32px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.ss-sheet-footer {
+  padding: 24px 32px;
+  border-top: 1px solid #EBEBEB;
+  background: #FAFAFA;
+}
+
+.ss-teamback-card {
+  background: linear-gradient(135deg, rgba(62,77,196,0.1), rgba(250,80,77,0.1));
+  border: 1px solid rgba(62,77,196,0.2);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.ss-teamback-card p {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.ss-btn-teamback {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #3E4DC4;
+  border: 1px solid #3E4DC4;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ss-btn-teamback:hover {
+  background: #3E4DC4;
+  color: #fff;
 }
 
 /* Mobile v2 */
