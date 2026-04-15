@@ -717,21 +717,25 @@ function populateResults(result) {
   const rightCont  = $('ss-right-contact-module');
 
   if (actUnder50 && catOver50 && rightBlur && rightCont) {
+    const rightContent = $('ss-right-content');
     if (tScore < 50) {
       actUnder50.classList.remove('hidden');
       catOver50.classList.add('hidden');
       rightBlur.classList.remove('hidden');
       rightCont.classList.add('hidden');
+      if (rightContent) rightContent.style.display = 'none';
     } else if (tScore < 80) {
       actUnder50.classList.add('hidden');
       catOver50.classList.remove('hidden');
       rightBlur.classList.remove('hidden');
       rightCont.classList.add('hidden');
+      if (rightContent) rightContent.style.display = 'none';
     } else {
       actUnder50.classList.add('hidden');
       catOver50.classList.remove('hidden');
       rightBlur.classList.add('hidden');
       rightCont.classList.remove('hidden');
+      if (rightContent) rightContent.style.display = 'flex';
     }
   }
 
@@ -1058,29 +1062,18 @@ const db = typeof firebase !== "undefined" ? firebase.firestore() : null;
 
 const FirebaseAuthService = {
   loginWithGoogle: async function() {
-    if(!auth) return alert('Firebase no configurado. Reemplaza las keys.');
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    try {
-      const result = await auth.signInWithPopup(provider);
-      return this.handleUserSignIn(result.user, result.additionalUserInfo);
-    } catch (error) {
-      console.error('Error Google login', error);
-      alert('Hubo un error al iniciar sesión con Google.');
-    }
+    // SANDBOX MODE: Bypass real authentication for local testing
+    console.log("Iniciando sesión en Modo Simulador (Google)...");
+    STATE.user = { id: 'mock-google-123', name: 'Emprendedor de Prueba', email: 'prueba@google.com', intentosRestantes: 2 };
+    handleAuthState(STATE.user);
+    return STATE.user;
   },
   loginWithMicrosoft: async function() {
-    if(!auth) return alert('Firebase no configurado. Reemplaza las keys.');
-    const provider = new firebase.auth.OAuthProvider('microsoft.com');
-    provider.addScope('user.read');
-    try {
-      const result = await auth.signInWithPopup(provider);
-      return this.handleUserSignIn(result.user, result.additionalUserInfo);
-    } catch (error) {
-      console.error('Error Microsoft login', error);
-      alert('Hubo un error al iniciar sesión con Microsoft.');
-    }
+    // SANDBOX MODE: Bypass real authentication for local testing
+    console.log("Iniciando sesión en Modo Simulador (Microsoft)...");
+    STATE.user = { id: 'mock-microsoft-456', name: 'Corporate de Prueba', email: 'prueba@microsoft.com', intentosRestantes: 2 };
+    handleAuthState(STATE.user);
+    return STATE.user;
   },
   handleUserSignIn: async function(user, additionalInfo) {
     if (!db) return;
@@ -1097,15 +1090,19 @@ const FirebaseAuthService = {
         dob: null,
         demographics: {}
       });
-      STATE.user = { id: user.uid, name: user.displayName || 'Usuario' };
+      STATE.user = { id: user.uid, name: user.displayName || 'Usuario', intentosRestantes: 2 };
     } else {
-      STATE.user = { id: user.uid, name: doc.data().name || user.displayName || 'Usuario' };
+      STATE.user = { id: user.uid, name: doc.data().name || user.displayName || 'Usuario', intentosRestantes: doc.data().intentosRestantes !== undefined ? doc.data().intentosRestantes : 2 };
     }
     
     return user;
   },
   logout: function() {
-    if(auth) auth.signOut();
+    STATE.user = null;
+    handleAuthState(null);
+    if(auth) {
+      try { auth.signOut(); } catch(e){}
+    }
   }
 };
 
