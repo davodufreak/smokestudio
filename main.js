@@ -136,7 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ─── ACTIVE NAV LINK ON SCROLL ─── */
+  /* ─── ACTIVE NAV LINK ON SCROLL — Commented out to prevent interference with multi-page active states ─── */
+  /*
   const sections  = document.querySelectorAll('section[id]');
   const navLinks  = document.querySelectorAll('.nav-link');
 
@@ -150,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.35 });
   sections.forEach(s => sectionObserver.observe(s));
+  */
 
   /* ─── PARALLAX HERO BG ─── */
   const heroBg = document.querySelector('.hero__bg img');

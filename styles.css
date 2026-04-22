@@ -382,17 +382,23 @@ p {
 }
 
 .nav-link.active {
-  color: var(--c-neutral-darkest);
-  font-weight: 700;
+  color: var(--c-neutral-darkest) !important;
+  font-weight: 700 !important;
   background: rgba(11, 11, 12, 0.05);
 }
 
 .mobile-link.active {
-  background: var(--c-neutral-lightest);
-  color: var(--c-neutral-darkest);
-  font-weight: 700;
+  background: var(--c-neutral-lightest) !important;
+  color: var(--c-neutral-darkest) !important;
+  font-weight: 700 !important;
   border-left: 3px solid var(--c-neutral-darkest);
   padding-left: 18px;
+}
+
+.nav-cta.active {
+  background: var(--c-neutral-darkest) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
 }
 
 .nav-cta {
