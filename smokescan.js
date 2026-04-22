@@ -19,7 +19,7 @@ const STATE = {
   scores: { claridad: 0, mercado: 0, competencia: 0, revenue: 0 },
   totalScore: 0,
   aiResult: null,
-  apiKey: 'AIzaSyDbtvznN_L9lMqGFaYqCJ8cBzes-sR1-Ao', // pre-loaded
+  apiKey: '', // Se debe proveer manualmente o vía backend
   isEditMode: false,
   editReturnStep: null,
   appliedSteps: {},

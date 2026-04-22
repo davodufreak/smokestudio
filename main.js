@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    
+    // Focus first focusable element
+    const focusable = mobileMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length) focusable[0].focus();
   }
 
   function closeMenu() {
@@ -35,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('mobile-servicios-btn');
     if (sub) sub.classList.remove('open');
     if (btn) btn.classList.remove('open');
+    hamburger.focus(); // Return focus
   }
 
   hamburger.addEventListener('click', () => {
@@ -43,9 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileClose.addEventListener('click', closeMenu);
   mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
 
-  // Escape key to close menu
+  // Focus trap and Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+    if (!mobileMenu.classList.contains('open')) return;
+    
+    if (e.key === 'Escape') {
+      closeMenu();
+      return;
+    }
+    
+    if (e.key === 'Tab') {
+      const focusable = Array.from(mobileMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   // Mobile servicios sub-accordion

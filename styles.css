@@ -4,7 +4,7 @@
    Based on design-system-master.json + PDF layout
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Istok+Web:wght@400;700&display=swap');
+/* Note: Google Fonts now loaded via <link> in HTML for performance */
 
 /* --- TOKENS --- */
 :root {
@@ -91,8 +91,13 @@ body {
   line-height: 1.65;
   color: var(--c-neutral-darkest);
   background: var(--c-white);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+.site-wrapper {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
 
 img {
@@ -117,6 +122,13 @@ button {
   border: none;
   background: none;
   font: inherit;
+}
+
+/* --- ACCESSIBILITY --- */
+:focus-visible {
+  outline: 3px solid var(--c-indigo);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* --- LAYOUT --- */
@@ -1110,18 +1122,19 @@ p {
 }
 
 .accordion__panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.55s var(--ease-in-out);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s var(--ease-in-out);
 }
 
 .accordion__item.open .accordion__panel {
-  max-height: 700px;
+  grid-template-rows: 1fr;
 }
 
 .accordion__content {
+  overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   padding: 0 28px 32px;
   align-items: center;
@@ -1354,13 +1367,17 @@ p {
 }
 
 .faq__answer {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.4s var(--ease-in-out);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease-in-out);
 }
 
 .faq__item.open .faq__answer {
-  max-height: 220px;
+  grid-template-rows: 1fr;
+}
+
+.faq__answer > p {
+  overflow: hidden;
 }
 
 .faq__answer p {
@@ -1753,4 +1770,18 @@ p {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+/* =============================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
