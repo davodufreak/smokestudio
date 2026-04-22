@@ -390,6 +390,7 @@ p {
 .mobile-link.active {
   background: var(--c-neutral-lightest);
   color: var(--c-neutral-darkest);
+  font-weight: 700;
   border-left: 3px solid var(--c-neutral-darkest);
   padding-left: 18px;
 }
