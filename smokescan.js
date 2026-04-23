@@ -53,12 +53,12 @@ function needlePosition(score) {
 }
 
 function updateGauge(score, fillId, needleId, numId, badgeId) {
-  const fill   = $(fillId);
+  const fill = $(fillId);
   const needle = $(needleId);
-  const num    = $(numId);
-  const badge  = $(badgeId);
+  const num = $(numId);
+  const badge = $(badgeId);
 
-  if (fill)   fill.setAttribute('stroke-dashoffset', scoreToOffset(score));
+  if (fill) fill.setAttribute('stroke-dashoffset', scoreToOffset(score));
   if (needle) {
     const { cx, cy } = needlePosition(score);
     needle.setAttribute('cx', cx.toFixed(2));
@@ -123,10 +123,10 @@ function updateBadge(score, badge) {
 /* ─── QUALITY LABEL ─── */
 function getQualityLabel(score, max) {
   const pct = max ? (score / max) * 100 : score;
-  if (pct < 36) return { label: 'Crítica',    cls: 'critica' };
-  if (pct < 60) return { label: 'Mejorable',  cls: 'mejorable' };
+  if (pct < 36) return { label: 'Crítica', cls: 'critica' };
+  if (pct < 60) return { label: 'Mejorable', cls: 'mejorable' };
   if (pct < 84) return { label: 'Promisoria', cls: 'promisoria' };
-  return             { label: 'Sólida',      cls: 'solida' };
+  return { label: 'Sólida', cls: 'solida' };
 }
 
 function updateBreakdown(scores, prefix = '') {
@@ -134,7 +134,7 @@ function updateBreakdown(scores, prefix = '') {
   cats.forEach(cat => {
     const val = Math.round(scores[cat] || 0);
     const scoreEl = $(`${prefix}bd-${cat}-score`) || $(`${prefix}rbd-${cat}-score`);
-    const fillEl  = $(`${prefix}bd-${cat}-fill`)  || $(`${prefix}rbd-${cat}-fill`);
+    const fillEl = $(`${prefix}bd-${cat}-fill`) || $(`${prefix}rbd-${cat}-fill`);
     if (scoreEl) {
       scoreEl.textContent = `${val}/25`;
       scoreEl.classList.toggle('active', val > 0);
@@ -154,9 +154,9 @@ function updateStickyScore(scores, total) {
   const cats = { claridad: 0, mercado: 1, competencia: 2, revenue: 3 };
   Object.keys(cats).forEach(cat => {
     const val = Math.round(scores[cat] || 0);
-    const fill  = $(`sticky-${cat}-fill`);
+    const fill = $(`sticky-${cat}-fill`);
     const score = $(`sticky-${cat}-score`);
-    if (fill)  fill.style.width = `${(val / 25) * 100}%`;
+    if (fill) fill.style.width = `${(val / 25) * 100}%`;
     if (score) {
       score.textContent = `${val}/25`;
       score.classList.toggle('active', val > 0);
@@ -206,7 +206,7 @@ function applyScores(scores) {
 /* ─── STEPPER UI ─── */
 function updateStepper(current) {
   for (let i = 0; i <= 5; i++) {
-    const dot  = $(`dot-${i}`);
+    const dot = $(`dot-${i}`);
     const line = $(`line-${i}`);
     if (!dot) continue;
 
@@ -258,8 +258,8 @@ function showStep(n, direction = 'forward') {
 function initOptions() {
   $$('.ss-option').forEach(opt => {
     opt.addEventListener('click', () => {
-      const step   = opt.dataset.step;
-      const value  = opt.dataset.value;
+      const step = opt.dataset.step;
+      const value = opt.dataset.value;
       const isMulti = opt.dataset.multi === 'true';
       const grid = opt.closest('.ss-options-grid');
 
@@ -271,7 +271,7 @@ function initOptions() {
         grid.querySelectorAll('.ss-option').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         STATE.answers[`step${step}`].selection = value;
-        
+
         // Handling visibility of "Otro" input fields dynamically
         if (step === '0' && grid.id === 'opts-step0') {
           const wrap = $('step0-otro-wrap');
@@ -280,7 +280,7 @@ function initOptions() {
       }
 
       // Recalculate scores after step 2+
-      if (['2','3','4','5'].includes(step)) {
+      if (['2', '3', '4', '5'].includes(step)) {
         const scores = calcHeuristicScores();
         applyScores(scores);
       }
@@ -294,7 +294,7 @@ function initNavButtons() {
   $$('.ss-btn-next[data-next]').forEach(btn => {
     btn.addEventListener('click', () => {
       const nextStep = parseInt(btn.dataset.next);
-      const current  = STATE.currentStep;
+      const current = STATE.currentStep;
 
       // Gather textarea values
       const textarea = document.querySelector(`#step-${current} .ss-textarea`);
@@ -355,7 +355,7 @@ function initNavButtons() {
 
 /* ─── LOADING ANIMATION (Step 5 → 6) ─── */
 function startLoadingSequence() {
-  const card      = $('ss-card');
+  const card = $('ss-card');
   const scorePanel = $('ss-score-panel');
   const editBanner = $('ss-edit-banner');
 
@@ -385,8 +385,8 @@ function startLoadingSequence() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         card.style.maxWidth = '380px';
-        card.style.margin   = '0 auto';
-        card.style.padding  = '48px 32px';
+        card.style.margin = '0 auto';
+        card.style.padding = '48px 32px';
         card.style.borderRadius = '32px';
       });
     });
@@ -403,7 +403,7 @@ function startLoadingSequence() {
   // Phase 3: Run loading messages + API call
   setTimeout(() => {
     runLoadingMessages();
-    fetchGeminiAnalysis();
+    runAnalysis();
   }, 800);
 }
 
@@ -434,7 +434,7 @@ function runLoadingMessages() {
 }
 
 /* ─── GEMINI API CALL (or simulated fallback) ─── */
-async function fetchGeminiAnalysis() {
+/*async function fetchGeminiAnalysis() {
   const a = STATE.answers;
   const apiKey = STATE.apiKey;
 
@@ -513,12 +513,90 @@ Sé honesto y específico — no genérico. Basa los insights en los datos concr
     applyScores(result.scores);
     showResults(result);
   }, 3200);
+}*/
+
+/* Proxy call through Supabase Edge Function (keeps API key off the frontend) */
+async function fetchGeminiAnalysis(promptText) {
+  const { data: { session } } = await supabase.auth.getSession();
+  const response = await fetch(
+    `${SUPABASE_URL}/functions/v1/gemini-proxy`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session?.access_token}`
+      },
+      body: JSON.stringify({ prompt: promptText })
+    }
+  );
+  if (!response.ok) throw new Error(`Proxy error: ${response.status}`);
+  return response.json();
 }
+
+/* Orchestrates the full analysis flow: build prompt → call proxy → handle result */
+async function runAnalysis() {
+  const a = STATE.answers;
+
+  const promptContext = `
+Tipo de producto: ${a.step1.selection || 'indefinido'}. ${a.step1.desc ? 'Descripción: ' + a.step1.desc : ''}
+Claridad del problema: ${a.step2.selection}. ${a.step2.desc ? 'Detalle: ' + a.step2.desc : ''}
+Audiencia objetivo: ${(a.step3.selections || []).join(', ')}. ${a.step3.desc ? 'Tamaño estimado: ' + a.step3.desc : ''}
+Panorama competitivo: ${a.step4.selection}. ${a.step4.desc ? 'Diferenciador: ' + a.step4.desc : ''}
+Modelo de revenue: ${a.step5.selection}. ${a.step5.desc ? 'Hipótesis de ingresos: ' + a.step5.desc : ''}
+`.trim();
+
+  const systemPrompt = `Eres un consultor senior experto en validación de startups y product-market fit.
+Analiza el siguiente resumen de idea de producto digital y responde ÚNICAMENTE con un objeto JSON válido (sin markdown, sin texto extra).
+El JSON debe tener exactamente esta estructura:
+{
+  "scores": { "claridad": número_del_0_al_25, "mercado": número_del_0_al_25, "competencia": número_del_0_al_25, "revenue": número_del_0_al_25 },
+  "totalScore": número_del_0_al_100,
+  "statusLabel": "En desarrollo" | "Con potencial" | "Listo para validar" | "Alta viabilidad",
+  "headline": "frase corta impactante sobre la idea (máx 12 palabras)",
+  "summary": "párrafo de 2-3 oraciones con la evaluación general de la idea.",
+  "strengths": ["fortaleza 1 concreta", "fortaleza 2 concreta", "fortaleza 3 concreta"],
+  "risks": ["riesgo 1 concreto", "riesgo 2 concreto", "riesgo 3 concreto"],
+  "categories": [
+    { "name": "Claridad del problema", "linkedStep": 2, "score": número_0_a_25, "desc": "evaluación específica de 1-2 oraciones" },
+    { "name": "Conocimiento del mercado", "linkedStep": 3, "score": número_0_a_25, "desc": "evaluación específica de 1-2 oraciones" },
+    { "name": "Validación competitiva", "linkedStep": 4, "score": número_0_a_25, "desc": "evaluación específica de 1-2 oraciones" },
+    { "name": "Modelo de revenue", "linkedStep": 5, "score": número_0_a_25, "desc": "evaluación específica de 1-2 oraciones" }
+  ],
+  "nextSteps": [
+    { "title": "acción concreta", "description": "explicación de 1 oración", "impact": número_de_1_a_8, "linkedStep": número_del_1_al_5 },
+    { "title": "acción concreta 2", "description": "explicación", "impact": número_de_1_a_8, "linkedStep": número_del_1_al_5 },
+    { "title": "acción concreta 3", "description": "explicación", "impact": número_de_1_a_8, "linkedStep": número_del_1_al_5 },
+    { "title": "acción concreta 4", "description": "explicación", "impact": número_de_1_a_8, "linkedStep": número_del_1_al_5 }
+  ]
+}
+Los scores deben ser coherentes: el totalScore debe ser la suma de los 4 sub-scores.
+Sé honesto y específico — no genérico. Basa los insights en los datos concretos provistos.`;
+
+  let result = null;
+  try {
+    const data = await fetchGeminiAnalysis(systemPrompt + '\n\n' + promptContext);
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    result = JSON.parse(text);
+  } catch (err) {
+    console.warn('Gemini proxy error, usando resultado simulado:', err);
+  }
+
+  if (!result) result = generateSimulatedResult();
+
+  clearInterval(loadingMsgInterval);
+  setTimeout(() => {
+    STATE.aiResult = result;
+    STATE.baseAiScores = { ...result.scores };
+    applyScores(result.scores);
+    showResults(result);
+  }, 3200);
+}
+
 
 /* ─── SIMULATED RESULT GENERATOR ─── */
 function generateSimulatedResult() {
   const scores = calcHeuristicScores();
-  const total  = Math.round(Object.values(scores).reduce((a, b) => a + b, 0));
+  const total = Math.round(Object.values(scores).reduce((a, b) => a + b, 0));
   const a = STATE.answers;
 
   const problemLabel = {
@@ -630,7 +708,7 @@ function generateSimulatedResult() {
 
 /* ─── RENDER RESULTS (Step 7) ─── */
 function showResults(result) {
-  const formPhase    = $('ss-form-phase');
+  const formPhase = $('ss-form-phase');
   const resultsPhase = $('ss-results-phase');
   if (!formPhase || !resultsPhase) return;
 
@@ -639,12 +717,12 @@ function showResults(result) {
   const rightMid = $('ss-results-right-mid');
   const rightHigh = $('ss-results-right-high');
   const chatMsg = $('ss-ai-chat-msg');
-  
+
   if (result.totalScore < 50) {
     if (lowBlur) lowBlur.classList.remove('hidden');
     if (rightMid) rightMid.classList.remove('hidden');
     if (rightHigh) rightHigh.classList.add('hidden');
-    
+
     // Find lowest category
     let lowestCat = 'Mercado';
     if (result.categories && result.categories.length) {
@@ -698,7 +776,7 @@ function updateBreakdown(scores, prefix) {
   cats.forEach(cat => {
     const val = Math.round(scores[cat] || 0);
     const scoreEl = $(`${p}${cat}-score`);
-    const fillEl  = $(`${p}${cat}-fill`);
+    const fillEl = $(`${p}${cat}-fill`);
     if (scoreEl) {
       scoreEl.textContent = `${val}/25`;
       scoreEl.classList.toggle('active', val > 0);
@@ -709,12 +787,12 @@ function updateBreakdown(scores, prefix) {
 
 function populateResults(result) {
   const tScore = result.totalScore || STATE.totalScore;
-  
+
   // Condicional de layout (HUD, Modales y Modos)
   const actUnder50 = $('ss-left-actions-under50');
-  const catOver50  = $('ss-left-categories-over50');
-  const rightBlur  = $('ss-right-blur-overlay');
-  const rightCont  = $('ss-right-contact-module');
+  const catOver50 = $('ss-left-categories-over50');
+  const rightBlur = $('ss-right-blur-overlay');
+  const rightCont = $('ss-right-contact-module');
 
   if (actUnder50 && catOver50 && rightBlur && rightCont) {
     const rightContent = $('ss-right-content');
@@ -741,9 +819,9 @@ function populateResults(result) {
 
   // Headline & summary
   const headline = $('ss-results-headline');
-  const summary  = $('ss-results-summary');
+  const summary = $('ss-results-summary');
   if (headline) headline.textContent = result.headline || '';
-  if (summary)  summary.textContent  = result.summary  || '';
+  if (summary) summary.textContent = result.summary || '';
 
   // Category rows
   const catRows = $('ss-cat-rows');
@@ -798,7 +876,7 @@ function populateResults(result) {
     // Bind checkboxes
     $$('.ss-action-v2-check').forEach(check => {
       check.addEventListener('click', () => {
-        const idx  = parseInt(check.dataset.actionIndex);
+        const idx = parseInt(check.dataset.actionIndex);
         const isOn = check.classList.toggle('checked');
         STATE.appliedSteps[idx] = isOn;
         check.setAttribute('aria-checked', isOn ? 'true' : 'false');
@@ -815,7 +893,7 @@ function populateResults(result) {
       dlBtn.innerHTML = 'Generando PDF...';
 
       if (typeof html2pdf === 'undefined') {
-        alert("La librería PDF no pudo cargar.");
+        showNotification("La librería PDF no pudo cargar. Intenta recargando la página.", 'error');
         dlBtn.innerHTML = originalText;
         return;
       }
@@ -831,7 +909,7 @@ function populateResults(result) {
 
       const score = Math.round(result.totalScore || 0);
       const a = STATE.answers;
-      
+
       const getAns = (stepObj) => {
         let text = [];
         if (stepObj?.selection) text.push(stepObj.selection);
@@ -884,11 +962,11 @@ function populateResults(result) {
       document.body.appendChild(pdfWrap);
 
       const opt = {
-        margin:       10,
-        filename:     'SmokeScan_Reporte.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, windowWidth: 800 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        margin: 10,
+        filename: 'SmokeScan_Reporte.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, windowWidth: 800 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
       html2pdf().set(opt).from(pdfWrap).save().then(() => {
@@ -907,7 +985,7 @@ function populateResults(result) {
 function recalcResultsScore() {
   if (!STATE.aiResult) return;
 
-  const base  = { ...STATE.baseAiScores };
+  const base = { ...STATE.baseAiScores };
   const steps = STATE.aiResult.nextSteps || [];
   let bonusTotal = 0;
 
@@ -938,7 +1016,7 @@ function recalcResultsScore() {
     $$('.ss-cat-row').forEach((row, i) => {
       const key = keys[i] || 'claridad';
       const newScore = Math.min(25, Math.round(adjustedScores[key] || 0));
-      const ptsEl  = row.querySelector('.ss-cat-row__pts');
+      const ptsEl = row.querySelector('.ss-cat-row__pts');
       const qualEl = row.querySelector('.ss-cat-row__quality');
       if (ptsEl) ptsEl.textContent = `${newScore} de 25 puntos`;
       if (qualEl) {
@@ -955,17 +1033,17 @@ let currentSheetStep = null;
 
 function openSideSheet(stepNum) {
   const overlay = $('ss-side-sheet-overlay');
-  const sheet   = $('ss-side-sheet');
-  const body    = $('ss-sheet-body');
-  const applyBtn= $('ss-sheet-btn-apply');
-  const title   = $('ss-sheet-title');
-  const stepEl  = $(`step-${stepNum}`);
-  
+  const sheet = $('ss-side-sheet');
+  const body = $('ss-sheet-body');
+  const applyBtn = $('ss-sheet-btn-apply');
+  const title = $('ss-sheet-title');
+  const stepEl = $(`step-${stepNum}`);
+
   if (!overlay || !sheet || !body || !stepEl) return;
-  
+
   currentSheetStep = stepNum;
   STATE.isEditMode = true;
-  
+
   // Set title
   const titles = {
     2: 'Claridad del problema',
@@ -974,25 +1052,25 @@ function openSideSheet(stepNum) {
     5: 'Modelo de revenue'
   };
   if (title) title.textContent = titles[stepNum] || 'Agregar información';
-  
+
   // Temporarily move the original step contents into the sheet so events are kept
   const grid = stepEl.querySelector('.ss-options-grid');
   const fieldGroup = stepEl.querySelector('.ss-field-group');
-  
+
   body.innerHTML = '';
   if (grid) body.appendChild(grid);
   if (fieldGroup) body.appendChild(fieldGroup);
-  
+
   restoreStepSelections(stepNum);
-  
+
   overlay.classList.add('open');
   sheet.classList.add('open');
-  
+
   // Handlers
   const closeBtn = $('ss-sheet-close');
   if (closeBtn) closeBtn.onclick = () => closeSideSheet();
   overlay.onclick = () => closeSideSheet();
-  
+
   if (applyBtn) {
     applyBtn.onclick = () => {
       closeSideSheet(true);
@@ -1002,9 +1080,9 @@ function openSideSheet(stepNum) {
 
 function closeSideSheet(apply = false) {
   const overlay = $('ss-side-sheet-overlay');
-  const sheet   = $('ss-side-sheet');
-  const body    = $('ss-sheet-body');
-  
+  const sheet = $('ss-side-sheet');
+  const body = $('ss-sheet-body');
+
   if (currentSheetStep !== null) {
     const stepEl = $(`step-${currentSheetStep}`);
     // move back from sheet to original place BEFORE .ss-nav
@@ -1017,14 +1095,14 @@ function closeSideSheet(apply = false) {
       }
     }
   }
-  
+
   if (overlay) overlay.classList.remove('open');
   if (sheet) sheet.classList.remove('open');
-  
+
   if (apply && currentSheetStep !== null) {
     applyChangesAndReanalyze();
   }
-  
+
   setTimeout(() => {
     if (!sheet.classList.contains('open')) currentSheetStep = null;
   }, 400);
@@ -1044,7 +1122,7 @@ function restoreStepSelections(stepNum) {
       if (opt) opt.classList.add('selected');
     });
   } else {
-    const key   = `step${stepNum}`;
+    const key = `step${stepNum}`;
     const selVal = a[key]?.selection;
     if (selVal) {
       const opt = grid.querySelector(`[data-value="${selVal}"]`);
@@ -1092,7 +1170,7 @@ async function applyChangesAndReanalyze() {
         </svg>
         <p style="margin-top:16px; font-family:'Urbanist'; font-weight:700; color:#3E4DC4;">Actualizando score...</p>
       </div>`;
-    
+
     if (!document.getElementById('spin-keyframes')) {
       document.head.insertAdjacentHTML('beforeend', '<style id="spin-keyframes">@keyframes spin { 100% { transform: rotate(360deg); } }</style>');
     }
@@ -1103,7 +1181,7 @@ async function applyChangesAndReanalyze() {
     STATE.isEditMode = false;
     const newResult = getScoreStatus();
     showResults(newResult);
-    
+
     // Cleanup loader
     const loader = $('ss-edit-loader');
     if (loader) loader.remove();
@@ -1117,7 +1195,7 @@ function initStartButton() {
 
   btn.addEventListener('click', (e) => {
     // Scroll intentionally bypasses if auth exists, else HTML handles the scrolling
-    const user = AuthServiceMock.getUser();
+    const user = STATE.user;
     if (user) {
       e.preventDefault();
       const wizardSection = $('ss-wizard');
@@ -1130,158 +1208,101 @@ function initStartButton() {
   });
 }
 
-/* ─── REAL FIREBASE AUTH SERVICE ─── */
-const firebaseConfig = {
-  // TODO: [⚠️ REEMPLAZAR CON TUS CREDENCIALES DE FIREBASE ⚠️]
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "TUS_SENDER_ID",
-  appId: "TU_APP_ID"
-};
+/* ─── SUPABASE CLIENT ─── */
+const SUPABASE_URL = 'https://vvniuzijbhmtqxzfgxuk.supabase.co';   // tu URL
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2bml1emlqYmhtdHF4emZneHVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5MDU3NjAsImV4cCI6MjA5MjQ4MTc2MH0.P9y_Iu_OdS-pnSxotj8NlIAiKHsQJatt0Z46_4nSc4Q';            // tu anon key (seguro en frontend)
 
-// Start Firebase if needed
-if (typeof firebase !== "undefined" && !firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ─── NOTIFICATION TOAST ─── */
+function showNotification(message, type = 'info') {
+  const colors = { error: '#DC2626', success: '#16A34A', warning: '#D97706', info: '#2563EB' };
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    background:${colors[type] || colors.info}; color:#fff;
+    padding:14px 20px; border-radius:12px; font-size:14px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.25); max-width:320px;
+    line-height:1.4; opacity:1; transition:opacity 0.4s ease;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; }, 3600);
+  setTimeout(() => toast.remove(), 4000);
 }
-const auth = typeof firebase !== "undefined" ? firebase.auth() : null;
-const db = typeof firebase !== "undefined" ? firebase.firestore() : null;
 
-const FirebaseAuthService = {
-  loginWithGoogle: async function() {
-    // SANDBOX MODE: Bypass real authentication for local testing
-    console.log("Iniciando sesión en Modo Simulador (Google)...");
-    STATE.user = { id: 'mock-google-123', name: 'Emprendedor de Prueba', email: 'prueba@google.com', intentosRestantes: 2 };
-    handleAuthState(STATE.user);
-    return STATE.user;
+/* ─── AUTH SERVICE ─── */
+const AuthService = {
+  loginWithGoogle: async function () {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.href }
+    });
+    if (error) showNotification('Error al iniciar sesión: ' + error.message, 'error');
   },
-  loginWithMicrosoft: async function() {
-    // SANDBOX MODE: Bypass real authentication for local testing
-    console.log("Iniciando sesión en Modo Simulador (Microsoft)...");
-    STATE.user = { id: 'mock-microsoft-456', name: 'Corporate de Prueba', email: 'prueba@microsoft.com', intentosRestantes: 2 };
-    handleAuthState(STATE.user);
-    return STATE.user;
+
+  loginWithMicrosoft: async function () {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'azure',
+      options: { redirectTo: window.location.href }
+    });
+    if (error) showNotification('Error al iniciar sesión: ' + error.message, 'error');
   },
-  handleUserSignIn: async function(user, additionalInfo) {
-    if (!db) return;
-    const userRef = db.collection('users').doc(user.uid);
-    const doc = await userRef.get();
-    
-    if (!doc.exists) {
-      await userRef.set({
-        name: user.displayName || 'Usuario',
-        email: user.email,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        providerId: user.providerData && user.providerData[0] ? user.providerData[0].providerId : 'unknown',
-        intentosRestantes: 2,
-        dob: null,
-        demographics: {}
-      });
-      STATE.user = { id: user.uid, name: user.displayName || 'Usuario', intentosRestantes: 2 };
-    } else {
-      STATE.user = { id: user.uid, name: doc.data().name || user.displayName || 'Usuario', intentosRestantes: doc.data().intentosRestantes !== undefined ? doc.data().intentosRestantes : 2 };
-    }
-    
-    return user;
-  },
-  logout: function() {
+
+  logout: async function () {
+    await supabase.auth.signOut();
     STATE.user = null;
     handleAuthState(null);
-    if(auth) {
-      try { auth.signOut(); } catch(e){}
-    }
+  },
+
+  getSession: async function () {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session;
   }
 };
 
+/* ─── INIT AUTH BUTTONS ─── */
 function initAuth() {
-  const btnGoogle = $('btn-mock-google');
-  const btnMicrosoft = $('btn-mock-microsoft');
+  const btnGoogle = document.getElementById('btn-mock-google');
+  const btnMicrosoft = document.getElementById('btn-mock-microsoft');
+  if (btnGoogle) btnGoogle.addEventListener('click', () => AuthService.loginWithGoogle());
+  if (btnMicrosoft) btnMicrosoft.addEventListener('click', () => AuthService.loginWithMicrosoft());
+}
 
-  if (btnGoogle) {
-    btnGoogle.addEventListener('click', () => FirebaseAuthService.loginWithGoogle());
-  }
-  if (btnMicrosoft) {
-    btnMicrosoft.addEventListener('click', () => FirebaseAuthService.loginWithMicrosoft());
-  }
+/* ─── INICIALIZAR SESIÓN AL CARGAR ─── */
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (session) {
+    const { data: profile } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', session.user.id)
+      .single();
 
-  if(auth) {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        if(db) {
-          const userRef = db.collection('users').doc(user.uid);
-          const doc = await userRef.get();
-          if (doc.exists) {
-            STATE.user = { id: user.uid, name: doc.data().name || user.displayName || 'Usuario', intentosRestantes: doc.data().intentosRestantes !== undefined ? doc.data().intentosRestantes : 2 };
-          } else {
-            STATE.user = { id: user.uid, name: user.displayName || 'Usuario', intentosRestantes: 2 };
-          }
-        }
-        handleAuthState(STATE.user);
-      } else {
-        STATE.user = null;
-        handleAuthState(null);
-      }
-    });
+    STATE.user = {
+      id: session.user.id,
+      name: profile?.name || session.user.user_metadata.full_name,
+      email: session.user.email,
+      intentosRestantes: profile?.intentos_restantes ?? 2
+    };
+    handleAuthState(STATE.user);
   } else {
+    STATE.user = null;
     handleAuthState(null);
   }
+});
+
+/* ─── GUARDAR ANÁLISIS ─── */
+async function saveAnalysis() {
+  if (!STATE.user) return;
+  await supabase.from('analyses').insert({
+    user_id: STATE.user.id,
+    answers: STATE.answers,
+    scores: STATE.scores,
+    total_score: STATE.totalScore,
+    ai_result: STATE.aiResult
+  });
 }
 
-function handleAuthState(user) {
-  const hero = $('ss-hero');
-  const howItWorks = $('como-funciona');
-  const loginSection = $('login-section');
-  const wizard = $('ss-wizard');
-  const navCtas = $$('.nav-cta, .mobile-menu__cta .btn');
-  
-  if (user) {
-    if (hero) hero.style.display = 'none';
-    if (howItWorks) howItWorks.style.display = 'none';
-    if (loginSection) loginSection.style.display = 'none';
-    if (wizard) {
-      wizard.classList.remove('hidden');
-      setTimeout(() => wizard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-      showStep(0); 
-    }
-    
-    navCtas.forEach(cta => {
-      const firstName = user.name ? user.name.split(' ')[0] : 'Usuario';
-      cta.innerHTML = 'Hola, ' + firstName;
-      cta.href = '#';
-      cta.onclick = (e) => {
-        e.preventDefault();
-        if(confirm('¿Deseas cerrar sesión?')) {
-          FirebaseAuthService.logout();
-        }
-      };
-    });
-    
-    // Update welcome title
-    const welcomeTitle = $('ss-welcome-title');
-    if (welcomeTitle) {
-      welcomeTitle.innerHTML = 'Te damos la bienvenida, ' + (user.name ? user.name.split(' ')[0] : 'Usuario');
-    }
-    
-    // Update Lives HUD in Step 7
-    const livesHUD = $('ss-lives-count');
-    if (livesHUD && user.intentosRestantes !== undefined) {
-      livesHUD.textContent = user.intentosRestantes;
-    }
-  } else {
-    if (hero) hero.style.display = 'flex';
-    if (howItWorks) howItWorks.style.display = 'block';
-    if (loginSection) loginSection.style.display = 'flex';
-    if (wizard) wizard.classList.add('hidden');
-    
-    const identificateHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" /></svg> Identifícate';
-    navCtas.forEach(cta => {
-      cta.innerHTML = identificateHTML;
-      cta.href = '#login-section';
-      cta.onclick = null;
-    });
-  }
-}
 
 /* ─── STICKY SCORE TOGGLE ─── */
 function initStickyScore() {
@@ -1321,12 +1342,12 @@ function initReset() {
       step4: { selection: null, desc: '' },
       step5: { selection: null, desc: '' },
     };
-    STATE.scores       = { claridad: 0, mercado: 0, competencia: 0, revenue: 0 };
-    STATE.totalScore   = 0;
-    STATE.aiResult     = null;
+    STATE.scores = { claridad: 0, mercado: 0, competencia: 0, revenue: 0 };
+    STATE.totalScore = 0;
+    STATE.aiResult = null;
     STATE.baseAiScores = null;
     STATE.appliedSteps = {};
-    STATE.isEditMode   = false;
+    STATE.isEditMode = false;
 
     // Reset UI
     $$('.ss-option').forEach(o => o.classList.remove('selected'));
@@ -1349,7 +1370,7 @@ function initReset() {
     if (editBanner) editBanner.classList.add('hidden');
 
     // Show form, hide results
-    const formPhase    = $('ss-form-phase');
+    const formPhase = $('ss-form-phase');
     const resultsPhase = $('ss-results-phase');
     formPhase.classList.remove('hidden');
     formPhase.style.cssText = '';
@@ -1382,12 +1403,12 @@ function initNav() {
 
 /* ─── MOBILE MENU (matches main.js) ─── */
 function initMobileMenu() {
-  const hamburger   = $('hamburger');
-  const mobileMenu  = $('mobile-menu');
+  const hamburger = $('hamburger');
+  const mobileMenu = $('mobile-menu');
   const mobileClose = $('mobile-close');
   if (!hamburger || !mobileMenu) return;
 
-  const open  = () => { mobileMenu.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const open = () => { mobileMenu.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow = 'hidden'; };
   const close = () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow = ''; };
 
   hamburger.addEventListener('click', () => mobileMenu.classList.contains('open') ? close() : open());
@@ -1414,25 +1435,22 @@ function initStep7Features() {
     btnRetry.addEventListener('click', async () => {
       let intentos = STATE.user && STATE.user.intentosRestantes !== undefined ? STATE.user.intentosRestantes : 2;
       if (intentos <= 0) {
-        alert("Ya no tienes intentos disponibles hoy. Vuelve mañana para analizar una nueva idea.");
+        showNotification("Ya no tienes intentos disponibles hoy. Vuelve mañana para analizar una nueva idea.", 'warning');
         return;
       }
-      
+
       if (confirm('¿Estás seguro de gastar un intento y volver a empezar?')) {
         intentos--;
         STATE.user.intentosRestantes = intentos;
         const livesHUD = $('ss-lives-count');
         if (livesHUD) livesHUD.textContent = intentos;
-        
-        // Update in Firestore
-        if (db && STATE.user.id) {
-          try {
-            await db.collection('users').doc(STATE.user.id).update({
-              intentosRestantes: intentos
-            });
-          } catch(e) { console.warn("Error updating intentos", e); }
+
+        // Update in Supabase
+        if (STATE.user?.id) {
+          supabase.from('users').update({ intentos_restantes: intentos }).eq('id', STATE.user.id)
+            .then(({ error }) => { if (error) console.warn("Error updating intentos", error); });
         }
-        
+
         window.location.reload();
       }
     });
@@ -1460,7 +1478,7 @@ function initStep7Features() {
       const txt = chatInput.value.trim();
       if (!txt) return;
       if (chatMsgCount <= 0) {
-        alert("Has alcanzado el límite de 6 mensajes en el desafío.");
+        showNotification("Has alcanzado el límite de 6 mensajes en el desafío.", 'warning');
         return;
       }
 
@@ -1483,24 +1501,10 @@ function initStep7Features() {
       chatWindow.scrollTop = chatWindow.scrollHeight;
 
       try {
-        const apiKey = STATE.apiKey;
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-        
-        let systemInstruction = "Eres Gemini, un consultor de negocios y capital de riesgo que calificó muy bajo el proyecto de este emprendedor (por debajo de 50/100). El usuario está intentando defender su idea. Analiza su argumento. Si te da evidencia sólida de tracción, mercado u otro factor, admítelo y ajusta tu perspectiva. Si su argumento es débil, explícale por qué de forma directa pero empática. REGLA: Tus respuestas deben ser MUY breves, máximo 3 o 4 líneas. Nunca escribas listas largas, mantén una charla concisa y directa.";
+        const systemInstruction = "Eres Gemini, un consultor de negocios y capital de riesgo que calificó muy bajo el proyecto de este emprendedor (por debajo de 50/100). El usuario está intentando defender su idea. Analiza su argumento. Si te da evidencia sólida de tracción, mercado u otro factor, admítelo y ajusta tu perspectiva. Si su argumento es débil, explícale por qué de forma directa pero empática. REGLA: Tus respuestas deben ser MUY breves, máximo 3 o 4 líneas. Nunca escribas listas largas, mantén una charla concisa y directa.";
+        const chatPrompt = systemInstruction + '\n\n' + chatContext.map(m => `${m.role}: ${m.parts[0].text}`).join('\n');
 
-        const payload = {
-          systemInstruction: { parts: [{ text: systemInstruction }] },
-          contents: chatContext,
-          generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
-        };
-
-        const res = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        
-        const data = await res.json();
+        const data = await fetchGeminiAnalysis(chatPrompt);
         const geminiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lo siento, no pude entender tu argumento.";
 
         // Append to Context
@@ -1540,36 +1544,34 @@ function initStep7Features() {
   const modalContact = $('modal-whatsapp');
   const contactCancel = $('btn-wp-cancel');
   const contactSubmit = $('btn-wp-submit');
-  
+
   if (btnContactWA && modalContact) {
     btnContactWA.addEventListener('click', () => modalContact.classList.remove('hidden'));
     contactCancel.addEventListener('click', () => modalContact.classList.add('hidden'));
-    
+
     // Save lead to Firestore
     contactSubmit.addEventListener('click', async () => {
       const name = $('wp-name').value.trim();
       const phone = $('wp-phone').value.trim();
-      if(!name || !phone) {
-        alert("Completa todos los campos.");
+      if (!name || !phone) {
+        showNotification("Completa todos los campos antes de enviar.", 'warning');
         return;
       }
-      
+
       contactSubmit.innerHTML = 'Enviando...';
       try {
-        if (db) {
-          await db.collection('leads').add({
-            name,
-            phone,
-            score: STATE.totalScore,
-            userId: STATE.user ? STATE.user.id : null,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-          });
-        }
-        alert("Datos enviados con éxito. Nuestro equipo te contactará por WhatsApp.");
+        const { error } = await supabase.from('leads').insert({
+          name,
+          phone,
+          score: STATE.totalScore,
+          user_id: STATE.user?.id ?? null
+        });
+        if (error) throw error;
+        showNotification("Datos enviados con éxito. Nuestro equipo te contactará por WhatsApp.", 'success');
         modalContact.classList.add('hidden');
       } catch (e) {
         console.error(e);
-        alert("Ocurrió un error. Intenta nuevamente.");
+        showNotification("Ocurrió un error al enviar. Intenta nuevamente.", 'error');
       }
       contactSubmit.innerHTML = 'Enviar';
     });
@@ -1591,7 +1593,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Wizard and sections are handled by handleAuthState() now.
   // Show wizard immediately if URL has #start param and user is logged in
-  if (window.location.hash === '#start' && AuthServiceMock.getUser()) {
+  if (window.location.hash === '#start' && STATE.user) {
     $('ss-start-btn')?.click();
   }
 });
