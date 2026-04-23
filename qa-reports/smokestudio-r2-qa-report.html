@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smoke Studio R2 — Reporte QA · 2026-04-22</title>
+<style>
+  :root {
+    --purple: #3E4DC4;
+    --pink: #FA504D;
+    --dark: #0B0B0C;
+    --gray-900: #111827;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-200: #E5E7EB;
+    --gray-50: #F9FAFB;
+    --red: #DC2626;
+    --orange: #EA580C;
+    --yellow: #D97706;
+    --blue: #2563EB;
+    --green: #16A34A;
+    --teal: #0D9488;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gray-900);
+    background: #fff;
+    padding: 0;
+  }
+
+  /* === COVER PAGE === */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0B0B0C 0%, #1a1b35 50%, #0B0B0C 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 72px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(62,77,196,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(250,80,77,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 span {
+    background: linear-gradient(135deg, #a5b4fc, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover-subtitle {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 56px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-meta-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+
+  .cover-meta-item .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+
+  .cover-meta-item .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .cover-score-block {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .score-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .score-pill.critical { background: rgba(220,38,38,0.2); border: 1px solid rgba(220,38,38,0.4); color: #fca5a5; }
+  .score-pill.high { background: rgba(234,88,12,0.2); border: 1px solid rgba(234,88,12,0.4); color: #fdba74; }
+  .score-pill.medium { background: rgba(217,119,6,0.2); border: 1px solid rgba(217,119,6,0.4); color: #fcd34d; }
+  .score-pill.low { background: rgba(37,99,235,0.2); border: 1px solid rgba(37,99,235,0.4); color: #93c5fd; }
+
+  /* === BODY CONTENT === */
+  .page-content {
+    padding: 56px 72px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* === SECTION HEADERS === */
+  .section-header {
+    border-bottom: 2px solid var(--gray-200);
+    margin: 48px 0 24px;
+    padding-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-top: 4px;
+  }
+
+  /* === TABLES === */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+
+  th {
+    background: var(--gray-50);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-200);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--gray-50); }
+
+  /* === SCORECARD === */
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .scorecard-item {
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .scorecard-item .dimension {
+    font-size: 11px;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+
+  .scorecard-item .score {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .scorecard-item .status-icon {
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 16px;
+  }
+
+  .score-good { color: var(--green); }
+  .score-warn { color: var(--yellow); }
+  .score-bad { color: var(--red); }
+
+  /* === ISSUE CARDS === */
+  .issue-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    margin: 16px 0;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .issue-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .issue-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .sev-critical .issue-id { background: #fee2e2; color: var(--red); }
+  .sev-high .issue-id { background: #ffedd5; color: var(--orange); }
+  .sev-medium .issue-id { background: #fef3c7; color: var(--yellow); }
+  .sev-low .issue-id { background: #dbeafe; color: var(--blue); }
+  .sev-acc .issue-id { background: #d1fae5; color: var(--teal); }
+
+  .issue-card-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-900);
+    flex: 1;
+  }
+
+  .sev-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .sev-critical .sev-badge { background: #fee2e2; color: var(--red); }
+  .sev-high .sev-badge { background: #ffedd5; color: var(--orange); }
+  .sev-medium .sev-badge { background: #fef3c7; color: #92400e; }
+  .sev-low .sev-badge { background: #dbeafe; color: var(--blue); }
+  .sev-acc .sev-badge { background: #d1fae5; color: var(--teal); }
+
+  .issue-card-body {
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .issue-field label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-500);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .issue-field p {
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+
+  .issue-field.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .issue-file {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--gray-50);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--purple);
+    display: inline-block;
+  }
+
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    margin: 8px 0;
+    grid-column: 1 / -1;
+  }
+
+  /* === SUMMARY STATS === */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 20px 12px;
+    border-radius: 12px;
+    border: 1px solid;
+  }
+
+  .stat-card .count {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-critical { border-color: #fca5a5; background: #fff1f1; }
+  .stat-critical .count { color: var(--red); }
+  .stat-critical .label { color: #7f1d1d; }
+
+  .stat-high { border-color: #fdba74; background: #fff7ed; }
+  .stat-high .count { color: var(--orange); }
+  .stat-high .label { color: #7c2d12; }
+
+  .stat-medium { border-color: #fcd34d; background: #fffbeb; }
+  .stat-medium .count { color: var(--yellow); }
+  .stat-medium .label { color: #78350f; }
+
+  .stat-low { border-color: #93c5fd; background: #eff6ff; }
+  .stat-low .count { color: var(--blue); }
+  .stat-low .label { color: #1e3a8a; }
+
+  .stat-acc { border-color: #6ee7b7; background: #f0fdf4; }
+  .stat-acc .count { color: var(--teal); }
+  .stat-acc .label { color: #065f46; }
+
+  /* === ROADMAP === */
+  .sprint {
+    margin: 24px 0;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .sprint-header {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sprint-1 .sprint-header { background: #fff1f1; }
+  .sprint-2 .sprint-header { background: #fff7ed; }
+  .sprint-3 .sprint-header { background: #fffbeb; }
+  .sprint-4 .sprint-header { background: #eff6ff; }
+
+  .sprint-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .sprint-header .duration {
+    font-size: 11px;
+    color: var(--gray-500);
+  }
+
+  .sprint-items {
+    padding: 8px 0;
+  }
+
+  .sprint-item {
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .sprint-item:last-child { border-bottom: none; }
+
+  .sprint-item .item-id {
+    font-family: monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    min-width: 44px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .item-critical { background: #fee2e2; color: var(--red); }
+  .item-high { background: #ffedd5; color: var(--orange); }
+  .item-medium { background: #fef3c7; color: #92400e; }
+  .item-low { background: #dbeafe; color: var(--blue); }
+  .item-acc { background: #d1fae5; color: var(--teal); }
+
+  /* === PRINT === */
+  @media print {
+    body { font-size: 11px; }
+    .cover { min-height: auto; padding: 48px; }
+    .cover h1 { font-size: 40px; }
+    .page-content { padding: 32px 48px; }
+    .issue-card { page-break-inside: avoid; }
+    .sprint { page-break-inside: avoid; }
+    .scorecard { page-break-inside: avoid; }
+    .section-header { page-break-after: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .stats-row { page-break-inside: avoid; }
+    @page { margin: 0; size: A4; }
+  }
+
+  /* === FOOTER === */
+  .report-footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 2px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--gray-500);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  /* === METHODOLOGY BOX === */
+  .methodology-box {
+    background: linear-gradient(135deg, rgba(62,77,196,0.05), rgba(250,80,77,0.05));
+    border: 1px solid rgba(62,77,196,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .methodology-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+
+  .methodology-box ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    list-style: none;
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+
+  .methodology-box ul li::before {
+    content: '→ ';
+    color: var(--purple);
+    font-weight: 700;
+  }
+
+  .note-box {
+    background: var(--gray-50);
+    border-left: 3px solid var(--gray-500);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    color: var(--gray-700);
+    margin: 16px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==============================
+     PORTADA
+     ============================== -->
+<div class="cover">
+  <div class="cover-badge">scoutqa-test · Análisis QA · Metodología github/awesome-copilot</div>
+  <h1>Smoke Studio R2<br><span>Reporte de Análisis QA</span></h1>
+  <p class="cover-subtitle">Revisión estática completa · 27 incidencias encontradas · 4 páginas HTML</p>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Fecha</div>
+      <div class="value">2026-04-22</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Rama</div>
+      <div class="value">main · 8085816</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Analista</div>
+      <div class="value">Claude Code</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Skill</div>
+      <div class="value">scoutqa-test</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Stack</div>
+      <div class="value">HTML5 / CSS3 / JS</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Total incidencias</div>
+      <div class="value">27</div>
+    </div>
+  </div>
+
+  <div class="cover-score-block">
+    <div class="score-pill critical">🔴 3 Críticos</div>
+    <div class="score-pill high">🟠 5 Altos</div>
+    <div class="score-pill medium">🟡 8 Medios</div>
+    <div class="score-pill low">🔵 7 Bajos</div>
+  </div>
+</div>
+
+<!-- ==============================
+     CUERPO DEL REPORTE
+     ============================== -->
+<div class="page-content">
+
+  <!-- RESUMEN EJECUTIVO -->
+  <div class="section-header">
+    <h2>Resumen Ejecutivo</h2>
+    <p>Estado general del proyecto por dimensión de calidad</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card stat-critical">
+      <div class="count">3</div>
+      <div class="label">Críticos</div>
+    </div>
+    <div class="stat-card stat-high">
+      <div class="count">5</div>
+      <div class="label">Altos</div>
+    </div>
+    <div class="stat-card stat-medium">
+      <div class="count">8</div>
+      <div class="label">Medios</div>
+    </div>
+    <div class="stat-card stat-low">
+      <div class="count">7</div>
+      <div class="label">Bajos</div>
+    </div>
+    <div class="stat-card stat-acc">
+      <div class="count">4</div>
+      <div class="label">Accesibilidad</div>
+    </div>
+  </div>
+
+  <div class="scorecard">
+    <div class="scorecard-item">
+      <div class="dimension">Estructura HTML</div>
+      <div class="score score-good">8/10</div>
+      <div class="status-icon">✅</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Sistema CSS</div>
+      <div class="score score-good">8/10</div>
+      <div class="status-icon">✅</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">JS Core (main.js)</div>
+      <div class="score score-good">7/10</div>
+      <div class="status-icon">✅</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">JS SmokeScan</div>
+      <div class="score score-warn">4/10</div>
+      <div class="status-icon">⚠️</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Responsivo</div>
+      <div class="score score-good">8/10</div>
+      <div class="status-icon">✅</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Rendimiento</div>
+      <div class="score score-bad">3/10</div>
+      <div class="status-icon">❌</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Accesibilidad</div>
+      <div class="score score-warn">6/10</div>
+      <div class="status-icon">⚠️</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">SEO</div>
+      <div class="score score-warn">5/10</div>
+      <div class="status-icon">⚠️</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Seguridad</div>
+      <div class="score score-bad">2/10</div>
+      <div class="status-icon">❌</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Firebase</div>
+      <div class="score score-bad">0/10</div>
+      <div class="status-icon">❌</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Gemini AI</div>
+      <div class="score score-bad">0/10</div>
+      <div class="status-icon">❌</div>
+    </div>
+    <div class="scorecard-item">
+      <div class="dimension">Calidad de Código</div>
+      <div class="score score-warn">5/10</div>
+      <div class="status-icon">⚠️</div>
+    </div>
+  </div>
+
+  <!-- METODOLOGÍA -->
+  <div class="section-header">
+    <h2>Metodología</h2>
+  </div>
+
+  <div class="methodology-box">
+    <h3>scoutqa-test — github/awesome-copilot</h3>
+    <ul>
+      <li>Smoke Test de funcionalidad crítica</li>
+      <li>Auditoría de Accesibilidad WCAG 2.1</li>
+      <li>Análisis de Seguridad (OWASP Top 10)</li>
+      <li>Evaluación de Rendimiento</li>
+      <li>Revisión de Calidad de Código</li>
+      <li>SEO — meta tags, schema, sitemap</li>
+    </ul>
+  </div>
+
+  <div class="note-box">
+    <strong>Alcance:</strong> Análisis estático completo sobre 4 archivos HTML (4,873 líneas), 2 CSS (4,729 líneas) y 2 JS (1,793 líneas). El análisis live vía <code>scoutqa CLI</code> requiere cuenta activa en ScoutQA.ai y URL del sitio en producción.
+  </div>
+
+  <!-- INCIDENCIAS CRÍTICAS -->
+  <div class="section-header">
+    <h2>🔴 Incidencias Críticas</h2>
+    <p>Bloqueantes de producción — requieren corrección inmediata</p>
+  </div>
+
+  <div class="issue-card sev-critical">
+    <div class="issue-card-header">
+      <span class="issue-id">C-01</span>
+      <h3>Firebase no configurado — Autenticación completamente rota</h3>
+      <span class="sev-badge">Crítico</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · líneas 1135–1141</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>SmokeScan no puede autenticar usuarios ni persistir datos. OAuth Google/Microsoft completamente no funcional.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Evidencia</label>
+        <pre>const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "tu-proyecto.firebaseapp.com",
+  // ...
+};</pre>
+      </div>
+      <div class="issue-field full-width">
+        <label>Recomendación</label>
+        <p>Crear proyecto Firebase real, configurar variables de entorno (no hardcodear), activar Google/Microsoft OAuth providers. Nunca commitar credenciales reales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-critical">
+    <div class="issue-card-header">
+      <span class="issue-id">C-02</span>
+      <h3>API Key de Gemini ausente — Función AI completamente rota</h3>
+      <span class="sev-badge">Crítico</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · STATE.apiKey</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>La característica core del producto (análisis AI) no funciona. El sistema cae en modo simulado con respuestas hardcodeadas.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Recomendación</label>
+        <p>Implementar un backend proxy (Firebase Cloud Functions o Vercel Edge Functions) para las llamadas a Gemini. Nunca exponer API keys en el frontend.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-critical">
+    <div class="issue-card-header">
+      <span class="issue-id">C-03</span>
+      <h3>Sin backend — API keys expuestas si se configuran en frontend</h3>
+      <span class="sev-badge">Crítico</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · fetchGeminiAnalysis()</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>Sin servidor backend, cualquier API key real configurada en el código frontend quedará expuesta públicamente. Riesgo de abuso masivo y costos ilimitados.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Recomendación</label>
+        <p>Implementar backend serverless como proxy para todas las llamadas externas. Opciones: Firebase Cloud Functions, Vercel Serverless, o Cloudflare Workers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCIDENCIAS ALTAS -->
+  <div class="section-header">
+    <h2>🟠 Incidencias Altas</h2>
+    <p>Problemas de seguridad y rendimiento significativos</p>
+  </div>
+
+  <div class="issue-card sev-high">
+    <div class="issue-card-header">
+      <span class="issue-id">A-01</span>
+      <h3>Vulnerabilidad XSS — innerHTML con datos de usuario sin sanitizar</h3>
+      <span class="sev-badge">Alto</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · ~línea 1250</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>Permite inyección de HTML/scripts maliciosos si un atacante controla el nombre de usuario. Patrón peligroso que debe eliminarse.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Código problemático → Solución</label>
+        <pre>// ❌ Problemático
+cta.innerHTML = 'Hola, ' + firstName;
+
+// ✅ Correcto
+cta.textContent = `Hola, ${firstName}`;</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-high">
+    <div class="issue-card-header">
+      <span class="issue-id">A-02</span>
+      <h3>Control de intentos únicamente en cliente — Bypass trivial</h3>
+      <span class="sev-badge">Alto</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · FirebaseAuthService</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>El límite de 2 intentos/día se resetea al recargar la página. Cualquier usuario puede usar SmokeScan ilimitado veces generando costos no controlados de API.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-high">
+    <div class="issue-card-header">
+      <span class="issue-id">A-03</span>
+      <h3>Autenticación simulada activa — Mock mode en codebase</h3>
+      <span class="sev-badge">Alto</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">smokescan.js · FirebaseAuthService</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>Los usuarios ven un modal de login falso. Si se despliega en este estado, el producto no funciona. console.log filtra información de debugging en producción.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-high">
+    <div class="issue-card-header">
+      <span class="issue-id">A-04</span>
+      <h3>Sin reglas de seguridad en Firestore</h3>
+      <span class="sev-badge">Alto</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivo</label>
+        <span class="issue-file">firestore.rules (ausente)</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>Sin reglas configuradas, Firestore en modo development permite leer/escribir cualquier dato a cualquier usuario. Exposición total de datos en producción.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-high">
+    <div class="issue-card-header">
+      <span class="issue-id">A-05</span>
+      <h3>Imágenes sin optimizar — Hasta 1.6 MB por imagen</h3>
+      <span class="sev-badge">Alto</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Archivos</label>
+        <span class="issue-file">problem-stats.jpg (1.6MB) · hero-team.jpg (1.1MB) · cta-team.jpg (945KB)</span>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>En conexiones móviles el LCP supera 4 segundos, penalizando SEO y conversión. Total de assets: 75 MB.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Recomendación</label>
+        <p>Comprimir a ≤200KB por imagen, generar variantes WebP, implementar srcset con breakpoints en 400/800/1200px, añadir loading="lazy" en imágenes fuera del viewport inicial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCIDENCIAS MEDIAS -->
+  <div class="section-header">
+    <h2>🟡 Incidencias Medias</h2>
+    <p>Problemas de UX, SEO y calidad que degradan la experiencia</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Archivo</th>
+        <th>Recomendación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>M-01</code></td>
+        <td><strong>alert() en UI</strong> — 3 instancias de alert() para errores de usuario</td>
+        <td><code>smokescan.js</code></td>
+        <td>Reemplazar con toast/modal del design system</td>
+      </tr>
+      <tr>
+        <td><code>M-02</code></td>
+        <td><strong>href="" vacío</strong> en botón CTA principal</td>
+        <td><code>index.html:590</code></td>
+        <td>Cambiar a <code>href="javascript:void(0)"</code></td>
+      </tr>
+      <tr>
+        <td><code>M-03</code></td>
+        <td><strong>Sin Open Graph</strong> — compartir en redes sin preview</td>
+        <td>Todas las páginas</td>
+        <td>Añadir og:title, og:description, og:image, og:url</td>
+      </tr>
+      <tr>
+        <td><code>M-04</code></td>
+        <td><strong>Sin robots.txt ni sitemap.xml</strong></td>
+        <td>Raíz del proyecto</td>
+        <td>Crear ambos archivos</td>
+      </tr>
+      <tr>
+        <td><code>M-05</code></td>
+        <td><strong>Sin JSON-LD schema markup</strong> — sin rich snippets en Google</td>
+        <td><code>index.html</code></td>
+        <td>Añadir schema Organization y WebApplication</td>
+      </tr>
+      <tr>
+        <td><code>M-06</code></td>
+        <td><strong>CDN html2pdf sin SRI</strong> — dependencia sin verificación de integridad</td>
+        <td><code>smokescan.html</code></td>
+        <td>Añadir atributos integrity y crossorigin</td>
+      </tr>
+      <tr>
+        <td><code>M-07</code></td>
+        <td><strong>Código comentado</strong> — CLIENT LOGOS incompleto, nav sync comentado</td>
+        <td><code>index.html:482-502</code>, <code>main.js:163-178</code></td>
+        <td>Eliminar o mover a issues de GitHub</td>
+      </tr>
+      <tr>
+        <td><code>M-08</code></td>
+        <td><strong>Magic numbers</strong> — 88, 0.18, 251 hardcodeados sin contexto</td>
+        <td><code>main.js</code>, <code>smokescan.js</code></td>
+        <td>Extraer a constantes con nombre descriptivo</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- INCIDENCIAS BAJAS -->
+  <div class="section-header">
+    <h2>🔵 Incidencias Bajas</h2>
+    <p>Deuda técnica y mejoras de documentación</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Recomendación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>B-01</code></td><td>Sin README.md en el repositorio</td><td>Crear con descripción, setup y despliegue</td></tr>
+      <tr><td><code>B-02</code></td><td>Sin .env.example</td><td>Crear plantilla con todas las variables requeridas</td></tr>
+      <tr><td><code>B-03</code></td><td>console.log en producción (4+ instancias)</td><td>Eliminar o usar flag DEBUG</td></tr>
+      <tr><td><code>B-04</code></td><td>Global STATE no encapsulado</td><td>Encapsular en módulo ES6 con getters/setters</td></tr>
+      <tr><td><code>B-05</code></td><td>Sin persistencia de sesión en SmokeScan</td><td>Usar localStorage para serializar STATE</td></tr>
+      <tr><td><code>B-06</code></td><td>Links de contacto apuntan a URL incorrecta</td><td>Unificar CTAs a index.html#contacto</td></tr>
+      <tr><td><code>B-07</code></td><td>Sin CHANGELOG.md</td><td>Iniciar con formato Keep a Changelog</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ACCESIBILIDAD -->
+  <div class="section-header">
+    <h2>♿ Accesibilidad — WCAG 2.1 AA</h2>
+  </div>
+
+  <div class="issue-card sev-acc">
+    <div class="issue-card-header">
+      <span class="issue-id">ACC-01</span>
+      <h3>Diferenciación solo por color en badges de viabilidad</h3>
+      <span class="sev-badge">Accesibilidad</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field">
+        <label>Criterio WCAG</label>
+        <p>1.4.1 — Use of Color (Level A)</p>
+      </div>
+      <div class="issue-field">
+        <label>Impacto</label>
+        <p>8% de hombres con daltonismo no puede distinguir estados Verde/Rojo en el score.</p>
+      </div>
+      <div class="issue-field full-width">
+        <label>Solución</label>
+        <pre>// Añadir icono + texto al color
+"✓ Alta viabilidad"  (verde)
+"⚠ En desarrollo"   (rojo)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-acc">
+    <div class="issue-card-header">
+      <span class="issue-id">ACC-02</span>
+      <h3>Score no anunciado via ARIA live regions</h3>
+      <span class="sev-badge">Accesibilidad</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field full-width">
+        <label>Solución</label>
+        <pre>&lt;div aria-live="polite" aria-atomic="true" class="sr-only" id="score-announcement"&gt;
+  Viabilidad actualizada: 68 puntos
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-acc">
+    <div class="issue-card-header">
+      <span class="issue-id">ACC-03</span>
+      <h3>Spinner de carga sin anuncio ARIA</h3>
+      <span class="sev-badge">Accesibilidad</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field full-width">
+        <label>Solución</label>
+        <p>Añadir <code>role="status"</code> al contenedor del loading y <code>aria-live="polite"</code> para actualizaciones de progreso durante el análisis AI.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-card sev-acc">
+    <div class="issue-card-header">
+      <span class="issue-id">ACC-04</span>
+      <h3>Animaciones scroll-reveal sin respetar prefers-reduced-motion</h3>
+      <span class="sev-badge">Accesibilidad</span>
+    </div>
+    <div class="issue-card-body">
+      <div class="issue-field full-width">
+        <label>Solución</label>
+        <pre>@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- COBERTURA POR PÁGINA -->
+  <div class="section-header">
+    <h2>Cobertura de Análisis por Página</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Página</th>
+        <th>Smoke Test</th>
+        <th>Accesibilidad</th>
+        <th>Rendimiento</th>
+        <th>Seguridad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>index.html</strong></td>
+        <td>⚠️ href vacío en CTA</td>
+        <td>✅ Buena</td>
+        <td>❌ Imágenes grandes</td>
+        <td>✅ Sin issues</td>
+      </tr>
+      <tr>
+        <td><strong>nosotros.html</strong></td>
+        <td>✅ OK</td>
+        <td>✅ Buena</td>
+        <td>❌ Imágenes grandes</td>
+        <td>✅ Sin issues</td>
+      </tr>
+      <tr>
+        <td><strong>servicios.html</strong></td>
+        <td>⚠️ Links de contacto incorrectos</td>
+        <td>✅ Buena</td>
+        <td>❌ Imágenes grandes</td>
+        <td>✅ Sin issues</td>
+      </tr>
+      <tr>
+        <td><strong>smokescan.html</strong></td>
+        <td>❌ Auth rota · AI rota</td>
+        <td>⚠️ Parcial</td>
+        <td>✅ CSS/JS OK</td>
+        <td>❌ XSS · Mock auth</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- HOJA DE RUTA -->
+  <div class="section-header">
+    <h2>Hoja de Ruta de Correcciones</h2>
+  </div>
+
+  <div class="sprint sprint-1">
+    <div class="sprint-header">
+      <h3>Sprint 1 — Bloqueantes de Producción</h3>
+      <span class="duration">1–2 semanas</span>
+    </div>
+    <div class="sprint-items">
+      <div class="sprint-item"><span class="item-id item-critical">C-01</span> Configurar Firebase real con variables de entorno</div>
+      <div class="sprint-item"><span class="item-id item-critical">C-02</span> Implementar backend proxy para Gemini API</div>
+      <div class="sprint-item"><span class="item-id item-critical">C-03</span> Remover mock auth, implementar OAuth real</div>
+      <div class="sprint-item"><span class="item-id item-high">A-01</span> Corregir XSS — innerHTML → textContent</div>
+      <div class="sprint-item"><span class="item-id item-high">A-04</span> Definir reglas de seguridad Firestore</div>
+    </div>
+  </div>
+
+  <div class="sprint sprint-2">
+    <div class="sprint-header">
+      <h3>Sprint 2 — Calidad y Experiencia</h3>
+      <span class="duration">1 semana</span>
+    </div>
+    <div class="sprint-items">
+      <div class="sprint-item"><span class="item-id item-high">A-02</span> Mover rate limiting al backend (Firestore)</div>
+      <div class="sprint-item"><span class="item-id item-high">A-05</span> Optimizar imágenes + WebP + srcset</div>
+      <div class="sprint-item"><span class="item-id item-medium">M-01</span> Reemplazar alert() con componentes UI</div>
+      <div class="sprint-item"><span class="item-id item-medium">M-02</span> Corregir href="" vacío en CTA</div>
+      <div class="sprint-item"><span class="item-id item-acc">ACC-01–04</span> Todas las correcciones de accesibilidad</div>
+    </div>
+  </div>
+
+  <div class="sprint sprint-3">
+    <div class="sprint-header">
+      <h3>Sprint 3 — SEO y Documentación</h3>
+      <span class="duration">3–4 días</span>
+    </div>
+    <div class="sprint-items">
+      <div class="sprint-item"><span class="item-id item-medium">M-03</span> Añadir Open Graph meta tags</div>
+      <div class="sprint-item"><span class="item-id item-medium">M-04</span> Crear robots.txt y sitemap.xml</div>
+      <div class="sprint-item"><span class="item-id item-medium">M-05</span> Añadir JSON-LD schema markup</div>
+      <div class="sprint-item"><span class="item-id item-low">B-01</span> Crear README.md</div>
+      <div class="sprint-item"><span class="item-id item-low">B-02</span> Crear .env.example</div>
+    </div>
+  </div>
+
+  <div class="sprint sprint-4">
+    <div class="sprint-header">
+      <h3>Sprint 4 — Deuda Técnica</h3>
+      <span class="duration">1 semana</span>
+    </div>
+    <div class="sprint-items">
+      <div class="sprint-item"><span class="item-id item-medium">M-06–08</span> SRI en CDN, eliminar dead code, magic numbers → constantes</div>
+      <div class="sprint-item"><span class="item-id item-low">B-03</span> Eliminar console.log de producción</div>
+      <div class="sprint-item"><span class="item-id item-low">B-04</span> Encapsular STATE en módulo ES6</div>
+      <div class="sprint-item"><span class="item-id item-low">B-05–07</span> localStorage, links de contacto, CHANGELOG</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div>
+      <span class="gradient-text">Smoke Studio R2</span> · Reporte de Análisis QA · 2026-04-22
+    </div>
+    <div>
+      Generado con <strong>scoutqa-test skill</strong> · github/awesome-copilot · Claude Code
+    </div>
+  </div>
+
+</div><!-- /page-content -->
+</body>
+</html>

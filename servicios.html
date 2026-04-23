@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5DDTRZQ6');</script>
+  <!-- End Google Tag Manager -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "we9e3lj273");
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Servicios — Smoke Studio</title>
-  <meta name="description" content="Explora los servicios de Smoke Studio: investigación de mercado, validación de hipótesis, diseño y prototipado rápido, y MVP. Reduce riesgo antes de invertir." />
+  <meta name="description"
+    content="Explora los servicios de Smoke Studio: investigación de mercado, validación de hipótesis, diseño y prototipado rápido, y MVP. Reduce riesgo antes de invertir." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Istok+Web:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Istok+Web:wght@400;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── PAGE TOKENS ── */
@@ -48,12 +69,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(11,12,16,0.96) 0%,
-        rgba(11,12,16,0.74) 55%,
-        rgba(11,12,16,0.20) 100%
-      );
+      background: linear-gradient(to right,
+          rgba(11, 12, 16, 0.96) 0%,
+          rgba(11, 12, 16, 0.74) 55%,
+          rgba(11, 12, 16, 0.20) 100%);
     }
 
     .hero-servicios__content {
@@ -70,7 +89,7 @@
     }
 
     .hero-servicios__text .section-tag {
-      color: rgba(255,255,255,0.45);
+      color: rgba(255, 255, 255, 0.45);
     }
 
     .hero-servicios__text h1 {
@@ -82,7 +101,7 @@
     }
 
     .hero-servicios__text p {
-      color: rgba(255,255,255,0.70);
+      color: rgba(255, 255, 255, 0.70);
       font-size: var(--type-md);
       line-height: 1.75;
       margin-bottom: 36px;
@@ -111,9 +130,9 @@
       font-family: 'Urbanist', sans-serif;
       font-size: var(--type-xs);
       font-weight: 700;
-      color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-pill);
       padding: 6px 14px;
       letter-spacing: 0.04em;
@@ -122,8 +141,8 @@
     }
 
     .hero-chip:hover {
-      background: rgba(255,255,255,0.13);
-      border-color: rgba(255,255,255,0.22);
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.22);
       color: #fff;
     }
 
@@ -159,20 +178,20 @@
       border-radius: var(--radius-lg);
       background: #fff;
       overflow: hidden;
-      border: 1px solid rgba(11,11,12,0.07);
+      border: 1px solid rgba(11, 11, 12, 0.07);
       margin-bottom: 16px;
       transition: box-shadow var(--transition), border-color var(--transition);
     }
 
     .srv-detail:hover {
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-      border-color: rgba(62,77,196,0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(62, 77, 196, 0.15);
     }
 
     /* First service open by default */
     .srv-detail.active {
-      border-color: rgba(62,77,196,0.20);
-      box-shadow: 0 16px 56px rgba(62,77,196,0.10);
+      border-color: rgba(62, 77, 196, 0.20);
+      box-shadow: 0 16px 56px rgba(62, 77, 196, 0.10);
     }
 
     .srv-detail__header {
@@ -197,7 +216,7 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: rgba(62,77,196,0.08);
+      background: rgba(62, 77, 196, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -243,7 +262,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(11,11,12,0.12);
+      border: 1px solid rgba(11, 11, 12, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -392,7 +411,7 @@
       font-size: var(--type-h5);
       font-weight: 800;
       color: #fff;
-      box-shadow: 0 8px 24px rgba(62,77,196,0.35);
+      box-shadow: 0 8px 24px rgba(62, 77, 196, 0.35);
       flex-shrink: 0;
       transition: transform 0.3s var(--ease-out);
     }
@@ -427,8 +446,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 50% 80% at 20% 50%, rgba(62,77,196,0.20) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 85% 50%, rgba(250,80,77,0.12) 0%, transparent 70%);
+        radial-gradient(ellipse 50% 80% at 20% 50%, rgba(62, 77, 196, 0.20) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 85% 50%, rgba(250, 80, 77, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -458,7 +477,7 @@
     .stat-item__label {
       font-family: 'Istok Web', sans-serif;
       font-size: var(--type-sm);
-      color: rgba(255,255,255,0.55);
+      color: rgba(255, 255, 255, 0.55);
       line-height: 1.5;
     }
 
@@ -487,9 +506,9 @@
     .comparison-table {
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(11,11,12,0.08);
+      border: 1px solid rgba(11, 11, 12, 0.08);
       background: #fff;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
     }
 
     .comparison-table__header {
@@ -503,7 +522,7 @@
       font-family: 'Urbanist', sans-serif;
       font-size: var(--type-sm);
       font-weight: 700;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255, 255, 255, 0.55);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       text-align: center;
@@ -511,7 +530,7 @@
 
     .comparison-table__header span:first-child {
       text-align: left;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255, 255, 255, 0.35);
     }
 
     .comparison-table__header span:last-child {
@@ -526,7 +545,7 @@
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
       padding: 18px 32px;
-      border-bottom: 1px solid rgba(11,11,12,0.07);
+      border-bottom: 1px solid rgba(11, 11, 12, 0.07);
       align-items: center;
       transition: background 0.2s;
     }
@@ -556,7 +575,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: rgba(62,77,196,0.1);
+      background: rgba(62, 77, 196, 0.1);
       color: var(--c-indigo);
     }
 
@@ -567,7 +586,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: rgba(11,11,12,0.04);
+      background: rgba(11, 11, 12, 0.04);
       color: var(--c-neutral-lighter);
     }
 
@@ -613,8 +632,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 55% 65% at 85% 50%, rgba(62,77,196,0.22) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 45% at 10% 80%, rgba(124,58,237,0.14) 0%, transparent 70%);
+        radial-gradient(ellipse 55% 65% at 85% 50%, rgba(62, 77, 196, 0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 45% at 10% 80%, rgba(124, 58, 237, 0.14) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -633,7 +652,7 @@
     }
 
     .srv-cta__text p {
-      color: rgba(255,255,255,0.60);
+      color: rgba(255, 255, 255, 0.60);
       font-size: var(--type-md);
       margin-bottom: 36px;
     }
@@ -648,15 +667,17 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       aspect-ratio: 4/3;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
     }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
+
       .srv-proceso__grid,
       .srv-stats__grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
       .srv-proceso__grid::before {
         display: none;
       }
@@ -666,585 +687,701 @@
       .hero-servicios__content {
         padding: 130px 24px 72px;
       }
+
       .hero-servicios__text h1 {
         font-size: clamp(30px, 10vw, 48px);
       }
+
       .hero-servicios__ctas {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .srv-detail__inner {
         grid-template-columns: 1fr;
       }
+
       .srv-detail__image {
         display: none;
       }
+
       .srv-stats__grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 32px;
       }
+
       .comparison-table__header,
       .comparison-row {
         padding: 14px 16px;
       }
+
       .srv-faq__cols {
         grid-template-columns: 1fr;
         gap: 40px;
       }
+
       .srv-cta__grid {
         grid-template-columns: 1fr;
         gap: 40px;
       }
-      .srv-cta__img { display: none; }
+
+      .srv-cta__img {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
+
       .srv-proceso__grid,
       .srv-stats__grid {
         grid-template-columns: 1fr;
       }
+
       .hero-chips {
         gap: 6px;
       }
     }
   </style>
 </head>
+
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDTRZQ6" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <a href="#main" class="sr-only">Saltar al contenido</a>
   <div class="site-wrapper">
 
-  <!-- NAV -->
-  <header class="nav-wrapper" id="nav-wrapper">
-    <nav class="nav-container" id="navbar">
-      <a href="index.html" class="nav-logo" id="nav-logo">
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
-          <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
-        </picture>
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
-        <li><a href="nosotros.html"       class="nav-link">Nosotros</a></li>
-        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
-        <li><a href="servicios.html"      class="nav-link active">Servicios</a></li>
+    <!-- NAV -->
+    <header class="nav-wrapper" id="nav-wrapper">
+      <nav class="nav-container" id="navbar">
+        <a href="index.html" class="nav-logo" id="nav-logo">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
+            <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
+          </picture>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+          <li><a href="servicios.html" class="nav-link active">Servicios</a></li>
+        </ul>
+        <a href="smokescan.html" class="btn btn--gradient nav-cta" id="nav-cta">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
+          </svg>
+          SmokeScan
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="mobile-menu__top">
+        <a href="index.html" class="nav-logo" id="mobile-logo">
+          <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" />
+        </a>
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-menu__links">
+        <li><a href="index.html" class="mobile-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="mobile-link">Nosotros</a></li>
+        <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
+        <li><a href="servicios.html" class="mobile-link active">Servicios</a></li>
       </ul>
-      <a href="smokescan.html" class="btn btn--gradient nav-cta" id="nav-cta">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
-        SmokeScan
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <div class="mobile-menu__top">
-      <a href="index.html" class="nav-logo" id="mobile-logo">
-        <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" />
-      </a>
-      <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <ul class="mobile-menu__links">
-      <li><a href="index.html"          class="mobile-link">Inicio</a></li>
-      <li><a href="nosotros.html"       class="mobile-link">Nosotros</a></li>
-      <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
-      <li><a href="servicios.html"      class="mobile-link active">Servicios</a></li>
-    </ul>
-    <div class="mobile-menu__cta">
-      <a href="smokescan.html" class="btn btn--gradient">
-        <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
-        SmokeScan
-      </a>
-    </div>
-  </div>
-
-  <main>
-
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero-servicios" id="inicio">
-      <div class="hero-servicios__bg">
-        <img src="assets/hero-teamback.jpg" alt="" aria-hidden="true" />
-      </div>
-      <div class="hero-servicios__content">
-        <div class="hero-servicios__text">
-          <span class="section-tag">Servicios</span>
-          <h1 class="animate-fadein" style="--delay:0s">
-            Tu punto de partida
-          </h1>
-          <div class="hero-chips animate-fadein" style="--delay:.08s">
-            <a href="#investigacion" class="hero-chip">Research</a>
-            <a href="#validacion"    class="hero-chip">Validación</a>
-            <a href="#prototipado"   class="hero-chip">Prototipado</a>
-            <a href="#mvp"           class="hero-chip">MVP</a>
-          </div>
-          <p class="animate-fadein" style="--delay:.14s">
-            Recorre el proceso completo o elige el servicio que responde a la etapa de tu idea. Nuestra misión es la misma: ayudarte a tomar decisiones basadas en evidencia.
-          </p>
-          <div class="hero-servicios__ctas animate-fadein" style="--delay:.22s">
-            <a href="index.html#contacto" class="btn btn--gradient btn--lg">Agenda una llamada</a>
-            <a href="smokescan.html" class="btn btn--ghost-white btn--lg">
-              Probar SmokeScan
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ LISTA SERVICIOS ═══════════════ -->
-    <section class="srv-lista" id="servicios">
-      <div class="container">
-        <div class="srv-lista__intro reveal">
-          <span class="section-tag">Nuestros servicios</span>
-          <h2>Servicios a tu medida</h2>
-          <p>Cada servicio está diseñado para eliminar incertidumbre en el momento exacto en que más importa.</p>
-        </div>
-
-        <!-- 01 INVESTIGACIÓN -->
-        <div class="srv-detail active reveal" id="investigacion">
-          <div class="srv-detail__header">
-            <span class="srv-detail__num">01</span>
-            <div class="srv-detail__icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="11" cy="11" r="8" stroke="#3E4DC4" stroke-width="1.8"/>
-                <path d="M21 21l-4.35-4.35" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="srv-detail__title-wrap">
-              <h3>Investigación de mercado y usuarios</h3>
-              <span class="srv-detail__subtitle">Market & User Research</span>
-            </div>
-            <div class="srv-detail__toggle">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-          <div class="srv-detail__body">
-            <div class="srv-detail__inner">
-              <div class="srv-detail__content">
-                <h4>¿Quién es tu cliente real?</h4>
-                <p>Descubre quién es tu cliente y qué problemas reales tiene. Ideal cuando tienes una idea inicial pero necesitas entender mejor a tu público objetivo antes de diseñar soluciones costosas.</p>
-                <ul class="srv-features">
-                  <li>Entrevistas en profundidad con usuarios reales</li>
-                  <li>Mapas de empatía y journey maps</li>
-                  <li>Análisis de segmento y tamaño de mercado</li>
-                  <li>Reporte de hallazgos accionables</li>
-                  <li>Benchmarking competitivo</li>
-                </ul>
-                <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
-              </div>
-              <div class="srv-detail__image">
-                <img src="assets/services-research.jpg" alt="Investigación de mercado y usuarios" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 02 VALIDACIÓN -->
-        <div class="srv-detail reveal" style="--delay:.06s" id="validacion">
-          <div class="srv-detail__header">
-            <span class="srv-detail__num">02</span>
-            <div class="srv-detail__icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M9 11l3 3L22 4" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="srv-detail__title-wrap">
-              <h3>Validación de hipótesis</h3>
-              <span class="srv-detail__subtitle">Hypothesis Validation</span>
-            </div>
-            <div class="srv-detail__toggle">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-          <div class="srv-detail__body">
-            <div class="srv-detail__inner">
-              <div class="srv-detail__content">
-                <h4>Prueba antes de construir</h4>
-                <p>Diseñamos experimentos controlados para probar las suposiciones más críticas de tu negocio antes de invertir en desarrollo. Aprende qué funciona con mínimo riesgo y máxima velocidad.</p>
-                <ul class="srv-features">
-                  <li>Definición de hipótesis priorizadas</li>
-                  <li>Diseño de experimentos lean</li>
-                  <li>Landing pages y fake doors</li>
-                  <li>Análisis de métricas de conversión</li>
-                  <li>Reporte de aprendizajes y recomendaciones</li>
-                </ul>
-                <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
-              </div>
-              <div class="srv-detail__image">
-                <img src="assets/problem-stats.jpg" alt="Validación de hipótesis" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 03 PROTOTIPADO -->
-        <div class="srv-detail reveal" style="--delay:.10s" id="prototipado">
-          <div class="srv-detail__header">
-            <span class="srv-detail__num">03</span>
-            <div class="srv-detail__icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 17l10 5 10-5" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12l10 5 10-5" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="srv-detail__title-wrap">
-              <h3>Diseño y prototipado rápido</h3>
-              <span class="srv-detail__subtitle">Rapid Design & Prototyping</span>
-            </div>
-            <div class="srv-detail__toggle">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-          <div class="srv-detail__body">
-            <div class="srv-detail__inner">
-              <div class="srv-detail__content">
-                <h4>Prototipos que responden preguntas reales</h4>
-                <p>Construimos prototipos interactivos y mockups funcionales en días, no semanas, para validar tu propuesta de valor con usuarios reales y obtener retroalimentación accionable.</p>
-                <ul class="srv-features">
-                  <li>Wireframes y flujos de usuario</li>
-                  <li>Prototipos navegables en Figma</li>
-                  <li>Pruebas de usabilidad moderadas</li>
-                  <li>Iteraciones basadas en feedback real</li>
-                  <li>Design system básico para consistencia</li>
-                </ul>
-                <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
-              </div>
-              <div class="srv-detail__image">
-                <img src="assets/smokescan-mockup.jpg" alt="Diseño y prototipado rápido" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 04 MVP -->
-        <div class="srv-detail reveal" style="--delay:.14s" id="mvp">
-          <div class="srv-detail__header">
-            <span class="srv-detail__num">04</span>
-            <div class="srv-detail__icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="srv-detail__title-wrap">
-              <h3>MVP y lanzamiento</h3>
-              <span class="srv-detail__subtitle">MVP & Launch Strategy</span>
-            </div>
-            <div class="srv-detail__toggle">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-          </div>
-          <div class="srv-detail__body">
-            <div class="srv-detail__inner">
-              <div class="srv-detail__content">
-                <h4>Al mercado en semanas, no meses</h4>
-                <p>Una vez validada tu idea, te ayudamos a construir un MVP funcional con herramientas no-code y low-code para salir al mercado en semanas y seguir aprendiendo con usuarios reales.</p>
-                <ul class="srv-features">
-                  <li>Definición de scope del MVP</li>
-                  <li>Desarrollo con Webflow, Bubble o Framer</li>
-                  <li>Estrategia de go-to-market</li>
-                  <li>Seguimiento de métricas post-lanzamiento</li>
-                  <li>Reporte de primeros aprendizajes en producción</li>
-                </ul>
-                <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
-              </div>
-              <div class="srv-detail__image">
-                <img src="assets/mockup_score_v2.png" alt="MVP y lanzamiento" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════ PROCESO ═══════════════ -->
-    <section class="srv-proceso" id="proceso">
-      <div class="container">
-        <div class="srv-proceso__intro reveal">
-          <span class="section-tag">Metodología</span>
-          <h2>Cómo funciona cada proyecto</h2>
-          <p>Un proceso claro, repetible y diseñado para aprender rápido en cada etapa.</p>
-        </div>
-        <div class="srv-proceso__grid">
-          <div class="srv-paso reveal" style="--delay:0s">
-            <div class="srv-paso__bubble">1</div>
-            <h4>Kick-off estratégico</h4>
-            <p>Entendemos tu negocio, definimos hipótesis clave y alineamos los objetivos de validación.</p>
-          </div>
-          <div class="srv-paso reveal" style="--delay:.08s">
-            <div class="srv-paso__bubble">2</div>
-            <h4>Diseño del experimento</h4>
-            <p>Elegimos la mejor metodología para probar tu hipótesis: research, landing o prototipo.</p>
-          </div>
-          <div class="srv-paso reveal" style="--delay:.16s">
-            <div class="srv-paso__bubble">3</div>
-            <h4>Ejecución y recolección</h4>
-            <p>Reclutamos usuarios, ejecutamos el experimento y recopilamos datos cualitativos y cuantitativos.</p>
-          </div>
-          <div class="srv-paso reveal" style="--delay:.24s">
-            <div class="srv-paso__bubble">4</div>
-            <h4>Análisis y decisión</h4>
-            <p>Entregamos un reporte accionable con nuestra recomendación: seguir, pivotar o detener.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ STATS ═══════════════ -->
-    <section class="srv-stats">
-      <div class="container">
-        <div class="srv-stats__grid">
-          <div class="stat-item reveal">
-            <div class="stat-item__num">95%</div>
-            <div class="stat-item__label">de productos fallan por no validar antes de lanzar</div>
-          </div>
-          <div class="stat-item reveal" style="--delay:.08s">
-            <div class="stat-item__num">3x</div>
-            <div class="stat-item__label">más rápido que el proceso tradicional de desarrollo</div>
-          </div>
-          <div class="stat-item reveal" style="--delay:.14s">
-            <div class="stat-item__num">+80</div>
-            <div class="stat-item__label">ideas validadas con usuarios reales en LATAM</div>
-          </div>
-          <div class="stat-item reveal" style="--delay:.20s">
-            <div class="stat-item__num">2–8 sem</div>
-            <div class="stat-item__label">tiempo promedio por ciclo de validación completo</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ COMPARACIÓN ═══════════════ -->
-    <section class="srv-comparacion">
-      <div class="container">
-        <div class="srv-comparacion__intro reveal">
-          <span class="section-tag">¿Por qué Smoke Studio?</span>
-          <h2>La diferencia es el método</h2>
-        </div>
-        <div class="comparison-table reveal" style="--delay:.08s">
-          <div class="comparison-table__header">
-            <span>Característica</span>
-            <span>Agencias tradicionales</span>
-            <span>Smoke Studio</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-row__label">Validación con usuarios reales antes de construir</span>
-            <div class="comparison-row__cell">
-              <span class="check-no">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-            <div class="comparison-row__cell">
-              <span class="check-yes">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-row__label">Reporte de aprendizajes accionables</span>
-            <div class="comparison-row__cell">
-              <span class="check-no">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-            <div class="comparison-row__cell">
-              <span class="check-yes">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-row__label">Ciclos de aprendizaje en 2–8 semanas</span>
-            <div class="comparison-row__cell">
-              <span class="check-no">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-            <div class="comparison-row__cell">
-              <span class="check-yes">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-row__label">Recomendación de seguir, pivotar o detener</span>
-            <div class="comparison-row__cell">
-              <span class="check-no">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-            <div class="comparison-row__cell">
-              <span class="check-yes">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-row__label">Experimentos potenciados por IA</span>
-            <div class="comparison-row__cell">
-              <span class="check-no">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-            <div class="comparison-row__cell">
-              <span class="check-yes">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ FAQ ═══════════════ -->
-    <section class="srv-faq faq" id="faq">
-      <div class="container">
-        <div class="srv-faq__cols">
-          <div class="srv-faq__left reveal">
-            <span class="section-tag">Preguntas frecuentes</span>
-            <h2>Todo lo que necesitas saber antes de empezar</h2>
-            <p>Si tienes más dudas, agenda una sesión gratuita de 30 minutos y te ayudamos a encontrar el punto de partida correcto.</p>
-            <a href="index.html#contacto" class="btn btn--gradient">Agenda una sesión gratuita</a>
-          </div>
-          <div class="faq__list reveal" style="--delay:.1s">
-
-            <div class="faq__item">
-              <button class="faq__question" aria-expanded="false">
-                ¿Cuánto tiempo toma el proceso?
-                <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="faq__answer">
-                <p>Dependiendo del tipo de experimento, entre 2 y 8 semanas. Gracias al uso de herramientas de IA y low-code, aceleramos el proceso de meses a semanas sin sacrificar rigor metodológico.</p>
-              </div>
-            </div>
-
-            <div class="faq__item">
-              <button class="faq__question" aria-expanded="false">
-                ¿Qué servicios puedo combinar?
-                <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="faq__answer">
-                <p>Todos. Puedes contratar cada servicio por separado o en combos. La ruta más común es Research → Validación → MVP, aunque muchos clientes comienzan directamente con validación si ya tienen el problema bien definido.</p>
-              </div>
-            </div>
-
-            <div class="faq__item">
-              <button class="faq__question" aria-expanded="false">
-                ¿Cómo obtienen a los usuarios para validar?
-                <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="faq__answer">
-                <p>Smoke Studio se encarga del reclutamiento de participantes que coinciden exactamente con tu perfil de cliente ideal. Usamos metodologías probadas para asegurar que los insights sean representativos y accionables.</p>
-              </div>
-            </div>
-
-            <div class="faq__item">
-              <button class="faq__question" aria-expanded="false">
-                ¿Qué pasa si la idea falla la validación?
-                <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="faq__answer">
-                <p>Descubrir que una idea no funciona antes de invertir en desarrollo es exactamente el objetivo. Obtienes datos concretos para pivotar, refinar o detener a tiempo, ahorrando recursos valiosos.</p>
-              </div>
-            </div>
-
-            <div class="faq__item">
-              <button class="faq__question" aria-expanded="false">
-                ¿Cuál es el costo de los servicios?
-                <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="faq__answer">
-                <p>Varía según el alcance del experimento, pero siempre es significativamente menor al costo de lanzar un producto fallido. Agenda una sesión gratuita para recibir un presupuesto personalizado.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ CTA FINAL ═══════════════ -->
-    <section class="srv-cta" id="contacto">
-      <div class="container">
-        <div class="srv-cta__grid">
-          <div class="srv-cta__text reveal">
-            <span class="section-tag section-tag--light">Empieza hoy</span>
-            <h2>Reduce el riesgo antes de invertir</h2>
-            <p>Agenda una sesión estratégica gratuita y descubre cómo validar tu idea con evidencia real. Sin compromisos.</p>
-            <div class="srv-cta__ctas">
-              <a href="index.html#contacto" class="btn btn--gradient btn--lg">Agendar sesión</a>
-              <a href="smokescan.html" class="btn btn--outline-white btn--lg">Probar SmokeScan</a>
-            </div>
-          </div>
-          <div class="srv-cta__img reveal" style="--delay:.12s">
-            <img src="assets/cta-team.jpg" alt="Equipo de Smoke Studio" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="nav-logo footer__logo">
-            <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
-          </a>
-          <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
-          <div class="footer__socials">
-            <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer__col">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="index.html#inicio">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="index.html#contacto">Contacto</a></li>
-            <li><a href="smokescan.html">SmokeScan</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Contacto</h4>
-          <ul class="footer__contact">
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Toronto
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
-        <div class="footer__legal">
-          <span>Hecho con ♥</span>
-        </div>
+      <div class="mobile-menu__cta">
+        <a href="smokescan.html" class="btn btn--gradient">
+          <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
+          </svg>
+          SmokeScan
+        </a>
       </div>
     </div>
-  </footer>
+
+    <main>
+
+      <!-- ═══════════════ HERO ═══════════════ -->
+      <section class="hero-servicios" id="inicio">
+        <div class="hero-servicios__bg">
+          <img src="assets/hero-teamback.jpg" alt="" aria-hidden="true" />
+        </div>
+        <div class="hero-servicios__content">
+          <div class="hero-servicios__text">
+            <span class="section-tag">Servicios</span>
+            <h1 class="animate-fadein" style="--delay:0s">
+              Tu punto de partida
+            </h1>
+            <div class="hero-chips animate-fadein" style="--delay:.08s">
+              <a href="#investigacion" class="hero-chip">Research</a>
+              <a href="#validacion" class="hero-chip">Validación</a>
+              <a href="#prototipado" class="hero-chip">Prototipado</a>
+              <a href="#mvp" class="hero-chip">MVP</a>
+            </div>
+            <p class="animate-fadein" style="--delay:.14s">
+              Recorre el proceso completo o elige el servicio que responde a la etapa de tu idea. Nuestra misión es la
+              misma: ayudarte a tomar decisiones basadas en evidencia.
+            </p>
+            <div class="hero-servicios__ctas animate-fadein" style="--delay:.22s">
+              <a href="index.html#contacto" class="btn btn--gradient btn--lg">Agenda una llamada</a>
+              <a href="smokescan.html" class="btn btn--ghost-white btn--lg">
+                Probar SmokeScan
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ LISTA SERVICIOS ═══════════════ -->
+      <section class="srv-lista" id="servicios">
+        <div class="container">
+          <div class="srv-lista__intro reveal">
+            <span class="section-tag">Nuestros servicios</span>
+            <h2>Servicios a tu medida</h2>
+            <p>Cada servicio está diseñado para eliminar incertidumbre en el momento exacto en que más importa.</p>
+          </div>
+
+          <!-- 01 INVESTIGACIÓN -->
+          <div class="srv-detail active reveal" id="investigacion">
+            <div class="srv-detail__header">
+              <span class="srv-detail__num">01</span>
+              <div class="srv-detail__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="8" stroke="#3E4DC4" stroke-width="1.8" />
+                  <path d="M21 21l-4.35-4.35" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="srv-detail__title-wrap">
+                <h3>Investigación de mercado y usuarios</h3>
+                <span class="srv-detail__subtitle">Market & User Research</span>
+              </div>
+              <div class="srv-detail__toggle">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="srv-detail__body">
+              <div class="srv-detail__inner">
+                <div class="srv-detail__content">
+                  <h4>¿Quién es tu cliente real?</h4>
+                  <p>Descubre quién es tu cliente y qué problemas reales tiene. Ideal cuando tienes una idea inicial
+                    pero necesitas entender mejor a tu público objetivo antes de diseñar soluciones costosas.</p>
+                  <ul class="srv-features">
+                    <li>Entrevistas en profundidad con usuarios reales</li>
+                    <li>Mapas de empatía y journey maps</li>
+                    <li>Análisis de segmento y tamaño de mercado</li>
+                    <li>Reporte de hallazgos accionables</li>
+                    <li>Benchmarking competitivo</li>
+                  </ul>
+                  <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
+                </div>
+                <div class="srv-detail__image">
+                  <img src="assets/services-research.jpg" alt="Investigación de mercado y usuarios" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 VALIDACIÓN -->
+          <div class="srv-detail reveal" style="--delay:.06s" id="validacion">
+            <div class="srv-detail__header">
+              <span class="srv-detail__num">02</span>
+              <div class="srv-detail__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 11l3 3L22 4" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#3E4DC4"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="srv-detail__title-wrap">
+                <h3>Validación de hipótesis</h3>
+                <span class="srv-detail__subtitle">Hypothesis Validation</span>
+              </div>
+              <div class="srv-detail__toggle">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="srv-detail__body">
+              <div class="srv-detail__inner">
+                <div class="srv-detail__content">
+                  <h4>Prueba antes de construir</h4>
+                  <p>Diseñamos experimentos controlados para probar las suposiciones más críticas de tu negocio antes de
+                    invertir en desarrollo. Aprende qué funciona con mínimo riesgo y máxima velocidad.</p>
+                  <ul class="srv-features">
+                    <li>Definición de hipótesis priorizadas</li>
+                    <li>Diseño de experimentos lean</li>
+                    <li>Landing pages y fake doors</li>
+                    <li>Análisis de métricas de conversión</li>
+                    <li>Reporte de aprendizajes y recomendaciones</li>
+                  </ul>
+                  <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
+                </div>
+                <div class="srv-detail__image">
+                  <img src="assets/problem-stats.jpg" alt="Validación de hipótesis" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 PROTOTIPADO -->
+          <div class="srv-detail reveal" style="--delay:.10s" id="prototipado">
+            <div class="srv-detail__header">
+              <span class="srv-detail__num">03</span>
+              <div class="srv-detail__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M2 17l10 5 10-5" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M2 12l10 5 10-5" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="srv-detail__title-wrap">
+                <h3>Diseño y prototipado rápido</h3>
+                <span class="srv-detail__subtitle">Rapid Design & Prototyping</span>
+              </div>
+              <div class="srv-detail__toggle">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="srv-detail__body">
+              <div class="srv-detail__inner">
+                <div class="srv-detail__content">
+                  <h4>Prototipos que responden preguntas reales</h4>
+                  <p>Construimos prototipos interactivos y mockups funcionales en días, no semanas, para validar tu
+                    propuesta de valor con usuarios reales y obtener retroalimentación accionable.</p>
+                  <ul class="srv-features">
+                    <li>Wireframes y flujos de usuario</li>
+                    <li>Prototipos navegables en Figma</li>
+                    <li>Pruebas de usabilidad moderadas</li>
+                    <li>Iteraciones basadas en feedback real</li>
+                    <li>Design system básico para consistencia</li>
+                  </ul>
+                  <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
+                </div>
+                <div class="srv-detail__image">
+                  <img src="assets/smokescan-mockup.jpg" alt="Diseño y prototipado rápido" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 MVP -->
+          <div class="srv-detail reveal" style="--delay:.14s" id="mvp">
+            <div class="srv-detail__header">
+              <span class="srv-detail__num">04</span>
+              <div class="srv-detail__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#3E4DC4" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="srv-detail__title-wrap">
+                <h3>MVP y lanzamiento</h3>
+                <span class="srv-detail__subtitle">MVP & Launch Strategy</span>
+              </div>
+              <div class="srv-detail__toggle">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="srv-detail__body">
+              <div class="srv-detail__inner">
+                <div class="srv-detail__content">
+                  <h4>Al mercado en semanas, no meses</h4>
+                  <p>Una vez validada tu idea, te ayudamos a construir un MVP funcional con herramientas no-code y
+                    low-code para salir al mercado en semanas y seguir aprendiendo con usuarios reales.</p>
+                  <ul class="srv-features">
+                    <li>Definición de scope del MVP</li>
+                    <li>Desarrollo con Webflow, Bubble o Framer</li>
+                    <li>Estrategia de go-to-market</li>
+                    <li>Seguimiento de métricas post-lanzamiento</li>
+                    <li>Reporte de primeros aprendizajes en producción</li>
+                  </ul>
+                  <a href="index.html#contacto" class="btn btn--gradient btn--sm">Solicitar servicio</a>
+                </div>
+                <div class="srv-detail__image">
+                  <img src="assets/mockup_score_v2.png" alt="MVP y lanzamiento" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══════════════ PROCESO ═══════════════ -->
+      <section class="srv-proceso" id="proceso">
+        <div class="container">
+          <div class="srv-proceso__intro reveal">
+            <span class="section-tag">Metodología</span>
+            <h2>Cómo funciona cada proyecto</h2>
+            <p>Un proceso claro, repetible y diseñado para aprender rápido en cada etapa.</p>
+          </div>
+          <div class="srv-proceso__grid">
+            <div class="srv-paso reveal" style="--delay:0s">
+              <div class="srv-paso__bubble">1</div>
+              <h4>Kick-off estratégico</h4>
+              <p>Entendemos tu negocio, definimos hipótesis clave y alineamos los objetivos de validación.</p>
+            </div>
+            <div class="srv-paso reveal" style="--delay:.08s">
+              <div class="srv-paso__bubble">2</div>
+              <h4>Diseño del experimento</h4>
+              <p>Elegimos la mejor metodología para probar tu hipótesis: research, landing o prototipo.</p>
+            </div>
+            <div class="srv-paso reveal" style="--delay:.16s">
+              <div class="srv-paso__bubble">3</div>
+              <h4>Ejecución y recolección</h4>
+              <p>Reclutamos usuarios, ejecutamos el experimento y recopilamos datos cualitativos y cuantitativos.</p>
+            </div>
+            <div class="srv-paso reveal" style="--delay:.24s">
+              <div class="srv-paso__bubble">4</div>
+              <h4>Análisis y decisión</h4>
+              <p>Entregamos un reporte accionable con nuestra recomendación: seguir, pivotar o detener.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ STATS ═══════════════ -->
+      <section class="srv-stats">
+        <div class="container">
+          <div class="srv-stats__grid">
+            <div class="stat-item reveal">
+              <div class="stat-item__num">95%</div>
+              <div class="stat-item__label">de productos fallan por no validar antes de lanzar</div>
+            </div>
+            <div class="stat-item reveal" style="--delay:.08s">
+              <div class="stat-item__num">3x</div>
+              <div class="stat-item__label">más rápido que el proceso tradicional de desarrollo</div>
+            </div>
+            <div class="stat-item reveal" style="--delay:.14s">
+              <div class="stat-item__num">+80</div>
+              <div class="stat-item__label">ideas validadas con usuarios reales en LATAM</div>
+            </div>
+            <div class="stat-item reveal" style="--delay:.20s">
+              <div class="stat-item__num">2–8 sem</div>
+              <div class="stat-item__label">tiempo promedio por ciclo de validación completo</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ COMPARACIÓN ═══════════════ -->
+      <section class="srv-comparacion">
+        <div class="container">
+          <div class="srv-comparacion__intro reveal">
+            <span class="section-tag">¿Por qué Smoke Studio?</span>
+            <h2>La diferencia es el método</h2>
+          </div>
+          <div class="comparison-table reveal" style="--delay:.08s">
+            <div class="comparison-table__header">
+              <span>Característica</span>
+              <span>Agencias tradicionales</span>
+              <span>Smoke Studio</span>
+            </div>
+            <div class="comparison-row">
+              <span class="comparison-row__label">Validación con usuarios reales antes de construir</span>
+              <div class="comparison-row__cell">
+                <span class="check-no">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </div>
+              <div class="comparison-row__cell">
+                <span class="check-yes">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="comparison-row">
+              <span class="comparison-row__label">Reporte de aprendizajes accionables</span>
+              <div class="comparison-row__cell">
+                <span class="check-no">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </div>
+              <div class="comparison-row__cell">
+                <span class="check-yes">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="comparison-row">
+              <span class="comparison-row__label">Ciclos de aprendizaje en 2–8 semanas</span>
+              <div class="comparison-row__cell">
+                <span class="check-no">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </div>
+              <div class="comparison-row__cell">
+                <span class="check-yes">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="comparison-row">
+              <span class="comparison-row__label">Recomendación de seguir, pivotar o detener</span>
+              <div class="comparison-row__cell">
+                <span class="check-no">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </div>
+              <div class="comparison-row__cell">
+                <span class="check-yes">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="comparison-row">
+              <span class="comparison-row__label">Experimentos potenciados por IA</span>
+              <div class="comparison-row__cell">
+                <span class="check-no">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </div>
+              <div class="comparison-row__cell">
+                <span class="check-yes">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3.5 3.5 5.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ FAQ ═══════════════ -->
+      <section class="srv-faq faq" id="faq">
+        <div class="container">
+          <div class="srv-faq__cols">
+            <div class="srv-faq__left reveal">
+              <span class="section-tag">Preguntas frecuentes</span>
+              <h2>Todo lo que necesitas saber antes de empezar</h2>
+              <p>Si tienes más dudas, agenda una sesión gratuita de 30 minutos y te ayudamos a encontrar el punto de
+                partida correcto.</p>
+              <a href="index.html#contacto" class="btn btn--gradient">Agenda una sesión gratuita</a>
+            </div>
+            <div class="faq__list reveal" style="--delay:.1s">
+
+              <div class="faq__item">
+                <button class="faq__question" aria-expanded="false">
+                  ¿Cuánto tiempo toma el proceso?
+                  <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="faq__answer">
+                  <p>Dependiendo del tipo de experimento, entre 2 y 8 semanas. Gracias al uso de herramientas de IA y
+                    low-code, aceleramos el proceso de meses a semanas sin sacrificar rigor metodológico.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question" aria-expanded="false">
+                  ¿Qué servicios puedo combinar?
+                  <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="faq__answer">
+                  <p>Todos. Puedes contratar cada servicio por separado o en combos. La ruta más común es Research →
+                    Validación → MVP, aunque muchos clientes comienzan directamente con validación si ya tienen el
+                    problema bien definido.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question" aria-expanded="false">
+                  ¿Cómo obtienen a los usuarios para validar?
+                  <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="faq__answer">
+                  <p>Smoke Studio se encarga del reclutamiento de participantes que coinciden exactamente con tu perfil
+                    de cliente ideal. Usamos metodologías probadas para asegurar que los insights sean representativos y
+                    accionables.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question" aria-expanded="false">
+                  ¿Qué pasa si la idea falla la validación?
+                  <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="faq__answer">
+                  <p>Descubrir que una idea no funciona antes de invertir en desarrollo es exactamente el objetivo.
+                    Obtienes datos concretos para pivotar, refinar o detener a tiempo, ahorrando recursos valiosos.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question" aria-expanded="false">
+                  ¿Cuál es el costo de los servicios?
+                  <svg class="faq__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="faq__answer">
+                  <p>Varía según el alcance del experimento, pero siempre es significativamente menor al costo de lanzar
+                    un producto fallido. Agenda una sesión gratuita para recibir un presupuesto personalizado.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ CTA FINAL ═══════════════ -->
+      <section class="srv-cta" id="contacto">
+        <div class="container">
+          <div class="srv-cta__grid">
+            <div class="srv-cta__text reveal">
+              <span class="section-tag section-tag--light">Empieza hoy</span>
+              <h2>Reduce el riesgo antes de invertir</h2>
+              <p>Agenda una sesión estratégica gratuita y descubre cómo validar tu idea con evidencia real. Sin
+                compromisos.</p>
+              <div class="srv-cta__ctas">
+                <a href="index.html#contacto" class="btn btn--gradient btn--lg">Agendar sesión</a>
+                <a href="smokescan.html" class="btn btn--outline-white btn--lg">Probar SmokeScan</a>
+              </div>
+            </div>
+            <div class="srv-cta__img reveal" style="--delay:.12s">
+              <img src="assets/cta-team.jpg" alt="Equipo de Smoke Studio" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="index.html" class="nav-logo footer__logo">
+              <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
+            </a>
+            <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
+            <div class="footer__socials">
+              <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank"
+                rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer__col">
+            <h4>Navegación</h4>
+            <ul>
+              <li><a href="index.html#inicio">Inicio</a></li>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="index.html#contacto">Contacto</a></li>
+              <li><a href="smokescan.html">SmokeScan</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Contacto</h4>
+            <ul class="footer__contact">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Toronto
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
+          <div class="footer__legal">
+            <span>Hecho con ♥</span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </div> <!-- End site-wrapper -->
   <script src="main.js"></script>
@@ -1262,4 +1399,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -2,6 +2,23 @@
 <html lang="es">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5DDTRZQ6');</script>
+  <!-- End Google Tag Manager -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "we9e3lj273");
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmokeScan™ — Descubre si tu idea tiene potencial de mercado | Smoke Studio</title>
@@ -9,859 +26,217 @@
     content="Responde 6 preguntas estratégicas y recibe un análisis de viabilidad impulsado por IA. Descubre el potencial real de tu idea antes de invertir tiempo y dinero." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="smokescan-styles.css" />
-  
-  <!-- Firebase SDKs -->
+
+  <!-- Firebase SDKs
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
-  
+   -->
+
+  <!-- AÑADIR Supabase CDN (antes de smokescan.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <!-- PDF Generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDTRZQ6" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a href="#ss-hero" class="sr-only">Saltar al contenido</a>
   <div class="site-wrapper">
 
-  <!-- NAV -->
-  <header class="nav-wrapper" id="nav-wrapper">
-    <nav class="nav-container" id="navbar">
-      <a href="index.html" class="nav-logo" id="nav-logo">
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
-          <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
-        </picture>
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
-        <li><a href="nosotros.html"    class="nav-link">Nosotros</a></li>
-        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
-        <li><a href="servicios.html"   class="nav-link">Servicios</a></li>
-      </ul>
-      <a href="smokescan.html" class="btn btn--gradient nav-cta active" id="nav-cta">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
-        </svg>
-        SmokeScan
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <div class="mobile-menu__top">
-      <a href="index.html" class="nav-logo" id="mobile-logo">
-        <img src="assets/logo_mobile.png" alt="Smoke Studio" class="logo-img" />
-      </a>
-      <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-    </div>
-    <ul class="mobile-menu__links">
-      <li><a href="index.html"          class="mobile-link">Inicio</a></li>
-      <li><a href="nosotros.html"       class="mobile-link">Nosotros</a></li>
-      <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
-      <li><a href="servicios.html"      class="mobile-link">Servicios</a></li>
-    </ul>
-    <div class="mobile-menu__cta">
-      <a href="smokescan.html" class="btn btn--gradient active">
-        <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
-          <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
-        </svg>
-        SmokeScan
-      </a>
-    </div>
-  </div>
-
-  <main>
-
-    <!-- ===================== HERO ===================== -->
-    <section class="ss-hero" id="ss-hero">
-      <div style="position:relative;z-index:1;" class="container">
-        <div class="ss-hero__eyebrow">
+    <!-- NAV -->
+    <header class="nav-wrapper" id="nav-wrapper">
+      <nav class="nav-container" id="navbar">
+        <a href="index.html" class="nav-logo" id="nav-logo">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
+            <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
+          </picture>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+          <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+        </ul>
+        <a href="smokescan.html" class="btn btn--gradient nav-cta active" id="nav-cta">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
           </svg>
-          SMOKESCAN™ POR SMOKE STUDIO
-        </div>
-        <h1 class="animate-fadein" style="--delay:0.05s">
-          Los grandes productos<br>
-          <span> no empiezan con código</span>
-        </h1>
-        <p class="animate-fadein" style="--delay:0.15s">
-          Descubre en 5 minutos si vale el esfuerzo construir tu idea... o si nadie la quiere.
-        </p>
-        <div class="ss-hero__actions animate-fadein" style="--delay:0.25s">
-          <button class="ss-hero__cta" id="ss-start-btn" onclick="document.getElementById('login-section').scrollIntoView({behavior: 'smooth'})">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round" />
+          SmokeScan
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="mobile-menu__top">
+        <a href="index.html" class="nav-logo" id="mobile-logo">
+          <img src="assets/logo_mobile.png" alt="Smoke Studio" class="logo-img" />
+        </a>
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-menu__links">
+        <li><a href="index.html" class="mobile-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="mobile-link">Nosotros</a></li>
+        <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
+        <li><a href="servicios.html" class="mobile-link">Servicios</a></li>
+      </ul>
+      <div class="mobile-menu__cta">
+        <a href="smokescan.html" class="btn btn--gradient active">
+          <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
+          </svg>
+          SmokeScan
+        </a>
+      </div>
+    </div>
+
+    <main>
+
+      <!-- ===================== HERO ===================== -->
+      <section class="ss-hero" id="ss-hero">
+        <div style="position:relative;z-index:1;" class="container">
+          <div class="ss-hero__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor" />
             </svg>
-            Comenzar SmokeScan
-          </button>
-          <button class="ss-hero__cta-outline" onclick="document.getElementById('como-funciona').scrollIntoView({behavior: 'smooth'})">
-            ¿Cómo funciona?
-          </button>
-        </div>
-      </div>
-    </section>
-
-    </section>
-
-    <!-- ===================== CÓMO FUNCIONA ===================== -->
-    <section class="ss-how-section" id="como-funciona">
-      <div class="ss-how-container animate-on-scroll">
-        <div class="ss-how-content">
-          <div class="ss-how-badge">CÓMO FUNCIONA</div>
-          <h2 class="ss-how-title">Arma tu Business Case<br>y accede a nuestros servicios profesionales</h2>
-          <p class="ss-how-desc">En 5 minutos te diremos si tu idea está lista para ser lanzada o necesitas refinarla. En cualquier caso, te acompañaremos en el proceso.</p>
-
-          <div class="ss-how-steps">
-            <div class="ss-how-step">
-              <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2"/><text x="12" y="16" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle">1</text></svg></div>
-              <div class="ss-how-step-text">
-                <h3>Cuéntanos tu idea</h3>
-                <p>Responde 6 preguntas y te daremos un <strong>análisis generado por IA en 4 dimensiones</strong>, un diagnóstico por área.</p>
-              </div>
-            </div>
-            <div class="ss-how-step">
-              <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2"/><text x="12" y="16" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle">2</text></svg></div>
-              <div class="ss-how-step-text">
-                <h3>Obtén tu score</h3>
-                <p>Obtén un score de 80 puntos o más para avanzar a la siguiente fase. Si alcanzas, tendrás una oportunidad más para afinar tu caso o desafiar a nuestro modelo de IA.</p>
-              </div>
-            </div>
-            <div class="ss-how-step">
-              <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2"/><text x="12" y="16" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle">3</text></svg></div>
-              <div class="ss-how-step-text">
-                <h3>Lanza tu producto</h3>
-                <p>Te ayudaremos a contrar tu estragia de lanzamiento, construyendo un MVP y validando con usuarios reales.</p>
-              </div>
-            </div>
+            SMOKESCAN™ POR SMOKE STUDIO
           </div>
-        </div>
-        <div class="ss-how-image">
-          <img src="assets/mockup_score_v2.png" alt="Dashboard SmokeScan Preview">
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== LOGIN / IDENTIFÍCATE ===================== -->
-    <section class="ss-login-section" id="login-section">
-      <div class="ss-login-container animate-on-scroll">
-        <div class="ss-login-card">
-          <h2 class="ss-login-title">Comienza por identificarte</h2>
-          <p class="ss-login-desc"><strong>Al iniciar la sesión tendrás 2 intentos.</strong><br>Obtén +80 puntos para acceder a nuestro catálogo de servicios. Si no lo logras en el primer intento, podrás volver a intentarlo.</p>
-          <div class="ss-login-buttons">
-            <button class="ss-btn-oauth" id="btn-mock-google">
-              <svg width="20" height="20" viewBox="0 0 48 48" fill="none"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-              Log in with Google
+          <h1 class="animate-fadein" style="--delay:0.05s">
+            Los grandes productos<br>
+            <span> no empiezan con código</span>
+          </h1>
+          <p class="animate-fadein" style="--delay:0.15s">
+            Descubre en 5 minutos si vale el esfuerzo construir tu idea... o si nadie la quiere.
+          </p>
+          <div class="ss-hero__actions animate-fadein" style="--delay:0.25s">
+            <button class="ss-hero__cta" id="ss-start-btn"
+              onclick="document.getElementById('login-section').scrollIntoView({behavior: 'smooth'})">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Comenzar SmokeScan
             </button>
-            <button class="ss-btn-oauth" id="btn-mock-microsoft">
-              <svg width="20" height="20" viewBox="0 0 21 21"><path fill="#F25022" d="M1 1h9v9H1z"/><path fill="#00A4EF" d="M1 11h9v9H1z"/><path fill="#7FBA00" d="M11 1h9v9h-9z"/><path fill="#FFB900" d="M11 11h9v9h-9z"/></svg>
-              Log in with Microsoft
+            <button class="ss-hero__cta-outline"
+              onclick="document.getElementById('como-funciona').scrollIntoView({behavior: 'smooth'})">
+              ¿Cómo funciona?
             </button>
           </div>
         </div>
-        
-        <div class="ss-login-score-preview">
-          <div class="ss-lsp-title">Comienza a calcular tu score</div>
-          <div class="ss-lsp-subtitle">Contesta las preguntas para acumular puntos</div>
-          <div class="ss-gauge-preview">
-            <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-              <text x="5" y="110" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">0</text>
-              <text x="30" y="52" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">25</text>
-              <text x="92" y="22" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">50</text>
-              <text x="152" y="52" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">75</text>
-              <text x="180" y="110" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">100</text>
-              <path d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.08)" stroke-width="12" fill="none" stroke-linecap="round" />
-              <path d="M 20 110 A 80 80 0 0 1 100 30" stroke="#F5A623" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="125.5" />
-            </svg>
-            <div class="ss-gauge__score-preview">
-              <span class="ss-gauge-num">0</span>
-              <span class="ss-gauge-lbl">de 100</span>
+      </section>
+
+      <!-- ===================== CÓMO FUNCIONA ===================== -->
+      <section class="ss-how-section" id="como-funciona">
+        <div class="ss-how-container animate-on-scroll">
+          <div class="ss-how-content">
+            <div class="ss-how-badge">CÓMO FUNCIONA</div>
+            <h2 class="ss-how-title">Arma tu Business Case<br>y accede a nuestros servicios profesionales</h2>
+            <p class="ss-how-desc">En 5 minutos te diremos si tu idea está lista para ser lanzada o necesitas refinarla.
+              En cualquier caso, te acompañaremos en el proceso.</p>
+
+            <div class="ss-how-steps">
+              <div class="ss-how-step">
+                <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" /><text x="12" y="16"
+                      font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor"
+                      text-anchor="middle">1</text>
+                  </svg></div>
+                <div class="ss-how-step-text">
+                  <h3>Cuéntanos tu idea</h3>
+                  <p>Responde 6 preguntas y te daremos un <strong>análisis generado por IA en 4 dimensiones</strong>, un
+                    diagnóstico por área.</p>
+                </div>
+              </div>
+              <div class="ss-how-step">
+                <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" /><text x="12" y="16"
+                      font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor"
+                      text-anchor="middle">2</text>
+                  </svg></div>
+                <div class="ss-how-step-text">
+                  <h3>Obtén tu score</h3>
+                  <p>Obtén un score de 80 puntos o más para avanzar a la siguiente fase. Si alcanzas, tendrás una
+                    oportunidad más para afinar tu caso o desafiar a nuestro modelo de IA.</p>
+                </div>
+              </div>
+              <div class="ss-how-step">
+                <div class="ss-how-step-num"><svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" /><text x="12" y="16"
+                      font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor"
+                      text-anchor="middle">3</text>
+                  </svg></div>
+                <div class="ss-how-step-text">
+                  <h3>Lanza tu producto</h3>
+                  <p>Te ayudaremos a construir tu estrategia de lanzamiento, construyendo un MVP y validando con usuarios
+                    reales.</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="ss-status-badge">En desarrollo</div>
+          <div class="ss-how-image">
+            <img src="assets/mockup_score_v2.png" alt="Dashboard SmokeScan Preview">
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ===================== WIZARD SECTION (Hidden until Auth) ===================== -->
-    <section class="ss-wizard-section hidden" id="ss-wizard">
-      <div class="ss-wizard-container" id="ss-form-phase">
-
-        <!-- API Key Banner -->
-        <div class="ss-api-banner" id="ss-api-banner" style="display:none; max-width:760px; margin: 0 auto 24px;">
-          <div class="ss-api-banner__icon">🔑</div>
-          <div class="ss-api-banner__body">
-            <div class="ss-api-banner__title">Activa el análisis con IA real</div>
-            <p>Sin API key, el análisis usará un modelo simulado. Para obtener resultados reales con Gemini, ingresa tu
-              API key de Google AI Studio.</p>
-            <div class="ss-api-key-row">
-              <input type="password" class="ss-api-key-input" id="ss-api-key-input" placeholder="Tu API Key de Gemini" />
-              <button class="ss-api-save-btn" id="ss-api-save-btn">Guardar</button>
+      <!-- ===================== LOGIN / IDENTIFÍCATE ===================== -->
+      <section class="ss-login-section" id="login-section">
+        <div class="ss-login-container animate-on-scroll">
+          <div class="ss-login-card">
+            <h2 class="ss-login-title">Comienza por identificarte</h2>
+            <p class="ss-login-desc"><strong>Al iniciar la sesión tendrás 2 intentos.</strong><br>Obtén +80 puntos para
+              acceder a nuestro catálogo de servicios. Si no lo logras en el primer intento, podrás volver a intentarlo.
+            </p>
+            <div class="ss-login-buttons">
+              <button class="ss-btn-oauth" id="btn-mock-google">
+                <svg width="20" height="20" viewBox="0 0 48 48" fill="none">
+                  <path fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                  <path fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                  <path fill="#FBBC05"
+                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                  <path fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+                Log in with Google
+              </button>
+              <button class="ss-btn-oauth" id="btn-mock-microsoft">
+                <svg width="20" height="20" viewBox="0 0 21 21">
+                  <path fill="#F25022" d="M1 1h9v9H1z" />
+                  <path fill="#00A4EF" d="M1 11h9v9H1z" />
+                  <path fill="#7FBA00" d="M11 1h9v9h-9z" />
+                  <path fill="#FFB900" d="M11 11h9v9h-9z" />
+                </svg>
+                Log in with Microsoft
+              </button>
             </div>
           </div>
-        </div>
 
-        <!-- Edit Mode Banner -->
-        <div class="ss-edit-banner hidden" id="ss-edit-banner" style="max-width:760px; margin: 0 auto 20px;">
-          <div class="ss-edit-banner__icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#3E4DC4" stroke-width="2"
-                stroke-linecap="round" />
-              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#3E4DC4" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <div class="ss-edit-banner__text">
-            <div class="ss-edit-banner__title">Modo edición activo</div>
-            <div class="ss-edit-banner__sub">Actualiza tu respuesta y aplica los cambios para recalcular tu score.</div>
-          </div>
-          <button class="ss-btn-apply" id="ss-btn-apply-changes">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            Aplicar cambios
-          </button>
-        </div>
-
-        <div class="ss-wizard-grid" id="ss-wizard-grid">
-
-          <!-- ── LEFT: Form ── -->
-          <div class="ss-form-wrap">
-            <div class="ss-card" id="ss-card">
-
-              <!-- Stepper -->
-              <div class="ss-stepper" id="ss-stepper">
-                <div class="ss-step-dot active" id="dot-0" data-step="0">1</div>
-                <div class="ss-step-line" id="line-0"></div>
-                <div class="ss-step-dot" id="dot-1" data-step="1">2</div>
-                <div class="ss-step-line" id="line-1"></div>
-                <div class="ss-step-dot" id="dot-2" data-step="2">3</div>
-                <div class="ss-step-line" id="line-2"></div>
-                <div class="ss-step-dot" id="dot-3" data-step="3">4</div>
-                <div class="ss-step-line" id="line-3"></div>
-                <div class="ss-step-dot" id="dot-4" data-step="4">5</div>
-                <div class="ss-step-line" id="line-4"></div>
-                <div class="ss-step-dot" id="dot-5" data-step="5">6</div>
-              </div>
-
-              <!-- ── STEP 0: PERFILAMIENTO ── -->
-              <div class="ss-step-content" id="step-0">
-                <div class="ss-step-label">VAMOS A CONOCERTE</div>
-                <h2 class="ss-step-title" id="ss-welcome-title">Te damos la bienvenida, {Name}</h2>
-                <p class="ss-step-subtitle">Antes de comenzar, queremos conocerte mejor</p>
-
-                <h3 class="ss-step-section-title" style="margin-top:32px; font-size:16px; font-weight:700; color:#0B0B0C; font-family:'Urbanist',sans-serif; margin-bottom:16px;">¿Qué perfil describe mejor tu rol actual?</h3>
-
-                <div class="ss-options-grid" id="opts-step0" style="margin-bottom: 24px;">
-                  <div class="ss-option" data-value="emprendedor" data-step="0">
-                    <div class="ss-option__icon">🚀</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Emprendedor</div>
-                      <div class="ss-option__desc">Soy dueño de una idea o producto que quiero validar y lanzar.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div class="ss-option" data-value="desarrollador" data-step="0">
-                    <div class="ss-option__icon">💻</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Desarrollador de software</div>
-                      <div class="ss-option__desc">Construyo soluciones digitales que funcionan y escalan.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div class="ss-option" data-value="disenador" data-step="0">
-                    <div class="ss-option__icon">🎨</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Diseñador de productos</div>
-                      <div class="ss-option__desc">Diseño experiencias intuitivas, funcionales y user-centric.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div class="ss-option" data-value="product" data-step="0">
-                    <div class="ss-option__icon">📋</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Product Manager</div>
-                      <div class="ss-option__desc">Defino, priorizo y llevo productos de idea a realidad.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div class="ss-option" data-value="researcher" data-step="0">
-                    <div class="ss-option__icon">🔍</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Researcher</div>
-                      <div class="ss-option__desc">Investigo usuarios y valido decisiones con datos reales.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div class="ss-option" data-value="otro" data-step="0">
-                    <div class="ss-option__icon">💡</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Otro perfil</div>
-                      <div class="ss-option__desc">Cuéntanos cuál es tu área de expertis</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group hidden" id="step0-otro-wrap">
-                  <label class="ss-field-label">Descríbela brevemente</label>
-                  <input type="text" class="ss-input" id="desc-step0-rol" placeholder="Ej: Soy estudiante de ingeniería" />
-                </div>
-
-                <div style="width:100%; height:1px; background:#EBEBEB; margin: 32px 0;"></div>
-
-                <h2 class="ss-step-title">Cuéntanos de tu proyecto</h2>
-                <p class="ss-step-subtitle" style="margin-bottom:24px;">Queremos saber qué recursos tienes disponibles</p>
-
-                <div class="ss-form-grid-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px;">
-                  <div class="ss-field-group">
-                    <label class="ss-field-label">Capital propio</label>
-                    <input type="text" class="ss-input" id="rec-capital" placeholder="Ej: Cuento con ahorros para probar" />
-                  </div>
-                  <div class="ss-field-group">
-                    <label class="ss-field-label">Inversores</label>
-                    <input type="text" class="ss-input" id="rec-inversores" placeholder="Ej: Estoy buscando capital semilla" />
-                  </div>
-                  <div class="ss-field-group">
-                    <label class="ss-field-label">Aliados estratégicos</label>
-                    <input type="text" class="ss-input" id="rec-aliados" placeholder="Ej: Alianzas con distribución" />
-                  </div>
-                  <div class="ss-field-group">
-                    <label class="ss-field-label">Equipo técnico</label>
-                    <input type="text" class="ss-input" id="rec-equipo" placeholder="Ej: Somos 2 desarrolladores" />
-                  </div>
-                </div>
-
-                <div class="ss-nav" style="justify-content: space-between;">
-                  <button class="ss-btn-cancel" id="btn-cancel-0" onclick="window.location.reload();" style="background:#fff; border:1px solid #EBEBEB; padding:12px 24px; border-radius:99px; font-weight:700; cursor:pointer;">
-                    Cancel
-                  </button>
-                  <button class="ss-btn-next" id="btn-next-0" data-next="1" style="border-radius:99px;">
-                    Iniciar SmokeScan
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 1: TU PRODUCTO ── -->
-              <div class="ss-step-content hidden" id="step-1">
-                <div class="ss-step-label">TU PRODUCTO</div>
-                <h2 class="ss-step-title">¿Qué tipo de producto digital es tu idea?</h2>
-                <p class="ss-step-subtitle">Selecciona el tipo que mejor describe lo que quieres construir.</p>
-
-                <div class="ss-options-grid" id="opts-step1">
-                  <div class="ss-option" data-value="saas" data-step="1">
-                    <div class="ss-option__icon">🖥️</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">SaaS / Software B2B</div>
-                      <div class="ss-option__desc">Plataforma o herramienta para empresas o profesionales</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="app" data-step="1">
-                    <div class="ss-option__icon">📱</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">App móvil</div>
-                      <div class="ss-option__desc">Aplicación nativa para iOS o Android</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="marketplace" data-step="1">
-                    <div class="ss-option__icon">🏪</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Marketplace</div>
-                      <div class="ss-option__desc">Plataforma que conecta oferta y demanda</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="contenido" data-step="1">
-                    <div class="ss-option__icon">🎓</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Plataforma de contenido</div>
-                      <div class="ss-option__desc">Cursos, comunidad, membresía o media digital</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="productividad" data-step="1">
-                    <div class="ss-option__icon">⚡</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Herramienta de productividad</div>
-                      <div class="ss-option__desc">Automatización, gestión de tareas o flujos de trabajo</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="otro" data-step="1">
-                    <div class="ss-option__icon">💡</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Otro tipo de producto digital</div>
-                      <div class="ss-option__desc">Plugin, API, herramienta interna, etc.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">Descríbela brevemente <span>(opcional)</span></label>
-                  <textarea class="ss-textarea" id="desc-step1"
-                    placeholder="Ej: Una plataforma SaaS que ayuda a equipos de ventas a gestionar sus leads con IA..."></textarea>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">¿Ya tienes documentación? <span>(opcional)</span></label>
-                  <div class="ss-input-row">
-                    <input type="url" class="ss-input" id="link-step1"
-                      placeholder="https://tu-documento.com o Notion, Figma..." />
-                    <button class="ss-upload-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor"
-                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                      Subir archivo
-                    </button>
-                  </div>
-                </div>
-
-                <div class="ss-nav">
-                  <button class="ss-btn-cancel" id="btn-cancel-1"
-                    onclick="window.location.href='index.html'">Cancel</button>
-                  <button class="ss-btn-next" id="btn-next-1" data-next="2">
-                    Siguiente
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 2: EL PROBLEMA ── -->
-              <div class="ss-step-content hidden" id="step-2">
-                <div class="ss-step-label">EL PROBLEMA</div>
-                <h2 class="ss-step-title">¿Qué tan claro es el problema que quieres resolver?</h2>
-                <p class="ss-step-subtitle">La claridad del problema es el predictor más fuerte de viabilidad.</p>
-
-                <div class="ss-options-grid" id="opts-step2">
-                  <div class="ss-option" data-value="first_hand" data-step="2">
-                    <div class="ss-option__icon">🎯</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Lo vivo yo mismo</div>
-                      <div class="ss-option__desc">Tengo el problema de primera mano y busco resolverlo.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="informed" data-step="2">
-                    <div class="ss-option__icon">📊</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Es una suposición informada</div>
-                      <div class="ss-option__desc">Basada en tendencias o datos del mercado que leí.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="intuition" data-step="2">
-                    <div class="ss-option__icon">💭</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Es una intuición o hipótesis</div>
-                      <div class="ss-option__desc">Creo que existe el problema, pero aún no lo he validado.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="observed" data-step="2">
-                    <div class="ss-option__icon">👁️</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Lo observé en otros</div>
-                      <div class="ss-option__desc">Lo vi en personas de mi entorno con evidencia concreta.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">Cuéntanos más sobre el problema <span>(opcional)</span></label>
-                  <textarea class="ss-textarea" id="desc-step2"
-                    placeholder="Ej: Cuando gestionaba mi equipo de 10 personas, notamos que perdíamos más de 2 horas diarias en reuniones sin agenda clara..."></textarea>
-                  <div class="ss-field-hint">Cuanto más específico seas, más preciso será tu análisis.</div>
-                </div>
-
-                <div class="ss-nav">
-                  <button class="ss-btn-back" data-prev="1">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                    Volver
-                  </button>
-                  <button class="ss-btn-next" data-next="3">
-                    Siguiente
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 3: TU AUDIENCIA ── -->
-              <div class="ss-step-content hidden" id="step-3">
-                <div class="ss-step-label">TU AUDIENCIA</div>
-                <h2 class="ss-step-title">¿A quién va dirigido tu producto?</h2>
-                <p class="ss-step-subtitle">Puedes seleccionar más de una opción si aplica. <a href="#"
-                    onclick="return false;" style="pointer-events:none;color:#3E4DC4;">(Puedes elegir varias)</a></p>
-
-                <div class="ss-options-grid" id="opts-step3">
-                  <div class="ss-option ss-option--checkbox" data-value="b2c" data-step="3" data-multi="true">
-                    <div class="ss-option__icon">👤</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Consumidores finales</div>
-                      <div class="ss-option__desc">Personas en su vida personal o cotidiana (B2C)</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option ss-option--checkbox" data-value="educacion" data-step="3" data-multi="true">
-                    <div class="ss-option__icon">🎓</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Estudiantes / Educación</div>
-                      <div class="ss-option__desc">Público en proceso de aprendizaje o formación</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option ss-option--checkbox" data-value="enterprise" data-step="3" data-multi="true">
-                    <div class="ss-option__icon">🏢</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Grandes empresas</div>
-                      <div class="ss-option__desc">Corporativos, áreas específicas dentro de empresas (B2B Enterprise)
-                      </div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option ss-option--checkbox" data-value="smb" data-step="3" data-multi="true">
-                    <div class="ss-option__icon">💼</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Profesionales y empresas pequeñas</div>
-                      <div class="ss-option__desc">Freelancers, equipos o PyMEs (B2B SMB)</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option ss-option--checkbox" data-value="freelancers" data-step="3" data-multi="true">
-                    <div class="ss-option__icon">🎨</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Creadores / Freelancers</div>
-                      <div class="ss-option__desc">Diseñadores, developers, creadores de contenido</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">¿Tienes estimados del tamaño de tu audiencia?
-                    <span>(opcional)</span></label>
-                  <textarea class="ss-textarea" id="desc-step3"
-                    placeholder="Ej: En México hay ~500,000 emprendedores activos. Mi segmento inicial son los que tienen entre 1 y 10 empleados..."></textarea>
-                </div>
-
-                <div class="ss-nav">
-                  <button class="ss-btn-back" data-prev="2">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                    Volver
-                  </button>
-                  <button class="ss-btn-next" data-next="4">
-                    Siguiente
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 4: LA COMPETENCIA ── -->
-              <div class="ss-step-content hidden" id="step-4">
-                <div class="ss-step-label">LA COMPETENCIA</div>
-                <h2 class="ss-step-title">¿Cómo describirías el panorama competitivo de tu idea?</h2>
-                <p class="ss-step-subtitle">Entender la competencia te ayuda a posicionarte con claridad.</p>
-
-                <div class="ss-options-grid" id="opts-step4">
-                  <div class="ss-option" data-value="no_competitors" data-step="4">
-                    <div class="ss-option__icon">🔭</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">No encontré soluciones similares</div>
-                      <div class="ss-option__desc">El mercado parece sin explorar o muy de nicho.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="few_alternatives" data-step="4">
-                    <div class="ss-option__icon">🎯</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Hay pocas alternativas</div>
-                      <div class="ss-option__desc">Existen opciones pero ninguna resuelve bien el problema.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="established" data-step="4">
-                    <div class="ss-option__icon">🏆</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Hay competencia establecida</div>
-                      <div class="ss-option__desc">Existen jugadores conocidos, pero hay espacio para diferenciarse.
-                      </div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="crowded" data-step="4">
-                    <div class="ss-option__icon">🌊</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">El mercado está muy competido</div>
-                      <div class="ss-option__desc">Muchas alternativas, difícil destacar sin diferenciador claro.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">¿Cuál sería tu diferenciador clave? <span>(opcional)</span></label>
-                  <textarea class="ss-textarea" id="desc-step4"
-                    placeholder="Ej: A diferencia de los competidores que son genéricos, nos enfocaremos solo en empresas de manufactura con IA nativa..."></textarea>
-                  <div class="ss-field-hint">Cuanto más específico seas, más preciso será tu análisis.</div>
-                </div>
-
-                <div class="ss-nav">
-                  <button class="ss-btn-back" data-prev="3">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                    Volver
-                  </button>
-                  <button class="ss-btn-next" data-next="5">
-                    Siguiente
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 5: EL NEGOCIO ── -->
-              <div class="ss-step-content hidden" id="step-5">
-                <div class="ss-step-label">EL NEGOCIO</div>
-                <h2 class="ss-step-title">¿Cómo generaría ingresos tu producto?</h2>
-                <p class="ss-step-subtitle">Un modelo de negocio claro es fundamental para atraer usuarios y/o
-                  inversión.</p>
-
-                <div class="ss-options-grid" id="opts-step5">
-                  <div class="ss-option" data-value="subscription" data-step="5">
-                    <div class="ss-option__icon">🔄</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Suscripción mensual/anual</div>
-                      <div class="ss-option__desc">Modelo recurrente tipo SaaS. Alta predictibilidad de revenue.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="freemium" data-step="5">
-                    <div class="ss-option__icon">🆓</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Freemium</div>
-                      <div class="ss-option__desc">Versión gratis + planes de pago con features avanzadas.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="usage" data-step="5">
-                    <div class="ss-option__icon">📦</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Cobro por uso o transacción</div>
-                      <div class="ss-option__desc">El usuario paga según lo que consume o cada operación.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="license" data-step="5">
-                    <div class="ss-option__icon">🔑</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Licencia / Pago único</div>
-                      <div class="ss-option__desc">Acceso permanente mediante un pago único o por proyecto.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="ads" data-step="5">
-                    <div class="ss-option__icon">📢</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Publicidad o sponsors</div>
-                      <div class="ss-option__desc">Revenue a través de anunciantes, patrocinios o afiliados.</div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                  <div class="ss-option" data-value="undefined" data-step="5">
-                    <div class="ss-option__icon">❓</div>
-                    <div class="ss-option__body">
-                      <div class="ss-option__title">Aún no lo he definido</div>
-                      <div class="ss-option__desc">Tengo la idea del producto pero el modelo de negocio no está claro.
-                      </div>
-                    </div>
-                    <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                  </div>
-                </div>
-
-                <div class="ss-field-group">
-                  <label class="ss-field-label">Complementa tu modelo de revenue:</label>
-                  <p style="font-size:14px; color:#666; margin-bottom:12px;">Para construir un Business Case sólido, cuéntanos un poco más:</p>
-                  <ul style="font-size:13px; color:#444; margin-left:20px; margin-bottom:12px;">
-                    <li style="margin-bottom:6px;">¿Cuál es tu estructura de costos fijos aproximada?</li>
-                    <li style="margin-bottom:6px;">¿Has previsto el Costo de Adquisición de Cliente (CAC)?</li>
-                    <li>¿Cuál es el margen de rentabilidad esperado?</li>
-                  </ul>
-                  <textarea class="ss-textarea" id="desc-step5" style="min-height:100px;"
-                    placeholder="Ej: Mis costos fijos actuales son suscripciones a IAs y servidores ($500/mes). El CAC en Google Ads ronda los $15usd..."></textarea>
-                  <div class="ss-field-hint">Cuanto más desglosado sea el panorama, más preciso será el Score de Revenue.</div>
-                </div>
-
-                <div class="ss-nav">
-                  <button class="ss-btn-back" data-prev="4">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg>
-                    Volver
-                  </button>
-                  <button class="ss-btn-next ss-btn-complete" id="btn-complete" data-action="complete">
-                    Completar análisis
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 17l3 3 3-3M9 7l3-3 3 3M3 12h18" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- ── STEP 6: LOADING ── -->
-              <div class="ss-step-content hidden" id="step-6">
-                <div class="ss-loading-content" id="ss-loading-content">
-                  <div class="ss-loading-spinner">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <linearGradient id="spinnerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stop-color="#3E4DC4" />
-                          <stop offset="100%" stop-color="#FA504D" />
-                        </linearGradient>
-                      </defs>
-                      <circle class="ss-spinner-track" cx="40" cy="40" r="30" />
-                      <circle class="ss-spinner-arc" cx="40" cy="40" r="30" />
-                    </svg>
-                  </div>
-                  <div class="ss-loading-title">Analizando tu idea con IA…</div>
-                  <div class="ss-loading-messages" id="ss-loading-msg">Evaluando claridad del problema</div>
-                </div>
-              </div>
-
-            </div><!-- /.ss-card -->
-          </div><!-- /.ss-form-wrap -->
-
-          <!-- ── RIGHT: Score Panel ── -->
-          <div class="ss-score-panel" id="ss-score-panel">
-            <div class="ss-score-panel__title">Este es tu score</div>
-            <p class="ss-score-panel__subtitle">Entre más información, más preciso será tu análisis.</p>
-
-            <!-- Gauge SVG -->
-            <div class="ss-gauge" id="ss-gauge-wrap">
+          <div class="ss-login-score-preview">
+            <div class="ss-lsp-title">Comienza a calcular tu score</div>
+            <div class="ss-lsp-subtitle">Contesta las preguntas para acumular puntos</div>
+            <div class="ss-gauge-preview">
               <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#3E4DC4" />
-                    <stop offset="100%" stop-color="#FA504D" />
-                  </linearGradient>
-                </defs>
-                <!-- Labels -->
-                <text x="8" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                <text x="5" y="110" font-family="Urbanist,sans-serif" font-size="9"
                   fill="rgba(255,255,255,0.3)">0</text>
                 <text x="30" y="52" font-family="Urbanist,sans-serif" font-size="9"
                   fill="rgba(255,255,255,0.3)">25</text>
@@ -869,371 +244,1149 @@
                   fill="rgba(255,255,255,0.3)">50</text>
                 <text x="152" y="52" font-family="Urbanist,sans-serif" font-size="9"
                   fill="rgba(255,255,255,0.3)">75</text>
-                <text x="177" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                <text x="180" y="110" font-family="Urbanist,sans-serif" font-size="9"
                   fill="rgba(255,255,255,0.3)">100</text>
-                <!-- Tick marks -->
-                <line x1="14" y1="102" x2="20" y2="96" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                <line x1="186" y1="102" x2="180" y2="96" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                <!-- Track arc (semicircle radius 80, center 100,110) -->
-                <path class="ss-gauge__bg" d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.08)"
-                  stroke-width="12" fill="none" stroke-linecap="round" />
-                <!-- Fill arc -->
-                <path class="ss-gauge__fill" id="ss-gauge-fill" d="M 20 110 A 80 80 0 0 1 180 110"
-                  stroke="url(#gaugeGrad)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="251"
-                  stroke-dashoffset="251" />
-                <!-- Needle dot -->
-                <circle id="ss-needle-dot" cx="20" cy="110" r="5" fill="#FFFFFF" />
+                <path d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.08)" stroke-width="12" fill="none"
+                  stroke-linecap="round" />
+                <path d="M 20 110 A 80 80 0 0 1 100 30" stroke="#F5A623" stroke-width="12" fill="none"
+                  stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="125.5" />
               </svg>
-              <div class="ss-gauge__score">
-                <span class="ss-gauge__score-num" id="ss-score-num">0</span>
-                <span class="ss-gauge__score-label">de 100</span>
+              <div class="ss-gauge__score-preview">
+                <span class="ss-gauge-num">0</span>
+                <span class="ss-gauge-lbl">de 100</span>
               </div>
             </div>
+            <div class="ss-status-badge">En desarrollo</div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Status Badge -->
-            <div class="ss-status-badge" id="ss-status-badge">En desarrollo</div>
+      <!-- ===================== WIZARD SECTION (Hidden until Auth) ===================== -->
+      <section class="ss-wizard-section hidden" id="ss-wizard">
+        <div class="ss-wizard-container" id="ss-form-phase">
 
-            <!-- Breakdown -->
-            <div class="ss-breakdown" id="ss-breakdown">
-              <div class="ss-breakdown-item" id="bd-claridad">
-                <div class="ss-breakdown-row">
-                  <span class="ss-breakdown-name">Claridad del problema</span>
-                  <span class="ss-breakdown-score" id="bd-claridad-score">0/25</span>
-                </div>
-                <div class="ss-breakdown-bar">
-                  <div class="ss-breakdown-fill ss-breakdown-fill--red" id="bd-claridad-fill" style="width:0%"></div>
-                </div>
+          <!-- API Key Banner -->
+          <div class="ss-api-banner" id="ss-api-banner" style="display:none; max-width:760px; margin: 0 auto 24px;">
+            <div class="ss-api-banner__icon">🔑</div>
+            <div class="ss-api-banner__body">
+              <div class="ss-api-banner__title">Activa el análisis con IA real</div>
+              <p>Sin API key, el análisis usará un modelo simulado. Para obtener resultados reales con Gemini, ingresa
+                tu
+                API key de Google AI Studio.</p>
+              <div class="ss-api-key-row">
+                <input type="password" class="ss-api-key-input" id="ss-api-key-input"
+                  placeholder="Tu API Key de Gemini" />
+                <button class="ss-api-save-btn" id="ss-api-save-btn">Guardar</button>
               </div>
-              <div class="ss-breakdown-item" id="bd-mercado">
-                <div class="ss-breakdown-row">
-                  <span class="ss-breakdown-name">Conocimiento del mercado</span>
-                  <span class="ss-breakdown-score" id="bd-mercado-score">0/25</span>
-                </div>
-                <div class="ss-breakdown-bar">
-                  <div class="ss-breakdown-fill ss-breakdown-fill--indigo" id="bd-mercado-fill" style="width:0%"></div>
-                </div>
+            </div>
+          </div>
+
+          <!-- Edit Mode Banner -->
+          <div class="ss-edit-banner hidden" id="ss-edit-banner" style="max-width:760px; margin: 0 auto 20px;">
+            <div class="ss-edit-banner__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#3E4DC4" stroke-width="2"
+                  stroke-linecap="round" />
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#3E4DC4" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="ss-edit-banner__text">
+              <div class="ss-edit-banner__title">Modo edición activo</div>
+              <div class="ss-edit-banner__sub">Actualiza tu respuesta y aplica los cambios para recalcular tu score.
               </div>
-              <div class="ss-breakdown-item" id="bd-competencia">
-                <div class="ss-breakdown-row">
-                  <span class="ss-breakdown-name">Validación competitiva</span>
-                  <span class="ss-breakdown-score" id="bd-competencia-score">0/25</span>
+            </div>
+            <button class="ss-btn-apply" id="ss-btn-apply-changes">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Aplicar cambios
+            </button>
+          </div>
+
+          <div class="ss-wizard-grid" id="ss-wizard-grid">
+
+            <!-- ── LEFT: Form ── -->
+            <div class="ss-form-wrap">
+              <div class="ss-card" id="ss-card">
+
+                <!-- Stepper -->
+                <div class="ss-stepper" id="ss-stepper">
+                  <div class="ss-step-dot active" id="dot-0" data-step="0">1</div>
+                  <div class="ss-step-line" id="line-0"></div>
+                  <div class="ss-step-dot" id="dot-1" data-step="1">2</div>
+                  <div class="ss-step-line" id="line-1"></div>
+                  <div class="ss-step-dot" id="dot-2" data-step="2">3</div>
+                  <div class="ss-step-line" id="line-2"></div>
+                  <div class="ss-step-dot" id="dot-3" data-step="3">4</div>
+                  <div class="ss-step-line" id="line-3"></div>
+                  <div class="ss-step-dot" id="dot-4" data-step="4">5</div>
+                  <div class="ss-step-line" id="line-4"></div>
+                  <div class="ss-step-dot" id="dot-5" data-step="5">6</div>
                 </div>
-                <div class="ss-breakdown-bar">
-                  <div class="ss-breakdown-fill ss-breakdown-fill--yellow" id="bd-competencia-fill" style="width:0%">
+
+                <!-- ── STEP 0: PERFILAMIENTO ── -->
+                <div class="ss-step-content" id="step-0">
+                  <div class="ss-step-label">VAMOS A CONOCERTE</div>
+                  <h2 class="ss-step-title" id="ss-welcome-title">Te damos la bienvenida, {Name}</h2>
+                  <p class="ss-step-subtitle">Antes de comenzar, queremos conocerte mejor</p>
+
+                  <h3 class="ss-step-section-title"
+                    style="margin-top:32px; font-size:16px; font-weight:700; color:#0B0B0C; font-family:'Urbanist',sans-serif; margin-bottom:16px;">
+                    ¿Qué perfil describe mejor tu rol actual?</h3>
+
+                  <div class="ss-options-grid" id="opts-step0" style="margin-bottom: 24px;">
+                    <div class="ss-option" data-value="emprendedor" data-step="0">
+                      <div class="ss-option__icon">🚀</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Emprendedor</div>
+                        <div class="ss-option__desc">Soy dueño de una idea o producto que quiero validar y lanzar.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="desarrollador" data-step="0">
+                      <div class="ss-option__icon">💻</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Desarrollador de software</div>
+                        <div class="ss-option__desc">Construyo soluciones digitales que funcionan y escalan.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="disenador" data-step="0">
+                      <div class="ss-option__icon">🎨</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Diseñador de productos</div>
+                        <div class="ss-option__desc">Diseño experiencias intuitivas, funcionales y user-centric.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="product" data-step="0">
+                      <div class="ss-option__icon">📋</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Product Manager</div>
+                        <div class="ss-option__desc">Defino, priorizo y llevo productos de idea a realidad.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="researcher" data-step="0">
+                      <div class="ss-option__icon">🔍</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Researcher</div>
+                        <div class="ss-option__desc">Investigo usuarios y valido decisiones con datos reales.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="otro" data-step="0">
+                      <div class="ss-option__icon">💡</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Otro perfil</div>
+                        <div class="ss-option__desc">Cuéntanos cuál es tu área de expertis</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
+
+                  <div class="ss-field-group hidden" id="step0-otro-wrap">
+                    <label class="ss-field-label">Descríbela brevemente</label>
+                    <input type="text" class="ss-input" id="desc-step0-rol"
+                      placeholder="Ej: Soy estudiante de ingeniería" />
+                  </div>
+
+                  <div style="width:100%; height:1px; background:#EBEBEB; margin: 32px 0;"></div>
+
+                  <h2 class="ss-step-title">Cuéntanos de tu proyecto</h2>
+                  <p class="ss-step-subtitle" style="margin-bottom:24px;">Queremos saber qué recursos tienes disponibles
+                  </p>
+
+                  <div class="ss-form-grid-2col"
+                    style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px;">
+                    <div class="ss-field-group">
+                      <label class="ss-field-label">Capital propio</label>
+                      <input type="text" class="ss-input" id="rec-capital"
+                        placeholder="Ej: Cuento con ahorros para probar" />
+                    </div>
+                    <div class="ss-field-group">
+                      <label class="ss-field-label">Inversores</label>
+                      <input type="text" class="ss-input" id="rec-inversores"
+                        placeholder="Ej: Estoy buscando capital semilla" />
+                    </div>
+                    <div class="ss-field-group">
+                      <label class="ss-field-label">Aliados estratégicos</label>
+                      <input type="text" class="ss-input" id="rec-aliados"
+                        placeholder="Ej: Alianzas con distribución" />
+                    </div>
+                    <div class="ss-field-group">
+                      <label class="ss-field-label">Equipo técnico</label>
+                      <input type="text" class="ss-input" id="rec-equipo" placeholder="Ej: Somos 2 desarrolladores" />
+                    </div>
+                  </div>
+
+                  <div class="ss-nav" style="justify-content: space-between;">
+                    <button class="ss-btn-cancel" id="btn-cancel-0" onclick="window.location.reload();"
+                      style="background:#fff; border:1px solid #EBEBEB; padding:12px 24px; border-radius:99px; font-weight:700; cursor:pointer;">
+                      Cancel
+                    </button>
+                    <button class="ss-btn-next" id="btn-next-0" data-next="1" style="border-radius:99px;">
+                      Iniciar SmokeScan
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-              </div>
-              <div class="ss-breakdown-item" id="bd-revenue">
-                <div class="ss-breakdown-row">
-                  <span class="ss-breakdown-name">Modelo de revenue</span>
-                  <span class="ss-breakdown-score" id="bd-revenue-score">0/25</span>
+
+                <!-- ── STEP 1: TU PRODUCTO ── -->
+                <div class="ss-step-content hidden" id="step-1">
+                  <div class="ss-step-label">TU PRODUCTO</div>
+                  <h2 class="ss-step-title">¿Qué tipo de producto digital es tu idea?</h2>
+                  <p class="ss-step-subtitle">Selecciona el tipo que mejor describe lo que quieres construir.</p>
+
+                  <div class="ss-options-grid" id="opts-step1">
+                    <div class="ss-option" data-value="saas" data-step="1">
+                      <div class="ss-option__icon">🖥️</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">SaaS / Software B2B</div>
+                        <div class="ss-option__desc">Plataforma o herramienta para empresas o profesionales</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="app" data-step="1">
+                      <div class="ss-option__icon">📱</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">App móvil</div>
+                        <div class="ss-option__desc">Aplicación nativa para iOS o Android</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="marketplace" data-step="1">
+                      <div class="ss-option__icon">🏪</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Marketplace</div>
+                        <div class="ss-option__desc">Plataforma que conecta oferta y demanda</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="contenido" data-step="1">
+                      <div class="ss-option__icon">🎓</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Plataforma de contenido</div>
+                        <div class="ss-option__desc">Cursos, comunidad, membresía o media digital</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="productividad" data-step="1">
+                      <div class="ss-option__icon">⚡</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Herramienta de productividad</div>
+                        <div class="ss-option__desc">Automatización, gestión de tareas o flujos de trabajo</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="otro" data-step="1">
+                      <div class="ss-option__icon">💡</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Otro tipo de producto digital</div>
+                        <div class="ss-option__desc">Plugin, API, herramienta interna, etc.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
+
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">Descríbela brevemente <span>(opcional)</span></label>
+                    <textarea class="ss-textarea" id="desc-step1"
+                      placeholder="Ej: Una plataforma SaaS que ayuda a equipos de ventas a gestionar sus leads con IA..."></textarea>
+                  </div>
+
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">¿Ya tienes documentación? <span>(opcional)</span></label>
+                    <div class="ss-input-row">
+                      <input type="url" class="ss-input" id="link-step1"
+                        placeholder="https://tu-documento.com o Notion, Figma..." />
+                      <button class="ss-upload-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Subir archivo
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="ss-nav">
+                    <button class="ss-btn-cancel" id="btn-cancel-1"
+                      onclick="window.location.href='index.html'">Cancel</button>
+                    <button class="ss-btn-next" id="btn-next-1" data-next="2">
+                      Siguiente
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-                <div class="ss-breakdown-bar">
-                  <div class="ss-breakdown-fill" id="bd-revenue-fill" style="width:0%"></div>
+
+                <!-- ── STEP 2: EL PROBLEMA ── -->
+                <div class="ss-step-content hidden" id="step-2">
+                  <div class="ss-step-label">EL PROBLEMA</div>
+                  <h2 class="ss-step-title">¿Qué tan claro es el problema que quieres resolver?</h2>
+                  <p class="ss-step-subtitle">La claridad del problema es el predictor más fuerte de viabilidad.</p>
+
+                  <div class="ss-options-grid" id="opts-step2">
+                    <div class="ss-option" data-value="first_hand" data-step="2">
+                      <div class="ss-option__icon">🎯</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Lo vivo yo mismo</div>
+                        <div class="ss-option__desc">Tengo el problema de primera mano y busco resolverlo.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="informed" data-step="2">
+                      <div class="ss-option__icon">📊</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Es una suposición informada</div>
+                        <div class="ss-option__desc">Basada en tendencias o datos del mercado que leí.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="intuition" data-step="2">
+                      <div class="ss-option__icon">💭</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Es una intuición o hipótesis</div>
+                        <div class="ss-option__desc">Creo que existe el problema, pero aún no lo he validado.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="observed" data-step="2">
+                      <div class="ss-option__icon">👁️</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Lo observé en otros</div>
+                        <div class="ss-option__desc">Lo vi en personas de mi entorno con evidencia concreta.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
+
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">Cuéntanos más sobre el problema <span>(opcional)</span></label>
+                    <textarea class="ss-textarea" id="desc-step2"
+                      placeholder="Ej: Cuando gestionaba mi equipo de 10 personas, notamos que perdíamos más de 2 horas diarias en reuniones sin agenda clara..."></textarea>
+                    <div class="ss-field-hint">Cuanto más específico seas, más preciso será tu análisis.</div>
+                  </div>
+
+                  <div class="ss-nav">
+                    <button class="ss-btn-back" data-prev="1">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Volver
+                    </button>
+                    <button class="ss-btn-next" data-next="3">
+                      Siguiente
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div><!-- /.ss-score-panel -->
 
-        </div><!-- /.ss-wizard-grid -->
-      </div><!-- /.ss-form-phase -->
+                <!-- ── STEP 3: TU AUDIENCIA ── -->
+                <div class="ss-step-content hidden" id="step-3">
+                  <div class="ss-step-label">TU AUDIENCIA</div>
+                  <h2 class="ss-step-title">¿A quién va dirigido tu producto?</h2>
+                  <p class="ss-step-subtitle">Puedes seleccionar más de una opción si aplica. <a href="#"
+                      onclick="return false;" style="pointer-events:none;color:#3E4DC4;">(Puedes elegir varias)</a></p>
 
-      <!-- ── RESULTS PHASE (Step 7) ── -->
-      <div class="hidden" id="ss-results-phase" style="position:relative;">
-        <div class="ss-results-v2-grid">
+                  <div class="ss-options-grid" id="opts-step3">
+                    <div class="ss-option ss-option--checkbox" data-value="b2c" data-step="3" data-multi="true">
+                      <div class="ss-option__icon">👤</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Consumidores finales</div>
+                        <div class="ss-option__desc">Personas en su vida personal o cotidiana (B2C)</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option ss-option--checkbox" data-value="educacion" data-step="3" data-multi="true">
+                      <div class="ss-option__icon">🎓</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Estudiantes / Educación</div>
+                        <div class="ss-option__desc">Público en proceso de aprendizaje o formación</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option ss-option--checkbox" data-value="enterprise" data-step="3" data-multi="true">
+                      <div class="ss-option__icon">🏢</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Grandes empresas</div>
+                        <div class="ss-option__desc">Corporativos, áreas específicas dentro de empresas (B2B Enterprise)
+                        </div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option ss-option--checkbox" data-value="smb" data-step="3" data-multi="true">
+                      <div class="ss-option__icon">💼</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Profesionales y empresas pequeñas</div>
+                        <div class="ss-option__desc">Freelancers, equipos o PyMEs (B2B SMB)</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option ss-option--checkbox" data-value="freelancers" data-step="3" data-multi="true">
+                      <div class="ss-option__icon">🎨</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Creadores / Freelancers</div>
+                        <div class="ss-option__desc">Diseñadores, developers, creadores de contenido</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
 
-          <!-- LEFT CARD -->
-          <div class="ss-results-v2-left" id="ss-left-card">
-            <div id="ss-left-content-standard">
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">¿Tienes estimados del tamaño de tu audiencia?
+                      <span>(opcional)</span></label>
+                    <textarea class="ss-textarea" id="desc-step3"
+                      placeholder="Ej: En México hay ~500,000 emprendedores activos. Mi segmento inicial son los que tienen entre 1 y 10 empleados..."></textarea>
+                  </div>
 
-              <!-- a) Badge: IdeaScore™ es orientativo -->
-              <div class="ss-rv2-badge" id="ss-results-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                IdeaScore™ es orientativo
-              </div>
+                  <div class="ss-nav">
+                    <button class="ss-btn-back" data-prev="2">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Volver
+                    </button>
+                    <button class="ss-btn-next" data-next="4">
+                      Siguiente
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
 
-              <!-- b) Headline -->
-              <h2 class="ss-rv2-headline" id="ss-results-headline">Tu idea tiene potencial y áreas clave por fortalecer</h2>
+                <!-- ── STEP 4: LA COMPETENCIA ── -->
+                <div class="ss-step-content hidden" id="step-4">
+                  <div class="ss-step-label">LA COMPETENCIA</div>
+                  <h2 class="ss-step-title">¿Cómo describirías el panorama competitivo de tu idea?</h2>
+                  <p class="ss-step-subtitle">Entender la competencia te ayuda a posicionarte con claridad.</p>
 
-              <!-- c) Summary description -->
-              <p class="ss-rv2-summary" id="ss-results-summary">Necesitas mayor definición en áreas críticas antes de invertir recursos significativos.</p>
+                  <div class="ss-options-grid" id="opts-step4">
+                    <div class="ss-option" data-value="no_competitors" data-step="4">
+                      <div class="ss-option__icon">🔭</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">No encontré soluciones similares</div>
+                        <div class="ss-option__desc">El mercado parece sin explorar o muy de nicho.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="few_alternatives" data-step="4">
+                      <div class="ss-option__icon">🎯</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Hay pocas alternativas</div>
+                        <div class="ss-option__desc">Existen opciones pero ninguna resuelve bien el problema.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="established" data-step="4">
+                      <div class="ss-option__icon">🏆</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Hay competencia establecida</div>
+                        <div class="ss-option__desc">Existen jugadores conocidos, pero hay espacio para diferenciarse.
+                        </div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="crowded" data-step="4">
+                      <div class="ss-option__icon">🌊</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">El mercado está muy competido</div>
+                        <div class="ss-option__desc">Muchas alternativas, difícil destacar sin diferenciador claro.
+                        </div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
 
-              <!-- d) PDF Download button -->
-              <button class="ss-rv2-download" id="ss-download-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Descargar reporte
-              </button>
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">¿Cuál sería tu diferenciador clave? <span>(opcional)</span></label>
+                    <textarea class="ss-textarea" id="desc-step4"
+                      placeholder="Ej: A diferencia de los competidores que son genéricos, nos enfocaremos solo en empresas de manufactura con IA nativa..."></textarea>
+                    <div class="ss-field-hint">Cuanto más específico seas, más preciso será tu análisis.</div>
+                  </div>
 
-              <!-- e-f) Gauge — bigger, more prominent -->
-              <div class="ss-gauge-compact" id="ss-gauge-wrap-r">
+                  <div class="ss-nav">
+                    <button class="ss-btn-back" data-prev="3">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Volver
+                    </button>
+                    <button class="ss-btn-next" data-next="5">
+                      Siguiente
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ── STEP 5: EL NEGOCIO ── -->
+                <div class="ss-step-content hidden" id="step-5">
+                  <div class="ss-step-label">EL NEGOCIO</div>
+                  <h2 class="ss-step-title">¿Cómo generaría ingresos tu producto?</h2>
+                  <p class="ss-step-subtitle">Un modelo de negocio claro es fundamental para atraer usuarios y/o
+                    inversión.</p>
+
+                  <div class="ss-options-grid" id="opts-step5">
+                    <div class="ss-option" data-value="subscription" data-step="5">
+                      <div class="ss-option__icon">🔄</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Suscripción mensual/anual</div>
+                        <div class="ss-option__desc">Modelo recurrente tipo SaaS. Alta predictibilidad de revenue.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="freemium" data-step="5">
+                      <div class="ss-option__icon">🆓</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Freemium</div>
+                        <div class="ss-option__desc">Versión gratis + planes de pago con features avanzadas.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="usage" data-step="5">
+                      <div class="ss-option__icon">📦</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Cobro por uso o transacción</div>
+                        <div class="ss-option__desc">El usuario paga según lo que consume o cada operación.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="license" data-step="5">
+                      <div class="ss-option__icon">🔑</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Licencia / Pago único</div>
+                        <div class="ss-option__desc">Acceso permanente mediante un pago único o por proyecto.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="ads" data-step="5">
+                      <div class="ss-option__icon">📢</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Publicidad o sponsors</div>
+                        <div class="ss-option__desc">Revenue a través de anunciantes, patrocinios o afiliados.</div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                    <div class="ss-option" data-value="undefined" data-step="5">
+                      <div class="ss-option__icon">❓</div>
+                      <div class="ss-option__body">
+                        <div class="ss-option__title">Aún no lo he definido</div>
+                        <div class="ss-option__desc">Tengo la idea del producto pero el modelo de negocio no está claro.
+                        </div>
+                      </div>
+                      <div class="ss-option__check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></div>
+                    </div>
+                  </div>
+
+                  <div class="ss-field-group">
+                    <label class="ss-field-label">Complementa tu modelo de revenue:</label>
+                    <p style="font-size:14px; color:#666; margin-bottom:12px;">Para construir un Business Case sólido,
+                      cuéntanos un poco más:</p>
+                    <ul style="font-size:13px; color:#444; margin-left:20px; margin-bottom:12px;">
+                      <li style="margin-bottom:6px;">¿Cuál es tu estructura de costos fijos aproximada?</li>
+                      <li style="margin-bottom:6px;">¿Has previsto el Costo de Adquisición de Cliente (CAC)?</li>
+                      <li>¿Cuál es el margen de rentabilidad esperado?</li>
+                    </ul>
+                    <textarea class="ss-textarea" id="desc-step5" style="min-height:100px;"
+                      placeholder="Ej: Mis costos fijos actuales son suscripciones a IAs y servidores ($500/mes). El CAC en Google Ads ronda los $15usd..."></textarea>
+                    <div class="ss-field-hint">Cuanto más desglosado sea el panorama, más preciso será el Score de
+                      Revenue.</div>
+                  </div>
+
+                  <div class="ss-nav">
+                    <button class="ss-btn-back" data-prev="4">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Volver
+                    </button>
+                    <button class="ss-btn-next ss-btn-complete" id="btn-complete" data-action="complete">
+                      Completar análisis
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 17l3 3 3-3M9 7l3-3 3 3M3 12h18" stroke="currentColor" stroke-width="2.5"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ── STEP 6: LOADING ── -->
+                <div class="ss-step-content hidden" id="step-6">
+                  <div class="ss-loading-content" id="ss-loading-content">
+                    <div class="ss-loading-spinner">
+                      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <linearGradient id="spinnerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#3E4DC4" />
+                            <stop offset="100%" stop-color="#FA504D" />
+                          </linearGradient>
+                        </defs>
+                        <circle class="ss-spinner-track" cx="40" cy="40" r="30" />
+                        <circle class="ss-spinner-arc" cx="40" cy="40" r="30" />
+                      </svg>
+                    </div>
+                    <div class="ss-loading-title">Analizando tu idea con IA…</div>
+                    <div class="ss-loading-messages" id="ss-loading-msg">Evaluando claridad del problema</div>
+                  </div>
+                </div>
+
+              </div><!-- /.ss-card -->
+            </div><!-- /.ss-form-wrap -->
+
+            <!-- ── RIGHT: Score Panel ── -->
+            <div class="ss-score-panel" id="ss-score-panel">
+              <div class="ss-score-panel__title">Este es tu score</div>
+              <p class="ss-score-panel__subtitle">Entre más información, más preciso será tu análisis.</p>
+
+              <!-- Gauge SVG -->
+              <div class="ss-gauge" id="ss-gauge-wrap">
                 <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="gaugeGradR" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stop-color="#3E4DC4" />
                       <stop offset="100%" stop-color="#FA504D" />
                     </linearGradient>
                   </defs>
-                  <text x="8"   y="110" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(11,11,12,0.22)">0</text>
-                  <text x="30"  y="52"  font-family="Urbanist,sans-serif" font-size="9" fill="rgba(11,11,12,0.22)">25</text>
-                  <text x="92"  y="22"  font-family="Urbanist,sans-serif" font-size="9" fill="rgba(11,11,12,0.22)">50</text>
-                  <text x="152" y="52"  font-family="Urbanist,sans-serif" font-size="9" fill="rgba(11,11,12,0.22)">75</text>
-                  <text x="177" y="110" font-family="Urbanist,sans-serif" font-size="9" fill="rgba(11,11,12,0.22)">100</text>
-                  <path d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(11,11,12,0.07)" stroke-width="12" fill="none" stroke-linecap="round" />
-                  <path id="ss-gauge-fill-r" d="M 20 110 A 80 80 0 0 1 180 110" stroke="url(#gaugeGradR)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251" />
-                  <circle id="ss-needle-dot-r" cx="20" cy="110" r="5" fill="#FFFFFF" stroke="rgba(11,11,12,0.15)" stroke-width="1" />
+                  <!-- Labels -->
+                  <text x="8" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                    fill="rgba(255,255,255,0.3)">0</text>
+                  <text x="30" y="52" font-family="Urbanist,sans-serif" font-size="9"
+                    fill="rgba(255,255,255,0.3)">25</text>
+                  <text x="92" y="22" font-family="Urbanist,sans-serif" font-size="9"
+                    fill="rgba(255,255,255,0.3)">50</text>
+                  <text x="152" y="52" font-family="Urbanist,sans-serif" font-size="9"
+                    fill="rgba(255,255,255,0.3)">75</text>
+                  <text x="177" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                    fill="rgba(255,255,255,0.3)">100</text>
+                  <!-- Tick marks -->
+                  <line x1="14" y1="102" x2="20" y2="96" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <line x1="186" y1="102" x2="180" y2="96" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <!-- Track arc (semicircle radius 80, center 100,110) -->
+                  <path class="ss-gauge__bg" d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.08)"
+                    stroke-width="12" fill="none" stroke-linecap="round" />
+                  <!-- Fill arc -->
+                  <path class="ss-gauge__fill" id="ss-gauge-fill" d="M 20 110 A 80 80 0 0 1 180 110"
+                    stroke="url(#gaugeGrad)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="251"
+                    stroke-dashoffset="251" />
+                  <!-- Needle dot -->
+                  <circle id="ss-needle-dot" cx="20" cy="110" r="5" fill="#FFFFFF" />
                 </svg>
-                <div class="ss-gauge-r-score">
-                  <span class="ss-gauge__score-num" id="ss-score-num-r">0</span>
-                  <span class="ss-gauge-r-of">de 100</span>
+                <div class="ss-gauge__score">
+                  <span class="ss-gauge__score-num" id="ss-score-num">0</span>
+                  <span class="ss-gauge__score-label">de 100</span>
                 </div>
               </div>
 
-              <!-- g) Status badge -->
-              <div class="ss-rv2-status en-desarrollo" id="ss-status-badge-r">En desarrollo</div>
+              <!-- Status Badge -->
+              <div class="ss-status-badge" id="ss-status-badge">En desarrollo</div>
 
-
-              <!-- h-i) UNDER 50: "Te ofrecemos 2 opciones" -->
-              <div id="ss-left-actions-under50" class="hidden">
-                <h3 class="ss-rv2-options-title">Te ofrecemos 2 opciones:</h3>
-                <div class="ss-option-cards">
-                  <!-- Card 1: Retry -->
-                  <div class="ss-option-card">
-                    <div class="ss-option-card__top">
-                      <span class="ss-option-card__title">Vuelve a intentarlo</span>
-                      <span class="ss-option-card__tag">Consume 1 vida</span>
+              <!-- Breakdown -->
+              <div class="ss-breakdown" id="ss-breakdown">
+                <div class="ss-breakdown-item" id="bd-claridad">
+                  <div class="ss-breakdown-row">
+                    <span class="ss-breakdown-name">Claridad del problema</span>
+                    <span class="ss-breakdown-score" id="bd-claridad-score">0/25</span>
+                  </div>
+                  <div class="ss-breakdown-bar">
+                    <div class="ss-breakdown-fill ss-breakdown-fill--red" id="bd-claridad-fill" style="width:0%"></div>
+                  </div>
+                </div>
+                <div class="ss-breakdown-item" id="bd-mercado">
+                  <div class="ss-breakdown-row">
+                    <span class="ss-breakdown-name">Conocimiento del mercado</span>
+                    <span class="ss-breakdown-score" id="bd-mercado-score">0/25</span>
+                  </div>
+                  <div class="ss-breakdown-bar">
+                    <div class="ss-breakdown-fill ss-breakdown-fill--indigo" id="bd-mercado-fill" style="width:0%">
                     </div>
-                    <p class="ss-option-card__desc">Puedes volver al inicio para complementar información y obtener un nuevo resultado.</p>
-                    <button class="ss-option-card__link" id="btn-retry">Volver a intentarlo
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                </div>
+                <div class="ss-breakdown-item" id="bd-competencia">
+                  <div class="ss-breakdown-row">
+                    <span class="ss-breakdown-name">Validación competitiva</span>
+                    <span class="ss-breakdown-score" id="bd-competencia-score">0/25</span>
+                  </div>
+                  <div class="ss-breakdown-bar">
+                    <div class="ss-breakdown-fill ss-breakdown-fill--yellow" id="bd-competencia-fill" style="width:0%">
+                    </div>
+                  </div>
+                </div>
+                <div class="ss-breakdown-item" id="bd-revenue">
+                  <div class="ss-breakdown-row">
+                    <span class="ss-breakdown-name">Modelo de revenue</span>
+                    <span class="ss-breakdown-score" id="bd-revenue-score">0/25</span>
+                  </div>
+                  <div class="ss-breakdown-bar">
+                    <div class="ss-breakdown-fill" id="bd-revenue-fill" style="width:0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.ss-score-panel -->
+
+          </div><!-- /.ss-wizard-grid -->
+        </div><!-- /.ss-form-phase -->
+
+        <!-- ── RESULTS PHASE (Step 7) ── -->
+        <div class="hidden" id="ss-results-phase" style="position:relative;">
+          <div class="ss-results-v2-grid">
+
+            <!-- LEFT CARD -->
+            <div class="ss-results-v2-left" id="ss-left-card">
+              <div id="ss-left-content-standard">
+
+                <!-- a) Badge: IdeaScore™ es orientativo -->
+                <div class="ss-rv2-badge" id="ss-results-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  IdeaScore™ es orientativo
+                </div>
+
+                <!-- b) Headline -->
+                <h2 class="ss-rv2-headline" id="ss-results-headline">Tu idea tiene potencial y áreas clave por
+                  fortalecer</h2>
+
+                <!-- c) Summary description -->
+                <p class="ss-rv2-summary" id="ss-results-summary">Necesitas mayor definición en áreas críticas antes de
+                  invertir recursos significativos.</p>
+
+                <!-- d) PDF Download button -->
+                <button class="ss-rv2-download" id="ss-download-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Descargar reporte
+                </button>
+
+                <!-- e-f) Gauge — bigger, more prominent -->
+                <div class="ss-gauge-compact" id="ss-gauge-wrap-r">
+                  <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="gaugeGradR" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#3E4DC4" />
+                        <stop offset="100%" stop-color="#FA504D" />
+                      </linearGradient>
+                    </defs>
+                    <text x="8" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                      fill="rgba(11,11,12,0.22)">0</text>
+                    <text x="30" y="52" font-family="Urbanist,sans-serif" font-size="9"
+                      fill="rgba(11,11,12,0.22)">25</text>
+                    <text x="92" y="22" font-family="Urbanist,sans-serif" font-size="9"
+                      fill="rgba(11,11,12,0.22)">50</text>
+                    <text x="152" y="52" font-family="Urbanist,sans-serif" font-size="9"
+                      fill="rgba(11,11,12,0.22)">75</text>
+                    <text x="177" y="110" font-family="Urbanist,sans-serif" font-size="9"
+                      fill="rgba(11,11,12,0.22)">100</text>
+                    <path d="M 20 110 A 80 80 0 0 1 180 110" stroke="rgba(11,11,12,0.07)" stroke-width="12" fill="none"
+                      stroke-linecap="round" />
+                    <path id="ss-gauge-fill-r" d="M 20 110 A 80 80 0 0 1 180 110" stroke="url(#gaugeGradR)"
+                      stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="251"
+                      stroke-dashoffset="251" />
+                    <circle id="ss-needle-dot-r" cx="20" cy="110" r="5" fill="#FFFFFF" stroke="rgba(11,11,12,0.15)"
+                      stroke-width="1" />
+                  </svg>
+                  <div class="ss-gauge-r-score">
+                    <span class="ss-gauge__score-num" id="ss-score-num-r">0</span>
+                    <span class="ss-gauge-r-of">de 100</span>
+                  </div>
+                </div>
+
+                <!-- g) Status badge -->
+                <div class="ss-rv2-status en-desarrollo" id="ss-status-badge-r">En desarrollo</div>
+
+
+                <!-- h-i) UNDER 50: "Te ofrecemos 2 opciones" -->
+                <div id="ss-left-actions-under50" class="hidden">
+                  <h3 class="ss-rv2-options-title">Te ofrecemos 2 opciones:</h3>
+                  <div class="ss-option-cards">
+                    <!-- Card 1: Retry -->
+                    <div class="ss-option-card">
+                      <div class="ss-option-card__top">
+                        <span class="ss-option-card__title">Vuelve a intentarlo</span>
+                        <span class="ss-option-card__tag">Consume 1 vida</span>
+                      </div>
+                      <p class="ss-option-card__desc">Puedes volver al inicio para complementar información y obtener un
+                        nuevo resultado.</p>
+                      <button class="ss-option-card__link" id="btn-retry">Volver a intentarlo
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                    <!-- Card 2: Challenge -->
+                    <div class="ss-option-card">
+                      <div class="ss-option-card__top">
+                        <span class="ss-option-card__title">Desafía el resultado</span>
+                        <span class="ss-option-card__tag">Consume 1 vida</span>
+                      </div>
+                      <p class="ss-option-card__desc">Consulta a nuestro consejo de IAs para someter tu calificación a
+                        desafío</p>
+                      <button class="ss-option-card__link" id="btn-challenge">Hacer challenge
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- OVER 50: Categories -->
+                <div id="ss-left-categories-over50" class="hidden">
+                  <h3 class="ss-rv2-options-title" id="ss-categories-title">Mejora tu Business Case:</h3>
+                  <div class="ss-cat-rows" id="ss-cat-rows"></div>
+
+                  <!-- TeamBack card -->
+                  <div class="ss-teamback-card" id="ss-teamback-wrap"
+                    style="margin-top:24px; padding:20px; background:#F8FAFC; border-radius:16px; border:1px solid #E2E8F0;">
+                    <h3
+                      style="font-family:'Urbanist',sans-serif; margin-bottom:8px; font-size:15px; display:flex; align-items:center; gap:8px;">
+                      <span style="font-size:20px;">🤖</span> Usa TeamBack
+                    </h3>
+                    <p style="font-size:13px; color:#64748B; margin-bottom:16px; line-height:1.5;">Nuestro comité
+                      directivo de IA te guía paso a paso en la construcción de tu Bussines Case, antes de pasar a la
+                      validación con usuarios reales.</p>
+                    <button class="ss-btn-primary" id="btn-teamback-modal"
+                      style="border-radius:99px; width:100%; display:flex; align-items:center; justify-content:center; gap:8px;">
+                      Pregúntale a TeamBack
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"
+                          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </button>
                   </div>
-                  <!-- Card 2: Challenge -->
-                  <div class="ss-option-card">
-                    <div class="ss-option-card__top">
-                      <span class="ss-option-card__title">Desafía el resultado</span>
-                      <span class="ss-option-card__tag">Consume 1 vida</span>
-                    </div>
-                    <p class="ss-option-card__desc">Consulta a nuestro consejo de IAs para someter tu calificación a desafío</p>
-                    <button class="ss-option-card__link" id="btn-challenge">Hacer challenge
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
+                </div>
+
+              </div><!-- /#ss-left-content-standard -->
+
+              <!-- Chatbot UI (hidden by default, toggled by 'Desafía el resultado') -->
+              <div id="ss-left-content-chat" class="hidden">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                  <h3 style="font-family:'Urbanist';">Desafía tu resultado</h3>
+                  <button id="btn-close-chat" style="background:none; border:none; color:#888; cursor:pointer;"
+                    onclick="document.getElementById('ss-left-content-chat').classList.add('hidden'); document.getElementById('ss-left-content-standard').classList.remove('hidden');">Cerrar
+                    ×</button>
+                </div>
+                <div id="ss-chat-window"
+                  style="height:400px; overflow-y:auto; background:#FAFAFA; border-radius:12px; padding:16px; margin-bottom:16px; display:flex; flex-direction:column; gap:12px;">
+                  <div
+                    style="align-self:flex-start; background:#E2E8F0; padding:12px; border-radius:12px; max-width:85%; font-size:14px;">
+                    Hola, soy Gemini. Estoy listo para que argumentes tu score. Solo tienes 6 mensajes. Puedes pegar
+                    links como contexto.</div>
+                </div>
+                <div class="ss-chat-input-row" style="display:flex; gap:8px;">
+                  <input type="text" id="ss-chat-input" placeholder="Pregunta o argumenta..."
+                    style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd;" />
+                  <button id="btn-send-chat"
+                    style="padding:12px 20px; background:#3E4DC4; color:#fff; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Enviar</button>
+                </div>
+                <p style="font-size:12px; color:#999; margin-top:8px; text-align:right;" id="ss-chat-limit-text">6
+                  mensajes restantes</p>
+              </div>
+
+              <!-- Lives HUD: kept for JS but not visible -->
+              <div class="ss-lives-hud" id="ss-lives-hud" style="display:none;">
+                ❤ <span id="ss-lives-count">2</span>/2 intentos
+              </div>
+
+            </div><!-- /.ss-results-v2-left -->
+
+            <!-- RIGHT CARD -->
+            <div class="ss-results-v2-right" id="ss-right-card">
+
+              <!-- Integrated locked state (score < 80): card style, no popup/modal -->
+              <div class="ss-right-locked-card hidden" id="ss-right-blur-overlay">
+                <div class="ss-right-locked-inner">
+                  <svg class="ss-lock-svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="11" width="18" height="11" rx="2" stroke="#6B7280" stroke-width="1.5" />
+                    <path d="M7 11V7a5 5 0 0110 0v4" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                  <div class="ss-rv2-tag" style="margin-top:14px; margin-bottom:10px;">PRÓXIMOS PASOS</div>
+                  <h2 class="ss-rv2-next-title" id="ss-right-title">Aún no estás listo.</h2>
+                  <p class="ss-rv2-next-sub" id="ss-right-sub">Necesitas ampliar y definir mejor tu <strong>Problem
+                      Statement</strong> antes de poder continuar.</p>
+                  <!-- Decorative blurred content preview -->
+                  <div class="ss-right-blurred-preview">
+                    <div class="ss-right-preview-bar"></div>
+                    <div class="ss-right-preview-bar" style="width:80%;"></div>
+                    <div class="ss-right-preview-bar" style="width:60%;"></div>
+                    <div class="ss-right-preview-card"></div>
+                    <div class="ss-right-preview-card"></div>
                   </div>
                 </div>
               </div>
 
-              <!-- OVER 50: Categories -->
-              <div id="ss-left-categories-over50" class="hidden">
-                <h3 class="ss-rv2-options-title" id="ss-categories-title">Mejora tu Business Case:</h3>
-                <div class="ss-cat-rows" id="ss-cat-rows"></div>
+              <!-- Unlocked content (score >= 80) — hidden until score qualifies -->
+              <div id="ss-right-content">
+                <div class="ss-rv2-tag" id="ss-right-tag">PRÓXIMOS PASOS</div>
+                <h2 class="ss-rv2-next-title" id="ss-right-title-unlocked">Tu proyecto está listo para el siguiente
+                  nivel.</h2>
+                <p class="ss-rv2-next-sub" id="ss-right-sub-unlocked">Cada paso suma puntos al score. Revisa tu
+                  checklist.</p>
 
-                <!-- TeamBack card -->
-                <div class="ss-teamback-card" id="ss-teamback-wrap" style="margin-top:24px; padding:20px; background:#F8FAFC; border-radius:16px; border:1px solid #E2E8F0;">
-                  <h3 style="font-family:'Urbanist',sans-serif; margin-bottom:8px; font-size:15px; display:flex; align-items:center; gap:8px;">
-                    <span style="font-size:20px;">🤖</span> Usa TeamBack
-                  </h3>
-                  <p style="font-size:13px; color:#64748B; margin-bottom:16px; line-height:1.5;">Nuestro comité directivo de IA te guía paso a paso en la construcción de tu Bussines Case, antes de pasar a la validación con usuarios reales.</p>
-                  <button class="ss-btn-primary" id="btn-teamback-modal" style="border-radius:99px; width:100%; display:flex; align-items:center; justify-content:center; gap:8px;">
-                    Pregúntale a TeamBack
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="ss-actions-v2" id="ss-actions-v2"></div>
+
+                <!-- Contact module: only visible when score >= 80 -->
+                <div id="ss-right-contact-module" class="hidden"
+                  style="margin-top:auto; padding-top:24px; position:relative; z-index:20;">
+                  <button class="ss-rv2-schedule" id="btn-contact-whatsapp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    Agendar una llamada
                   </button>
                 </div>
               </div>
 
-            </div><!-- /#ss-left-content-standard -->
+            </div><!-- /.ss-results-v2-right -->
+          </div>
+        </div>
 
-            <!-- Chatbot UI (hidden by default, toggled by 'Desafía el resultado') -->
-            <div id="ss-left-content-chat" class="hidden">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-                <h3 style="font-family:'Urbanist';">Desafía tu resultado</h3>
-                <button id="btn-close-chat" style="background:none; border:none; color:#888; cursor:pointer;" onclick="document.getElementById('ss-left-content-chat').classList.add('hidden'); document.getElementById('ss-left-content-standard').classList.remove('hidden');">Cerrar ×</button>
-              </div>
-              <div id="ss-chat-window" style="height:400px; overflow-y:auto; background:#FAFAFA; border-radius:12px; padding:16px; margin-bottom:16px; display:flex; flex-direction:column; gap:12px;">
-                <div style="align-self:flex-start; background:#E2E8F0; padding:12px; border-radius:12px; max-width:85%; font-size:14px;">Hola, soy Gemini. Estoy listo para que argumentes tu score. Solo tienes 6 mensajes. Puedes pegar links como contexto.</div>
-              </div>
-              <div class="ss-chat-input-row" style="display:flex; gap:8px;">
-                <input type="text" id="ss-chat-input" placeholder="Pregunta o argumenta..." style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd;" />
-                <button id="btn-send-chat" style="padding:12px 20px; background:#3E4DC4; color:#fff; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Enviar</button>
-              </div>
-              <p style="font-size:12px; color:#999; margin-top:8px; text-align:right;" id="ss-chat-limit-text">6 mensajes restantes</p>
+      </section>
+
+      <!-- MOBILE CUSHION for sticky bar -->
+      <div class="ss-mobile-cushion" id="ss-mobile-cushion"></div>
+
+    </main>
+
+    <!-- MOBILE STICKY SCORE -->
+    <div class="ss-sticky-score" id="ss-sticky-score">
+      <div class="ss-sticky-bar" id="ss-sticky-toggle">
+        <span class="ss-sticky-label">Tu Score</span>
+        <div>
+          <span class="ss-sticky-value" id="ss-sticky-value">0</span>
+          <span class="ss-sticky-max">/100</span>
+        </div>
+        <svg class="ss-sticky-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M5 13l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="ss-sticky-panel" id="ss-sticky-panel">
+        <div class="ss-sticky-breakdown">
+          <div class="ss-sticky-item">
+            <span class="ss-sticky-item-name">Claridad del problema</span>
+            <div class="ss-sticky-item-bar">
+              <div class="ss-sticky-item-fill" id="sticky-claridad-fill"></div>
             </div>
-
-            <!-- Lives HUD: kept for JS but not visible -->
-            <div class="ss-lives-hud" id="ss-lives-hud" style="display:none;">
-              ❤ <span id="ss-lives-count">2</span>/2 intentos
+            <span class="ss-sticky-item-score" id="sticky-claridad-score">0/25</span>
+          </div>
+          <div class="ss-sticky-item">
+            <span class="ss-sticky-item-name">Conocimiento del mercado</span>
+            <div class="ss-sticky-item-bar">
+              <div class="ss-sticky-item-fill" id="sticky-mercado-fill"></div>
             </div>
+            <span class="ss-sticky-item-score" id="sticky-mercado-score">0/25</span>
+          </div>
+          <div class="ss-sticky-item">
+            <span class="ss-sticky-item-name">Validación competitiva</span>
+            <div class="ss-sticky-item-bar">
+              <div class="ss-sticky-item-fill" id="sticky-competencia-fill"></div>
+            </div>
+            <span class="ss-sticky-item-score" id="sticky-competencia-score">0/25</span>
+          </div>
+          <div class="ss-sticky-item">
+            <span class="ss-sticky-item-name">Modelo de revenue</span>
+            <div class="ss-sticky-item-bar">
+              <div class="ss-sticky-item-fill" id="sticky-revenue-fill"></div>
+            </div>
+            <span class="ss-sticky-item-score" id="sticky-revenue-score">0/25</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          </div><!-- /.ss-results-v2-left -->
-
-          <!-- RIGHT CARD -->
-          <div class="ss-results-v2-right" id="ss-right-card">
-
-            <!-- Integrated locked state (score < 80): card style, no popup/modal -->
-            <div class="ss-right-locked-card hidden" id="ss-right-blur-overlay">
-              <div class="ss-right-locked-inner">
-                <svg class="ss-lock-svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="11" width="18" height="11" rx="2" stroke="#6B7280" stroke-width="1.5"/>
-                  <path d="M7 11V7a5 5 0 0110 0v4" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="index.html" class="nav-logo footer__logo">
+              <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
+            </a>
+            <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
+            <div class="footer__socials">
+              <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank"
+                rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-                <div class="ss-rv2-tag" style="margin-top:14px; margin-bottom:10px;">PRÓXIMOS PASOS</div>
-                <h2 class="ss-rv2-next-title" id="ss-right-title">Aún no estás listo.</h2>
-                <p class="ss-rv2-next-sub" id="ss-right-sub">Necesitas ampliar y definir mejor tu <strong>Problem Statement</strong> antes de poder continuar.</p>
-                <!-- Decorative blurred content preview -->
-                <div class="ss-right-blurred-preview">
-                  <div class="ss-right-preview-bar"></div>
-                  <div class="ss-right-preview-bar" style="width:80%;"></div>
-                  <div class="ss-right-preview-bar" style="width:60%;"></div>
-                  <div class="ss-right-preview-card"></div>
-                  <div class="ss-right-preview-card"></div>
-                </div>
-              </div>
+              </a>
+              <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
             </div>
-
-            <!-- Unlocked content (score >= 80) — hidden until score qualifies -->
-            <div id="ss-right-content">
-              <div class="ss-rv2-tag" id="ss-right-tag">PRÓXIMOS PASOS</div>
-              <h2 class="ss-rv2-next-title" id="ss-right-title-unlocked">Tu proyecto está listo para el siguiente nivel.</h2>
-              <p class="ss-rv2-next-sub" id="ss-right-sub-unlocked">Cada paso suma puntos al score. Revisa tu checklist.</p>
-
-              <div class="ss-actions-v2" id="ss-actions-v2"></div>
-
-              <!-- Contact module: only visible when score >= 80 -->
-              <div id="ss-right-contact-module" class="hidden" style="margin-top:auto; padding-top:24px; position:relative; z-index:20;">
-                <button class="ss-rv2-schedule" id="btn-contact-whatsapp">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  Agendar una llamada
-                </button>
-              </div>
-            </div>
-
-          </div><!-- /.ss-results-v2-right -->
-        </div>
-      </div>
-
-    </section>
-
-    <!-- MOBILE CUSHION for sticky bar -->
-    <div class="ss-mobile-cushion" id="ss-mobile-cushion"></div>
-
-  </main>
-
-  <!-- MOBILE STICKY SCORE -->
-  <div class="ss-sticky-score" id="ss-sticky-score">
-    <div class="ss-sticky-bar" id="ss-sticky-toggle">
-      <span class="ss-sticky-label">Tu Score</span>
-      <div>
-        <span class="ss-sticky-value" id="ss-sticky-value">0</span>
-        <span class="ss-sticky-max">/100</span>
-      </div>
-      <svg class="ss-sticky-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M5 13l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div class="ss-sticky-panel" id="ss-sticky-panel">
-      <div class="ss-sticky-breakdown">
-        <div class="ss-sticky-item">
-          <span class="ss-sticky-item-name">Claridad del problema</span>
-          <div class="ss-sticky-item-bar">
-            <div class="ss-sticky-item-fill" id="sticky-claridad-fill"></div>
           </div>
-          <span class="ss-sticky-item-score" id="sticky-claridad-score">0/25</span>
-        </div>
-        <div class="ss-sticky-item">
-          <span class="ss-sticky-item-name">Conocimiento del mercado</span>
-          <div class="ss-sticky-item-bar">
-            <div class="ss-sticky-item-fill" id="sticky-mercado-fill"></div>
+          <div class="footer__col">
+            <h4>Navegación</h4>
+            <ul>
+              <li><a href="index.html#inicio">Inicio</a></li>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="servicios.html">Servicios</a></li>
+              <li><a href="index.html#contacto">Contacto</a></li>
+              <li><a href="smokescan.html">SmokeScan</a></li>
+            </ul>
           </div>
-          <span class="ss-sticky-item-score" id="sticky-mercado-score">0/25</span>
-        </div>
-        <div class="ss-sticky-item">
-          <span class="ss-sticky-item-name">Validación competitiva</span>
-          <div class="ss-sticky-item-bar">
-            <div class="ss-sticky-item-fill" id="sticky-competencia-fill"></div>
-          </div>
-          <span class="ss-sticky-item-score" id="sticky-competencia-score">0/25</span>
-        </div>
-        <div class="ss-sticky-item">
-          <span class="ss-sticky-item-name">Modelo de revenue</span>
-          <div class="ss-sticky-item-bar">
-            <div class="ss-sticky-item-fill" id="sticky-revenue-fill"></div>
-          </div>
-          <span class="ss-sticky-item-score" id="sticky-revenue-score">0/25</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="nav-logo footer__logo">
-            <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
-          </a>
-          <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
-          <div class="footer__socials">
-            <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
-            </a>
+          <div class="footer__col">
+            <h4>Contacto</h4>
+            <ul class="footer__contact">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Toronto
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="footer__col">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="index.html#inicio">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="index.html#contacto">Contacto</a></li>
-            <li><a href="smokescan.html">SmokeScan</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Contacto</h4>
-          <ul class="footer__contact">
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Toronto
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
-            </li>
-          </ul>
+        <div class="footer__bottom">
+          <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
+          <div class="footer__legal">
+            <span>Hecho con ♥</span>
+          </div>
         </div>
       </div>
-      <div class="footer__bottom">
-        <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
-        <div class="footer__legal">
-          <span>Hecho con ♥</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
   </div> <!-- End site-wrapper -->
   <!-- ===================== SIDE SHEET (TeamBack / Edit) ===================== -->
@@ -1250,12 +1403,15 @@
       <button class="ss-btn-apply" id="ss-sheet-btn-apply" style="width: 100%;">
         Guardar y Recalcular
       </button>
-      
+
       <!-- TeamBack AI integration hint -->
       <div class="ss-teamback-card">
         <p>¿No estás seguro de qué responder? Usa TeamBack para pelotear ideas.</p>
         <button class="ss-btn-teamback">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
           Pregúntale a TeamBack
         </button>
       </div>
@@ -1264,12 +1420,16 @@
 
   <script src="js/main.js"></script>
   <!-- MODALS -->
-  <div class="ss-modal-overlay hidden" id="modal-whatsapp" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center;">
-    <div class="ss-modal-content" style="background:#fff; padding:32px; border-radius:24px; max-width:400px; width:90%;">
+  <div class="ss-modal-overlay hidden" id="modal-whatsapp"
+    style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div class="ss-modal-content"
+      style="background:#fff; padding:32px; border-radius:24px; max-width:400px; width:90%;">
       <h3 style="font-family:'Urbanist',sans-serif; margin-bottom:8px;">Contacto Rápido</h3>
-      <p style="font-size:14px; color:#666; margin-bottom:24px;">Déjanos tu nombre y número de WhatsApp. Nosotros te escribiremos en breve.</p>
-      <input type="text" id="wp-name" placeholder="Tu Nombre Completo" class="ss-input" style="margin-bottom:12px;"/>
-      <input type="tel" id="wp-phone" placeholder="Tu WhatsApp (ej: +52...)" class="ss-input" style="margin-bottom:24px;"/>
+      <p style="font-size:14px; color:#666; margin-bottom:24px;">Déjanos tu nombre y número de WhatsApp. Nosotros te
+        escribiremos en breve.</p>
+      <input type="text" id="wp-name" placeholder="Tu Nombre Completo" class="ss-input" style="margin-bottom:12px;" />
+      <input type="tel" id="wp-phone" placeholder="Tu WhatsApp (ej: +52...)" class="ss-input"
+        style="margin-bottom:24px;" />
       <div style="display:flex; gap:12px;">
         <button id="btn-wp-cancel" class="ss-btn-outline" style="flex:1;">Cancelar</button>
         <button id="btn-wp-submit" class="ss-btn-primary" style="flex:1;">Enviar</button>
@@ -1277,15 +1437,20 @@
     </div>
   </div>
 
-  <div class="ss-modal-overlay hidden" id="modal-teamback" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center;">
-    <div class="ss-modal-content" style="background:#fff; padding:40px 32px; border-radius:24px; max-width:400px; width:90%; text-align:center;">
+  <div class="ss-modal-overlay hidden" id="modal-teamback"
+    style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div class="ss-modal-content"
+      style="background:#fff; padding:40px 32px; border-radius:24px; max-width:400px; width:90%; text-align:center;">
       <div style="font-size:48px; margin-bottom:16px;">🤖</div>
-      <h3 style="font-family:'Urbanist',sans-serif; margin-bottom:8px;">Teamback <span style="font-size:12px; background:#EA580C; color:#fff; padding:2px 8px; border-radius:99px; vertical-align:middle;">Próximamente</span></h3>
-      <p style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Nuestro consejo de IAs expertas está entrenándose para ayudarte a construir un <strong>Business Case</strong> robusto basado en tu score.</p>
+      <h3 style="font-family:'Urbanist',sans-serif; margin-bottom:8px;">Teamback <span
+          style="font-size:12px; background:#EA580C; color:#fff; padding:2px 8px; border-radius:99px; vertical-align:middle;">Próximamente</span>
+      </h3>
+      <p style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Nuestro consejo de IAs expertas está
+        entrenándose para ayudarte a construir un <strong>Business Case</strong> robusto basado en tu score.</p>
       <button id="btn-teamback-close" class="ss-btn-primary" style="width:100%; border-radius:99px;">Entendido</button>
     </div>
   </div>
-  
+
   <script src="smokescan.js"></script>
 </body>
 
