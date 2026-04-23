@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── NAV SCROLL EFFECT ─── */
   const navWrapper = document.getElementById('nav-wrapper');
-  window.addEventListener('scroll', () => {
-    navWrapper.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  if (navWrapper) {
+    window.addEventListener('scroll', () => {
+      navWrapper.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
 
   /* ─── MOBILE MENU ─── 
      Expands the pill itself, no overlay, no separate layer.

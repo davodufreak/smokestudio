@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check c:/Users/gerar/GPS-Codex/SmokeStudio.R2/smokescan.js)"
+    ]
+  }
+}

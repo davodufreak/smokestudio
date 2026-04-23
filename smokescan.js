@@ -129,20 +129,6 @@ function getQualityLabel(score, max) {
   return { label: 'Sólida', cls: 'solida' };
 }
 
-function updateBreakdown(scores, prefix = '') {
-  const cats = ['claridad', 'mercado', 'competencia', 'revenue'];
-  cats.forEach(cat => {
-    const val = Math.round(scores[cat] || 0);
-    const scoreEl = $(`${prefix}bd-${cat}-score`) || $(`${prefix}rbd-${cat}-score`);
-    const fillEl = $(`${prefix}bd-${cat}-fill`) || $(`${prefix}rbd-${cat}-fill`);
-    if (scoreEl) {
-      scoreEl.textContent = `${val}/25`;
-      scoreEl.classList.toggle('active', val > 0);
-    }
-    if (fillEl) fillEl.style.width = `${(val / 25) * 100}%`;
-  });
-}
-
 function updateStickyScore(scores, total) {
   const sticky = $('ss-sticky-score');
   if (!sticky) return;
@@ -768,6 +754,8 @@ function showResults(result) {
     updateBreakdown(s, 'r');
     updateStickyScore(s, result.totalScore);
   }, 600);
+
+  saveAnalysis();
 }
 
 function updateBreakdown(scores, prefix) {
@@ -786,6 +774,7 @@ function updateBreakdown(scores, prefix) {
 }
 
 function populateResults(result) {
+  const sanitize = s => (s || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const tScore = result.totalScore || STATE.totalScore;
 
   // Condicional de layout (HUD, Modales y Modos)
@@ -831,7 +820,7 @@ function populateResults(result) {
       return `
         <div class="ss-cat-row">
           <div class="ss-cat-row__top">
-            <span class="ss-cat-row__name">${cat.name}</span>
+            <span class="ss-cat-row__name">${sanitize(cat.name)}</span>
             <span class="ss-cat-row__quality ${q.cls}">${q.label}</span>
           </div>
           <div class="ss-cat-row__bottom">
@@ -860,8 +849,8 @@ function populateResults(result) {
       <div class="ss-action-v2-item" id="action-v2-${i}">
         <div class="ss-action-v2-num">${i + 1}</div>
         <div class="ss-action-v2-body">
-          <div class="ss-action-v2-title">${step.title}</div>
-          <div class="ss-action-v2-desc">${step.description}</div>
+          <div class="ss-action-v2-title">${sanitize(step.title)}</div>
+          <div class="ss-action-v2-desc">${sanitize(step.description)}</div>
           <div class="ss-action-v2-impact">+ ${step.impact} puntos potenciales</div>
         </div>
         <div class="ss-action-v2-check"
@@ -950,10 +939,10 @@ function populateResults(result) {
           ${(result.categories || []).map(cat => `
             <div style="border: 1px solid #EBEBEB; border-radius:12px; padding:16px;">
               <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                <strong style="font-size:15px;">${cat.name}</strong>
+                <strong style="font-size:15px;">${sanitize(cat.name)}</strong>
                 <span style="font-weight:bold; color:${cat.score >= 18 ? '#16A34A' : '#EA580C'}">${Math.round(cat.score)}/25 pts</span>
               </div>
-              <p style="margin:0; font-family:'Istok Web',sans-serif; font-size:13px; color:#4B5563; line-height:1.5;">${cat.desc}</p>
+              <p style="margin:0; font-family:'Istok Web',sans-serif; font-size:13px; color:#4B5563; line-height:1.5;">${sanitize(cat.desc)}</p>
             </div>
           `).join('')}
         </div>
@@ -1179,7 +1168,7 @@ async function applyChangesAndReanalyze() {
   // Brief delay to simulate processing edit
   setTimeout(() => {
     STATE.isEditMode = false;
-    const newResult = getScoreStatus();
+    const newResult = generateSimulatedResult();
     showResults(newResult);
 
     // Cleanup loader
@@ -1336,6 +1325,7 @@ function initReset() {
 
     // Reset state
     STATE.answers = {
+      step0: { selection: null, desc: '', recursos: { capital: '', inversores: '', aliados: '', equipo: '' } },
       step1: { selection: null, desc: '', link: '' },
       step2: { selection: null, desc: '' },
       step3: { selections: [], desc: '' },
@@ -1483,7 +1473,10 @@ function initStep7Features() {
       }
 
       // Add user message
-      chatWindow.innerHTML += `<div style="align-self:flex-end; background:#FA504D; color:#fff; padding:12px; border-radius:12px; margin-left:auto; max-width:85%; font-size:14px;">${txt}</div>`;
+      const userMsg = document.createElement('div');
+      userMsg.textContent = txt;
+      userMsg.style.cssText = 'align-self:flex-end; background:#FA504D; color:#fff; padding:12px; border-radius:12px; margin-left:auto; max-width:85%; font-size:14px;';
+      chatWindow.appendChild(userMsg);
       chatInput.value = '';
       chatMsgCount--;
       limitText.textContent = `${chatMsgCount} mensajes restantes`;
@@ -1583,7 +1576,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initMobileMenu();
   initStartButton();
-  initAuth(); // New Firebase Auth initialization
+  initAuth();
   initOptions();
   initNavButtons();
   initStickyScore();
