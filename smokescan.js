@@ -1269,7 +1269,7 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 
     STATE.user = {
       id: session.user.id,
-      name: profile?.name || session.user.user_metadata.full_name,
+      name: profile?.name || (session.user.user_metadata.full_name ? sanitize(session.user.user_metadata.full_name) : 'Usuario'),
       email: session.user.email,
       intentosRestantes: profile?.intentos_restantes ?? 2
     };
@@ -1435,10 +1435,13 @@ function initStep7Features() {
         const livesHUD = $('ss-lives-count');
         if (livesHUD) livesHUD.textContent = intentos;
 
-        // Update in Supabase
+        // Update in Supabase safely using RPC
         if (STATE.user?.id) {
-          supabase.from('users').update({ intentos_restantes: intentos }).eq('id', STATE.user.id)
-            .then(({ error }) => { if (error) console.warn("Error updating intentos", error); });
+          try {
+            await supabase.rpc('deduct_attempt', { target_user_id: STATE.user.id });
+          } catch (error) {
+            console.warn("Error updating intentos", error);
+          }
         }
 
         window.location.reload();
@@ -1490,7 +1493,7 @@ function initStep7Features() {
 
       // Show Loader
       const loaderId = `chat-loader-${Date.now()}`;
-      chatWindow.innerHTML += `<div id="${loaderId}" style="align-self:flex-start; background:#E2E8F0; padding:12px; border-radius:12px; max-width:85%; font-size:14px; opacity:0.8;">Gemini está analizando tu argumento...</div>`;
+      chatWindow.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="align-self:flex-start; background:#E2E8F0; padding:12px; border-radius:12px; max-width:85%; font-size:14px; opacity:0.8;">Gemini está analizando tu argumento...</div>`);
       chatWindow.scrollTop = chatWindow.scrollHeight;
 
       try {
@@ -1509,7 +1512,7 @@ function initStep7Features() {
         // Replace loader
         const loaderEl = $(loaderId);
         if (loaderEl) {
-          loaderEl.outerHTML = `<div style="align-self:flex-start; background:#E2E8F0; color:#0B0B0C; padding:12px; border-radius:12px; max-width:85%; font-size:14px; line-height:1.5;">${geminiText.replace(/\n/g, '<br>')}</div>`;
+          loaderEl.outerHTML = `<div style="align-self:flex-start; background:#E2E8F0; color:#0B0B0C; padding:12px; border-radius:12px; max-width:85%; font-size:14px; line-height:1.5;">${sanitize(geminiText).replace(/\n/g, '<br>')}</div>`;
         }
 
       } catch (e) {
