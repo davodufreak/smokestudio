@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La historia detrás del Smoke Testing: De la plomería al software — Blog Smoke Studio</title>
+  <meta name="description" content="Descubre cómo una técnica utilizada para encontrar fugas en tuberías se convirtió en una metodología eficiente para validar productos digitales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Istok+Web:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg-post-body: #FFFFFF;
+      --bg-post-header: #F9FAFB;
+    }
+    body {
+      background: var(--bg-post-body);
+    }
+    .post-header {
+      padding: 160px 0 60px;
+      background: var(--bg-post-header);
+      text-align: center;
+    }
+    .post-header__meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .post-header__tag {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--c-indigo);
+      background: rgba(62,77,196,0.1);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+    }
+    .post-header__date {
+      font-family: 'Istok Web', sans-serif;
+      font-size: var(--type-sm);
+      color: var(--c-neutral-dark);
+    }
+    .post-header h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--c-neutral-darkest);
+      line-height: 1.15;
+    }
+    .post-hero-img {
+      max-width: var(--container-lg);
+      margin: 0 auto 64px;
+      padding: 0 var(--padding-global);
+    }
+    .post-hero-img img {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.08);
+    }
+    .post-content {
+      max-width: 720px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+      font-family: 'Istok Web', sans-serif;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--c-neutral-darker);
+    }
+    .post-content h2 {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 32px;
+      color: var(--c-neutral-darkest);
+      margin: 48px 0 24px;
+      line-height: 1.3;
+    }
+    .post-content p {
+      margin-bottom: 24px;
+    }
+    .post-content ul {
+      margin-bottom: 24px;
+      padding-left: 20px;
+    }
+    .post-content li {
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .post-content blockquote {
+      border-left: 4px solid var(--c-indigo);
+      padding-left: 24px;
+      margin: 40px 0;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--c-neutral-darkest);
+    }
+    .post-cta {
+      background: var(--c-indigo-lightest);
+      border-radius: var(--radius-md);
+      padding: 48px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .post-cta h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .post-cta p {
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .post-header { padding: 120px 24px 40px; }
+      .post-hero-img { padding: 0 16px; margin-bottom: 40px; }
+      .post-content { font-size: 16px; padding: 0 16px; }
+      .post-content h2 { font-size: 26px; }
+      .post-cta { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="sr-only">Saltar al contenido</a>
+  <div class="site-wrapper">
+
+  <!-- NAV -->
+  <header class="nav-wrapper" id="nav-wrapper">
+    <nav class="nav-container" id="navbar">
+      <a href="index.html" class="nav-logo" id="nav-logo">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
+          <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
+        </picture>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html"       class="nav-link">Nosotros</a></li>
+        <li><a href="servicios.html"      class="nav-link">Servicios</a></li>
+        <li><a href="blog.html"           class="nav-link active">Blog</a></li>
+        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      <a href="smokescan.html" class="btn btn--gradient nav-cta" id="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
+        SmokeScan
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="mobile-menu__top">
+      <a href="index.html" class="nav-logo" id="mobile-logo">
+        <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" />
+      </a>
+      <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu__links">
+      <li><a href="index.html#inicio"   class="mobile-link">Inicio</a></li>
+      <li><a href="nosotros.html"       class="mobile-link">Nosotros</a></li>
+      <li><a href="servicios.html"      class="mobile-link">Servicios</a></li>
+      <li><a href="blog.html"           class="mobile-link active">Blog</a></li>
+      <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
+    </ul>
+    <div class="mobile-menu__cta">
+      <a href="smokescan.html" class="btn btn--gradient">
+        <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
+        SmokeScan
+      </a>
+    </div>
+  </div>
+
+  <main id="main">
+    <article>
+      <header class="post-header">
+        <div class="post-header__meta">
+          <span class="post-header__tag">Historia</span>
+          <span class="post-header__date">14 Abr 2026</span>
+        </div>
+        <h1>La historia detrás del Smoke Testing: De la plomería al software</h1>
+      </header>
+      
+      <div class="post-hero-img">
+        <img src="assets/blog-history.jpg" alt="La historia detrás del Smoke Testing: De la plomería al software" />
+      </div>
+
+      <div class="post-content">
+        
+        <p>Cuando escuchas el término "Smoke Test" o prueba de humo, probablemente pienses en complicados procesos de control de calidad de software o en estrategias ágiles de lanzamiento de startups. Pero la realidad es que el origen de este concepto es mucho más literal y rudimentario.</p>
+        
+        <h2>Del mundo de los tubos a la ingeniería</h3>
+        <p>A principios del siglo XX, los plomeros enfrentaban un problema serio: ¿cómo detectar fugas en sistemas de tuberías subterráneas o de plomería oculta sin tener que derribar paredes completas? La respuesta fue elegante y sencilla: inyectar humo en el sistema.</p>
+        <p>Si había humo saliendo por donde no debía, tenías una fuga. Si el humo lograba recorrer toda la estructura de manera contenida, el sistema estaba intacto.</p>
+        
+        <h2>La evolución hacia la electrónica</h3>
+        <p>A medida que la electrónica empezó a dominar el mundo en la década de los 60 y 70, los ingenieros de hardware adoptaron esta frase. Cuando terminaban de armar un nuevo circuito integrado o una placa madre por primera vez, simplemente la conectaban a la corriente.</p>
+        <blockquote>Si salía humo real de la placa, sabían que el ensamblaje había fallado de forma catastrófica. A esto le llamaron, literalmente, "The Smoke Test".</blockquote>
+        
+        <h2>El salto al software y la validación de negocios</h2>
+        <p>Con la llegada del desarrollo de software moderno, Microsoft popularizó el término en los 90. Un "Smoke Test" en desarrollo de software se convirtió en una prueba inicial y superficial para ver si la aplicación al menos podía arrancar sin crashear espectacularmente. No es una prueba exhaustiva, es un filtro para determinar si vale la pena seguir probando.</p>
+        <p>Hoy, en la era de Lean Startup, el concepto ha evolucionado una vez más. Un <strong>Smoke Test para negocios</strong> no prueba código, prueba <em>demanda</em>. Es un experimento rápido y de muy bajo costo (como una Landing Page o una campaña de anuncios) que evalúa si los clientes realmente comprarían tu solución antes de que dediques meses a construirla.</p>
+        <p>Al igual que los plomeros hace un siglo, los fundadores modernos inyectan un poco de "humo" en el mercado para ver si hay una tracción sólida o si hay fugas fundamentales en su modelo de negocio.</p>
+        
+        
+        <div class="post-cta">
+          <h3>¿Listo para validar tu propia idea?</h3>
+          <p>No arriesgues tu capital en ideas sin probar. Realiza un diagnóstico rápido y basado en datos de la viabilidad de tu idea con nuestro validador interactivo.</p>
+          <a href="smokescan.html" class="btn btn--gradient btn--lg">Evaluar mi idea con SmokeScan</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav-logo footer__logo">
+            <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
+          </a>
+          <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="smokescan.html">SmokeScan</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <ul class="footer__contact">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Toronto
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
+        <div class="footer__legal">
+          <span>Hecho con ♥</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

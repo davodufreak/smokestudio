@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Smoke Studio</title>
+  <meta name="description" content="Insights, historias y estrategias sobre validación de ideas, smoke testing y desarrollo de producto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Istok+Web:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── PAGE-SPECIFIC TOKENS ── */
+    :root {
+      --bg-blog-hero: #0B0C10;
+      --bg-blog-content: #FFFFFF;
+    }
+
+    /* ─── HERO ─── */
+    .hero-blog {
+      position: relative;
+      min-height: 55vh;
+      background: var(--bg-blog-hero);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding-bottom: 64px;
+    }
+
+    .hero-blog__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-blog__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      opacity: 0.35;
+    }
+
+    .hero-blog__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(11, 12, 16, 0.95) 0%,
+        rgba(11, 12, 16, 0.6) 60%,
+        rgba(11, 12, 16, 0.1) 100%
+      );
+    }
+
+    .hero-blog__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--container-lg);
+      margin: 0 auto;
+      padding: 140px var(--padding-global) 0;
+      text-align: center;
+    }
+
+    .hero-blog__text {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .hero-blog__text .section-tag {
+      color: rgba(255,255,255,0.45);
+      justify-content: center;
+    }
+
+    .hero-blog__text h1 {
+      font-family: 'Urbanist', sans-serif;
+      color: #fff;
+      margin: 12px 0 20px;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.1;
+    }
+
+    .hero-blog__text p {
+      color: rgba(255,255,255,0.70);
+      font-size: var(--type-md);
+      line-height: 1.7;
+    }
+
+    /* ─── BLOG CONTENT ─── */
+    .blog-section {
+      padding: 80px 0 120px;
+      background: var(--bg-blog-content);
+    }
+
+    /* ─── SEARCH BAR ─── */
+    .blog-search {
+      max-width: 640px;
+      margin: 0 auto 64px;
+      position: relative;
+    }
+
+    .blog-search__input {
+      width: 100%;
+      padding: 18px 24px 18px 56px;
+      font-family: 'Istok Web', sans-serif;
+      font-size: var(--type-reg);
+      color: var(--c-neutral-darkest);
+      background: var(--c-neutral-lightest);
+      border: 1px solid rgba(11, 11, 12, 0.08);
+      border-radius: var(--radius-pill);
+      transition: all 0.3s var(--ease-out);
+      outline: none;
+    }
+
+    .blog-search__input::placeholder {
+      color: var(--c-neutral);
+    }
+
+    .blog-search__input:focus {
+      background: #fff;
+      border-color: var(--c-indigo);
+      box-shadow: 0 8px 32px rgba(62, 77, 196, 0.12);
+    }
+
+    .blog-search__icon {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--c-neutral-dark);
+      pointer-events: none;
+    }
+
+    /* ─── BLOG GRID ─── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      overflow: hidden;
+      border: 1px solid rgba(11,11,12,0.06);
+      transition: all 0.4s var(--ease-out);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+      border-color: rgba(62,77,196,0.15);
+    }
+
+    .blog-card__image {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--c-neutral-lightest);
+    }
+
+    .blog-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .blog-card:hover .blog-card__image img {
+      transform: scale(1.05);
+    }
+
+    .blog-card__content {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .blog-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .blog-card__tag {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--c-indigo);
+      background: rgba(62,77,196,0.08);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .blog-card__date {
+      font-family: 'Istok Web', sans-serif;
+      font-size: var(--type-sm);
+      color: var(--c-neutral);
+    }
+
+    .blog-card h3 {
+      font-family: 'Urbanist', sans-serif;
+      font-size: var(--type-h5);
+      color: var(--c-neutral-darkest);
+      line-height: 1.3;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .blog-card:hover h3 {
+      color: var(--c-indigo);
+    }
+
+    .blog-card p {
+      color: var(--c-neutral-dark);
+      font-size: var(--type-reg);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .blog-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Urbanist', sans-serif;
+      font-size: var(--type-sm);
+      font-weight: 700;
+      color: var(--c-neutral-darkest);
+      transition: color 0.2s, gap 0.2s;
+      margin-top: auto;
+    }
+
+    .blog-card:hover .blog-card__link {
+      color: var(--c-indigo);
+      gap: 10px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .blog-grid {
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-blog {
+        min-height: 40vh;
+        padding-bottom: 40px;
+      }
+      .hero-blog__content {
+        padding-top: 120px;
+      }
+      .hero-blog__text h1 {
+        font-size: clamp(32px, 8vw, 42px);
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-card__content {
+        padding: 24px;
+      }
+      .blog-search {
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="sr-only">Saltar al contenido</a>
+  <div class="site-wrapper">
+
+  <!-- NAV -->
+  <header class="nav-wrapper" id="nav-wrapper">
+    <nav class="nav-container" id="navbar">
+      <a href="index.html" class="nav-logo" id="nav-logo">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/logo_mobile.png">
+          <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" id="nav-logo-img" />
+        </picture>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html"       class="nav-link">Nosotros</a></li>
+        <li><a href="servicios.html"      class="nav-link">Servicios</a></li>
+        <li><a href="blog.html"           class="nav-link active">Blog</a></li>
+        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      <a href="smokescan.html" class="btn btn--gradient nav-cta" id="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
+        SmokeScan
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="mobile-menu__top">
+      <a href="index.html" class="nav-logo" id="mobile-logo">
+        <img src="assets/logo_dark.svg" alt="Smoke Studio" class="logo-img" />
+      </a>
+      <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14 4L4 14M4 4l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu__links">
+      <li><a href="index.html#inicio"   class="mobile-link">Inicio</a></li>
+      <li><a href="nosotros.html"       class="mobile-link">Nosotros</a></li>
+      <li><a href="servicios.html"      class="mobile-link">Servicios</a></li>
+      <li><a href="blog.html"           class="mobile-link active">Blog</a></li>
+      <li><a href="index.html#contacto" class="mobile-link">Contacto</a></li>
+    </ul>
+    <div class="mobile-menu__cta">
+      <a href="smokescan.html" class="btn btn--gradient">
+        <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5.5l-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-1L7 1z" fill="currentColor"/></svg>
+        SmokeScan
+      </a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero-blog">
+      <div class="hero-blog__bg">
+        <img src="assets/hero-team.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="hero-blog__content">
+        <div class="hero-blog__text">
+          <span class="section-tag animate-fadein" style="--delay:0s">Insights & Estrategia</span>
+          <h1 class="animate-fadein" style="--delay:.1s">
+            Aprende a validar antes de construir
+          </h1>
+          <p class="animate-fadein" style="--delay:.2s">
+            Casos de estudio, metodologías de experimentación y lecciones aprendidas sobre cómo reducir el riesgo en el desarrollo de productos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ BLOG CONTENT ═══════════════ -->
+    <section class="blog-section">
+      <div class="container">
+        
+        <!-- Search Bar -->
+        <div class="blog-search reveal">
+          <svg class="blog-search__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="blog-search__input" placeholder="Buscar artículos, temas o casos de estudio..." aria-label="Buscar en el blog" />
+        </div>
+
+        <!-- Posts Grid -->
+        <div class="blog-grid">
+          
+          <!-- Post 1 -->
+          <article class="blog-card reveal" style="--delay:.05s">
+            <div class="blog-card__image">
+              <img src="assets/blog-history.jpg" alt="Historia del smoke testing" loading="lazy" />
+            </div>
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Historia</span>
+                <span class="blog-card__date">14 Abr 2026</span>
+              </div>
+              <h3>La historia detrás del Smoke Testing: De la plomería al software</h3>
+              <p>Descubre cómo una técnica utilizada inicialmente para encontrar fugas en tuberías con humo real, se convirtió en una de las metodologías más eficientes para validar productos digitales modernos.</p>
+              <a href="post-smoke-testing-history.html" class="blog-card__link">
+                Leer artículo completo
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Post 2 -->
+          <article class="blog-card reveal" style="--delay:.1s">
+            <div class="blog-card__image">
+              <img src="assets/blog-failures.jpg" alt="Fracasos tecnológicos" loading="lazy" />
+            </div>
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Casos de Estudio</span>
+                <span class="blog-card__date">02 Abr 2026</span>
+              </div>
+              <h3>5 fracasos millonarios que un Smoke Test habría evitado</h3>
+              <p>Analizamos cinco de los productos más costosos y fallidos de la industria tecnológica, y cómo un simple experimento de validación de demanda habría salvado millones de dólares de inversión.</p>
+              <a href="post-tech-failures.html" class="blog-card__link">
+                Leer artículo completo
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Post 3 -->
+          <article class="blog-card reveal" style="--delay:.15s">
+            <div class="blog-card__image">
+              <img src="assets/blog-mvp.jpg" alt="MVP vs Fake Door" loading="lazy" />
+            </div>
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Estrategia</span>
+                <span class="blog-card__date">24 Mar 2026</span>
+              </div>
+              <h3>¿MVP o Fake Door? Cuándo usar cada estrategia de validación</h3>
+              <p>No todas las ideas requieren meses de desarrollo para probarse. Aprende a distinguir cuándo necesitas un Producto Mínimo Viable funcional y cuándo basta con una prueba de demanda "Fake Door".</p>
+              <a href="post-mvp-vs-fake-door.html" class="blog-card__link">
+                Leer artículo completo
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Post 4 -->
+          <article class="blog-card reveal" style="--delay:.2s">
+            <div class="blog-card__image">
+              <img src="assets/blog-validation.jpg" alt="Ventaja competitiva" loading="lazy" />
+            </div>
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Negocios</span>
+                <span class="blog-card__date">10 Mar 2026</span>
+              </div>
+              <h3>Por qué validar antes de programar es tu mayor ventaja competitiva</h3>
+              <p>En un mercado saturado, la velocidad de aprendizaje es más importante que la velocidad de desarrollo. Descubre cómo la investigación guiada por evidencia acelera el time-to-market real.</p>
+              <a href="post-validation-advantage.html" class="blog-card__link">
+                Leer artículo completo
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav-logo footer__logo">
+            <img src="assets/logo_light.svg" alt="Smoke Studio" class="logo-img logo-img--lg" />
+          </a>
+          <p class="footer__desc">Validamos ideas con evidencia real para que tomes decisiones con confianza.</p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/smoke.studio.america?igsh=MTlzMjBxbGl6djkyOA%3D%3D" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/smokestudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="smokescan.html">SmokeScan</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <ul class="footer__contact">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Toronto
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="https://wa.me/12503071859" class="footer__link">+1 (250) 307-1859</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:hola@smokestud.io" class="footer__link">hola@smokestud.io</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Smoke Studio. Todos los derechos reservados.</p>
+        <div class="footer__legal">
+          <span>Hecho con ♥</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  </div> <!-- End site-wrapper -->
+  <script src="main.js"></script>
+  <script>
+    // Blog Search functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.querySelector('.blog-search__input');
+      const articles = document.querySelectorAll('.blog-card');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          
+          articles.forEach(article => {
+            const title = article.querySelector('h3').textContent.toLowerCase();
+            const desc = article.querySelector('p').textContent.toLowerCase();
+            const tag = article.querySelector('.blog-card__tag').textContent.toLowerCase();
+            
+            if (title.includes(query) || desc.includes(query) || tag.includes(query)) {
+              article.style.display = 'flex';
+            } else {
+              article.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
