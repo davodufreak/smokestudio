@@ -223,11 +223,125 @@
         <p>El mayor error de los fundadores es saltar directo al MVP. Nuestro consejo siempre es: Vende antes de construir. Levanta una puerta falsa, mide el tráfico, el Costo de Adquisición de Clientes (CAC) y las tasas de conversión. Una vez que los números justifiquen la existencia del negocio, invierte en tu MVP con confianza.</p>
         
         
+        <style>
+          .newsletter-form {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+          }
+          .newsletter-form__group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+          }
+          .newsletter-form__input {
+            flex: 1;
+            padding: 16px 24px;
+            font-family: 'Istok Web', sans-serif;
+            font-size: 16px;
+            color: var(--c-neutral-darkest);
+            background: #fff;
+            border: 1px solid rgba(11, 11, 12, 0.15);
+            border-radius: var(--radius-pill, 100px);
+            outline: none;
+            transition: all 0.3s;
+          }
+          .newsletter-form__input:focus {
+            border-color: var(--c-indigo);
+            box-shadow: 0 0 0 4px rgba(62,77,196,0.1);
+          }
+          .newsletter-form__submit {
+            border-radius: var(--radius-pill, 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 140px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+          }
+          .newsletter-form__submit.success {
+            background: #10B981 !important;
+            color: #fff !important;
+            pointer-events: none;
+          }
+          .newsletter-form__msg {
+            font-size: 14px;
+            color: var(--c-neutral-dark);
+            min-height: 20px;
+            margin: 0;
+          }
+          .newsletter-form__msg.error {
+            color: #E11D48;
+          }
+          .newsletter-form__msg.success {
+            color: #10B981;
+          }
+          @media (max-width: 480px) {
+            .newsletter-form__group {
+              flex-direction: column;
+            }
+            .newsletter-form__submit {
+              width: 100%;
+              padding: 16px;
+            }
+          }
+        </style>
         <div class="post-cta">
-          <h3>¿Listo para validar tu propia idea?</h3>
-          <p>No arriesgues tu capital en ideas sin probar. Realiza un diagnóstico rápido y basado en datos de la viabilidad de tu idea con nuestro validador interactivo.</p>
-          <a href="smokescan.html" class="btn btn--gradient btn--lg">Evaluar mi idea con SmokeScan</a>
+          <h3>Suscríbete a SmokeStudio</h3>
+          <p>Recibe los mejores insights, casos de estudio y estrategias sobre validación de ideas directamente en tu correo.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <div class="newsletter-form__group">
+              <input type="email" id="newsletter-email" class="newsletter-form__input" placeholder="tu@correo.com" required aria-label="Correo electrónico" autocomplete="email" />
+              <button type="submit" class="btn btn--gradient btn--lg newsletter-form__submit" id="newsletter-submit">
+                <span class="submit-text">Suscribirme</span>
+                <svg class="submit-icon" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+            </div>
+            <p class="newsletter-form__msg" id="newsletter-msg" aria-live="polite"></p>
+          </form>
         </div>
+        <script>
+          document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const msg = document.getElementById('newsletter-msg');
+            const submitBtn = document.getElementById('newsletter-submit');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitIcon = submitBtn.querySelector('.submit-icon');
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailInput.value) {
+              msg.textContent = 'Por favor, ingresa tu correo electrónico.';
+              msg.className = 'newsletter-form__msg error';
+              emailInput.focus();
+              return;
+            }
+            
+            if (!emailRegex.test(emailInput.value)) {
+              msg.textContent = 'Por favor, ingresa un correo válido.';
+              msg.className = 'newsletter-form__msg error';
+              emailInput.focus();
+              return;
+            }
+            
+            submitBtn.disabled = true;
+            submitText.textContent = 'Procesando...';
+            msg.textContent = '';
+            
+            setTimeout(() => {
+              submitBtn.classList.add('success');
+              submitText.textContent = '¡Suscrito!';
+              submitIcon.style.display = 'block';
+              msg.textContent = '¡Gracias por suscribirte! Revisa tu bandeja de entrada.';
+              msg.className = 'newsletter-form__msg success';
+              emailInput.value = '';
+              emailInput.disabled = true;
+            }, 800);
+          });
+        </script>
       </div>
     </article>
   </main>
